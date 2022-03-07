@@ -1,0 +1,841 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+<!doctype html>
+<html lang="en-US">
+<head>
+    <!-- Google icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Rubik Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" rel="stylesheet">
+
+</head>
+
+<body>
+    @*Nav*@
+    <!-- Sidebar Ends -->
+    <!--content area start-->
+    <div id="content" class="pmd-content content-area dashboard">
+        <div class="row">
+            <div class="col-sm-6 col-lg-6 col-xl-3">
+                <div class="card pmd-card statistic-col new-users-statistic">
+                    <div class="card-body media">
+                        <i class="pmd-icon-circle pmd-icon-xl md-light">
+                            <svg version="1.1" x="0px" y="0px" width="32px" height="28.541px" viewBox="281.64 332.265 32 28.541" enable-background="new 281.64 332.265 32 28.541" xml:space="preserve">
+                            <g transform="translate(0,-952.36218)">
+                            <path d="M297.64,1284.627c-4.044,0-7.352,3.307-7.352,7.351c0,4.045,3.307,7.352,7.352,7.352
+                                        c4.045,0,7.352-3.307,7.352-7.352C304.991,1287.934,301.685,1284.627,297.64,1284.627z M297.64,1287.222
+                                        c2.643,0,4.757,2.114,4.757,4.757s-2.114,4.757-4.757,4.757s-4.757-2.114-4.757-4.757S294.997,1287.222,297.64,1287.222z
+                                         M297.64,1300.195c-4.283,0-8.164,1.021-11.067,2.743s-4.933,4.255-4.933,7.203v1.73c0,0.716,0.581,1.297,1.297,1.297h29.406
+                                        c0.716,0,1.297-0.581,1.297-1.297v-1.73c0-2.948-2.028-5.48-4.933-7.203C305.804,1301.215,301.923,1300.195,297.64,1300.195z
+                                         M297.64,1302.789c3.862,0,7.332,0.948,9.743,2.378c2.411,1.43,3.662,3.235,3.662,4.973v0.433h-26.811v-0.433
+                                        c0-1.737,1.251-3.542,3.662-4.973C290.308,1303.737,293.778,1302.789,297.64,1302.789z"></path>
+                            </g>
+                        </svg>
+                        </i>
+                        <div class="media-body">
+                            <h2 class="card-title display-3">200</h2>
+                            <p class="card-subtitle">Employees</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xl-3">
+                <div class="card pmd-card statistic-col download-statistic">
+                    <div class="card-body media">
+                        <i class="pmd-icon-circle pmd-icon-xl md-light">
+                            <svg version="1.1" x="0px" y="0px" viewBox="0 0 52 52" style="enable-background:new 0 0 52 52;" xml:space="preserve"><style type="text/css">
+</style><g><g><path d="M34.7,24H17.3c-1.1,0-2.2-0.5-3-1.3c-0.8-0.8-1.1-2-1-3.1l1.4-14c0.2-2.1,1.9-3.6,4-3.6h14.6c2.1,0,3.8,1.5,4,3.6l1.4,14    c0.1,1.1-0.3,2.2-1,3.1S35.8,24,34.7,24z M18.7,4c-1,0-1.9,0.8-2,1.8l-1.4,14c-0.1,0.6,0.1,1.1,0.5,1.5c0.4,0.4,0.9,0.7,1.5,0.7    h17.4c0.6,0,1.1-0.2,1.5-0.7c0.4-0.4,0.6-1,0.5-1.5l-1.4-14c-0.1-1-1-1.8-2-1.8H18.7z" /></g><g><path d="M41,32h-4c-0.6,0-1-0.4-1-1s0.4-1,1-1h4c1.1,0,2-0.9,2-2V16c0-0.6,0.4-1,1-1s1,0.4,1,1v12C45,30.2,43.2,32,41,32z" /></g><g><path d="M15,32h-4c-2.2,0-4-1.8-4-4V16c0-0.6,0.4-1,1-1s1,0.4,1,1v12c0,1.1,0.9,2,2,2h4c0.6,0,1,0.4,1,1S15.5,32,15,32z" /></g><g><path d="M46,19c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S47.7,19,46,19z M46,15c-0.6,0-1,0.4-1,1s0.4,1,1,1s1-0.4,1-1S46.6,15,46,15z    " /></g><g><path d="M37,50c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S38.7,50,37,50z M37,46c-0.6,0-1,0.4-1,1s0.4,1,1,1s1-0.4,1-1S37.6,46,37,46z    " /></g><g><path d="M15,50c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S16.7,50,15,50z M15,46c-0.6,0-1,0.4-1,1s0.4,1,1,1s1-0.4,1-1S15.6,46,15,46z    " /></g><g><path d="M26,48c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S27.7,48,26,48z M26,44c-0.6,0-1,0.4-1,1s0.4,1,1,1s1-0.4,1-1S26.6,44,26,44z    " /></g><g><path d="M6,19c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S7.7,19,6,19z M6,15c-0.6,0-1,0.4-1,1s0.4,1,1,1s1-0.4,1-1S6.6,15,6,15z" /></g><g><path d="M26,29c-0.6,0-1-0.4-1-1v-5c0-0.6,0.4-1,1-1s1,0.4,1,1v5C27,28.6,26.5,29,26,29z" /></g><g><path d="M26,44c-0.6,0-1-0.4-1-1V33c0-0.6,0.4-1,1-1s1,0.4,1,1v10C27,43.6,26.5,44,26,44z" /></g><g><path d="M37,46c-0.6,0-1-0.4-1-1v-2.4l-10-4.5l-10,4.5V45c0,0.6-0.4,1-1,1s-1-0.4-1-1v-3c0-0.4,0.2-0.7,0.6-0.9l11-5    c0.3-0.1,0.6-0.1,0.8,0l11,5c0.4,0.2,0.6,0.5,0.6,0.9v3C38,45.6,37.5,46,37,46z" /></g><g><path d="M34.5,34h-17c-1.9,0-3.5-1.6-3.5-3.5s1.6-3.5,3.5-3.5h17c1.9,0,3.5,1.6,3.5,3.5S36.4,34,34.5,34z M17.5,29    c-0.8,0-1.5,0.7-1.5,1.5s0.7,1.5,1.5,1.5h17c0.8,0,1.5-0.7,1.5-1.5S35.3,29,34.5,29H17.5z" /></g></g></svg>
+                        </i>
+                        <div class="media-body">
+                            <h2 class="card-title display-3">10</h2>
+                            <p class="card-subtitle">Open Vacancies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xl-3">
+                <div class="card pmd-card statistic-col visits-statistic">
+                    <div class="card-body media">
+                        <i class="material-icons pmd-icon-circle pmd-icon-xl md-light">
+                            <svg version="1.1" x="0px" y="0px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+                            <path d="M35.7,0.5h-6.8v7.1c-6.8,1.7-10.7,5.3-11.7,10.7c-0.7,5.4,1.1,9.7,5.2,12.9c1.4,1.1,5,2.8,10.8,5.1c4.2,1.6,6.2,3.8,5.9,6.5
+                            c-0.3,3.2-2.8,4.8-7.4,4.8c-3.1-0.1-6.7-1.7-11-4.9l-4.7,5.8c0.9,1.7,2.6,3.2,5,4.5c2.4,1.3,5,2.1,7.8,2.5l0.1,7h7l0-7.1
+                            c5.4-1.2,9.1-4.1,10.8-8.5c1.7-4.9,1.5-8.8-0.8-11.7c-2.3-3-5.3-5.1-8.9-6.4L31.7,27c-2.1-1.1-3.5-2-4.2-2.7
+                            c-2.6-3.2-2.1-5.9,1.4-8.1c4.4-2.1,9.2-1.1,14.3,2.9l3.7-6.1c-2.3-3.1-6-4.8-11.1-5.2V0.5z" />
+                        </svg>
+                        </i>
+                        <div class="media-body">
+                            <h2 class="card-title display-3">10,000</h2>
+                            <p class="card-subtitle">Total Payable Salary</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-6 col-xl-3">
+                <div class="card pmd-card happy-users-statistic">
+                    <div class="card-body media align-items-center">
+                        <p class="card-title">Payroll <br> Status</p>
+                        <div class="canvas media-body">
+                            <div class="circle mr-3">
+                                <div id="circles-1">
+                                </div>
+                                <div class="circle-text">Done</div>
+                            </div>
+                            <div class="circle">
+                                <div id="circles-2"></div>
+                                <div class="circle-text">Pending</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Department Wise Head Count-->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+                <div class="card pmd-card sms-details">
+                    <div class="card-header pmd-card-border">
+                        <h2 class="card-title h3">Department wise Head Count</h2>
+                        <p class="card-subtitle">Total no of employess in each department</p>
+                    </div>
+                    <div class="card-body">
+                        <!--chart start-->
+                        <div class="chart-container">
+                            <canvas id="bar-chartcanvas" height="350"></canvas>
+                        </div>
+                        <!--chart end-->
+                    </div>
+                </div>
+            </div>
+            <!-- end User Details-->
+            <!-- Today's Presence -->
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-4">
+                <div class="card pmd-card sms-details">
+                    <div class="card-header pmd-card-border">
+                        <h2 class="card-title h3">Today's Attendance</h2>
+                        <p class="card-subtitle">The total no of present and absent employees.</p>
+                    </div>
+                    <div class="card-body">
+                        <!--chart start-->
+                        <div class="doughnut-chart-container">
+                            <canvas id="doughnut-chartcanvas" width="300" height="300"></canvas>
+                        </div>
+                        <!--chart end-->
+                    </div>
+                </div>
+            </div>
+            <!-- End Today's Presence -->
+            <!-- Todo Lists -->
+            <div class="col-xl-4 col-lg-6 col-sm-6 col-12">
+                <div class="card pmd-card note-bg">
+                    <!-- Card hedaer -->
+                    <div class="card-header pmd-card-border">
+                        <h2 class="card-title h3">Todo List</h2>
+                        <p class="card-subtitle">List of tasks to be performed</p>
+                    </div>
+                    <!-- Card list -->
+                    <ul class="list-group pmd-list mb-0">
+                        <li class="list-group-item">
+                            <div class="custom-control custom-checkbox pmd-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Check the Resume of Sean E. Bliss</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="custom-control custom-checkbox pmd-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                <label class="custom-control-label" for="customCheck3">Do a background check of Trina C. Sparks</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="custom-control custom-checkbox pmd-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck4">
+                                <label class="custom-control-label" for="customCheck4">Prepare Appointment and Salary Letter for Kevin N. Hensley</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="custom-control custom-checkbox pmd-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck5">
+                                <label class="custom-control-label" for="customCheck5">Attend monthly performance meeting</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="custom-control custom-checkbox pmd-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck6">
+                                <label class="custom-control-label" for="customCheck6">Have a meeting with Wendell M. Glover regarding Appraisal</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="custom-control custom-checkbox pmd-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck7">
+                                <label class="custom-control-label" for="customCheck5">Check the leaves and prepare the Payroll Sheet for July Month</label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="custom-control custom-checkbox pmd-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck8">
+                                <label class="custom-control-label" for="customCheck10">Prepare the Salary Slip of Jonathan M. Blackmon</label>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="card-footer">
+                        <div class="add-todo-form">
+                            <form>
+                                <div class="form-group pmd-textfield">
+                                    <input type="text" class="mat-input form-control" id="taskname" value="" placeholder="eg. Have to attend meeting">
+                                </div>
+                                <button class="btn pmd-ripple-effect btn-primary pmd-btn-raised" type="button">Add Task</button>
+                                <button class="btn pmd-ripple-effect btn-outline-secondary cancel-todo" type="button">Cancel</button>
+                            </form>
+                        </div>
+                        <button class="btn pmd-ripple-effect btn-primary pmd-btn-raised" type="button" id="add-todo">Add Todo</button>
+                    </div>
+                </div>
+            </div>
+            <!-- end Todo Lists -->
+            <!-- Interview Status -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 col-xl-8">
+                <div class="card pmd-card sms-details">
+                    <div class="card-header pmd-card-border d-flex align-items-start">
+                        <div class="media-body">
+                            <h2 class="card-title h3">Interview Status</h2>
+                            <p class="card-subtitle">Status of the currently going on interviews</p>
+                        </div>
+                        <a class="btn pmd-ripple-effect btn-outline-primary ml-auto btn-sm" href="interview.html">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table pmd-table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Candidate</th>
+                                            <th>Position</th>
+                                            <th>Status</th>
+                                            <th>Interviewer</th>
+                                            <th>Notes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Tarah L. Faulkner</td>
+                                            <td>UI/UX Designer</td>
+                                            <td><span class="badge badge-pill badge-secondary">Test Cleared</span></td>
+                                            <td>John Doe</td>
+                                            <td>Scored - 80/100 in Test</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>James J. Kellogg</td>
+                                            <td>Mobile App Developer</td>
+                                            <td><span class="badge badge-pill badge-secondary">Interview Cleared</span></td>
+                                            <td>Robert P. Kinder</td>
+                                            <td>Good Development Knowledge</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Frank S. Terrones</td>
+                                            <td>Sales Manager</td>
+                                            <td><span class="badge badge-pill badge-info">Called for Test</span></td>
+                                            <td>Wendell M. Glover</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Kevin N. Hensley</td>
+                                            <td>PHP Developer</td>
+                                            <td><span class="badge badge-pill badge-primary">Selected</span></td>
+                                            <td>Fay A. Sayer</td>
+                                            <td>Joining on 2<sup>nd</sup> August, 2018</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Maria T. Johnson</td>
+                                            <td>UI/UX Designer</td>
+                                            <td><span class="badge badge-pill badge-info">Called for Test</span></td>
+                                            <td>John Doe</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Interview Status -->
+            <!--Upcoming Birthdays-->
+            <div class="col-lg-4 col-sm-6 col-12">
+                <div class="card pmd-card">
+                    <!-- Card hedaer -->
+                    <div class="card-header pmd-card-border d-flex">
+                        <i class="pmd-icon-circle icon-circle-48 border border-primary mr-3 md-dark">
+                            <svg viewBox="127.561 250.867 340.158 340.158">
+                                <g>
+                                    <g>
+                                        <path d="M408.797,485.241H186.483c-3.261,0-5.905-2.644-5.905-5.906v-86.662c0-9.769,7.947-17.717,17.716-17.717h198.692
+                                        c9.769,0,17.716,7.948,17.716,17.717v86.662C414.702,482.598,412.058,485.241,408.797,485.241z M192.389,473.431h210.503v-80.757
+                                        c0-3.255-2.65-5.906-5.905-5.906H198.294c-3.255,0-5.905,2.65-5.905,5.906V473.431z" />
+                                    </g>
+                                    <g>
+                                        <path d="M403.307,511.954H191.974c-13.025,0-23.622-10.597-23.622-23.622v-8.997c0-3.26,2.644-5.904,5.905-5.904h246.767
+                                        c3.261,0,5.905,2.645,5.905,5.904v8.997C426.929,501.357,416.331,511.954,403.307,511.954z M180.163,485.241v3.091
+                                        c0,6.514,5.297,11.812,11.811,11.812h211.333c6.514,0,11.811-5.298,11.811-11.812v-3.091H180.163z" />
+                                    </g>
+                                    <g>
+                                        <path d="M332.212,562.586h-69.145c-2.211,0-4.236-1.233-5.25-3.199c-1.013-1.968-0.842-4.334,0.441-6.134l13.498-18.931
+                                        c2.191-3.071,3.348-6.69,3.348-10.459v-17.814c0-3.261,2.644-5.905,5.905-5.905h33.262c3.261,0,5.905,2.645,5.905,5.905v17.814
+                                        c0,3.769,1.157,7.388,3.349,10.459l13.497,18.931c1.283,1.8,1.453,4.166,0.441,6.134
+                                        C336.448,561.353,334.425,562.586,332.212,562.586z M274.533,550.776h46.214l-6.843-9.598c-3.625-5.087-5.539-11.073-5.539-17.315
+                                        v-11.909h-21.451v11.909c0,6.242-1.914,12.229-5.539,17.315L274.533,550.776z" />
+                                    </g>
+                                    <g>
+                                        <path d="M252.788,386.768h-29.899c-3.262,0-5.906-2.644-5.906-5.905v-39.208c0-11.396,9.274-20.669,20.669-20.669
+                                        c11.768,0,21.041,9.273,21.041,20.669v39.208C258.693,384.124,256.049,386.768,252.788,386.768z M228.794,374.957h18.088v-33.302
+                                        c0-4.885-3.973-8.858-8.858-8.858c-5.257,0-9.23,3.973-9.23,8.858V374.957z" />
+                                    </g>
+                                    <g>
+                                        <path d="M312.59,386.768h-29.899c-3.262,0-5.906-2.644-5.906-5.905v-39.208c0-11.396,9.274-20.669,20.67-20.669
+                                        c11.768,0,21.041,9.273,21.041,20.669v39.208C318.495,384.124,315.851,386.768,312.59,386.768z M288.595,374.957h18.089v-33.302
+                                        c0-4.885-3.975-8.858-8.859-8.858c-5.256,0-9.23,3.973-9.23,8.858V374.957z" />
+                                    </g>
+                                    <g>
+                                        <path d="M372.392,386.768h-29.9c-3.261,0-5.905-2.644-5.905-5.905v-39.208c0-11.396,9.274-20.669,20.669-20.669
+                                        c11.769,0,21.042,9.273,21.042,20.669v39.208C378.297,384.124,375.653,386.768,372.392,386.768z M348.397,374.957h18.09v-33.302
+                                        c0-4.885-3.975-8.858-8.858-8.858c-5.257,0-9.231,3.973-9.231,8.858V374.957z" />
+                                    </g>
+                                    <g>
+                                        <path d="M237.836,332.796c-11.499,0-20.854-9.357-20.854-20.857c0-9.587,12.434-25.848,16.246-30.606
+                                        c2.24-2.794,6.969-2.8,9.215,0c3.813,4.755,16.249,21.019,16.249,30.606C258.693,323.439,249.336,332.796,237.836,332.796z
+                                         M237.836,294.866c-4.901,6.958-9.042,14.248-9.042,17.074c0,4.988,4.057,9.046,9.042,9.046c4.989,0,9.046-4.058,9.046-9.046
+                                        C246.882,309.113,242.739,301.824,237.836,294.866z" />
+                                    </g>
+                                    <g>
+                                        <path d="M297.641,332.796c-11.5,0-20.857-9.357-20.857-20.857c0-9.587,12.437-25.851,16.249-30.606
+                                        c1.122-1.399,2.817-2.212,4.608-2.212l0,0c1.793,0,3.486,0.813,4.608,2.212c3.813,4.758,16.246,21.019,16.246,30.606
+                                        C318.495,323.439,309.141,332.796,297.641,332.796z M297.641,294.866c-4.902,6.958-9.046,14.248-9.046,17.074
+                                        c0,4.988,4.058,9.046,9.046,9.046c4.986,0,9.043-4.058,9.043-9.046C306.685,309.105,302.543,301.818,297.641,294.866z" />
+                                    </g>
+                                    <g>
+                                        <path d="M357.444,332.796c-11.5,0-20.857-9.357-20.857-20.857c0-9.587,12.438-25.851,16.249-30.606
+                                        c1.122-1.399,2.816-2.212,4.608-2.212l0,0c1.794,0,3.486,0.813,4.607,2.212c3.813,4.758,16.246,21.019,16.246,30.606
+                                        C378.297,323.439,368.943,332.796,357.444,332.796z M357.444,294.866c-4.902,6.958-9.047,14.248-9.047,17.074
+                                        c0,4.988,4.058,9.046,9.047,9.046c4.985,0,9.043-4.058,9.043-9.046C366.487,309.105,362.346,301.818,357.444,294.866z" />
+                                    </g>
+                                    <g>
+                                        <path d="M406.888,435.176c-1.194,0-2.396-0.359-3.439-1.108l-22.775-16.362c-0.441-0.317-1.726-0.32-2.174-0.009l-18.268,13.124
+                                        c-4.535,3.26-11.393,3.258-15.952-0.015l-18.232-13.1c-0.44-0.317-1.725-0.32-2.174-0.009l-18.268,13.124
+                                        c-4.535,3.26-11.393,3.258-15.952-0.015l-18.233-13.1c-0.441-0.317-1.727-0.32-2.174-0.009L250.98,430.82
+                                        c-4.536,3.26-11.393,3.258-15.952-0.015l-18.232-13.1c-0.445-0.317-1.733-0.32-2.183,0.002l-22.777,16.359
+                                        c-2.656,1.899-6.347,1.294-8.241-1.35c-1.903-2.65-1.298-6.342,1.35-8.241l22.774-16.359c4.55-3.273,11.411-3.273,15.967-0.006
+                                        l18.238,13.103c0.447,0.32,1.724,0.332,2.166,0.012l18.27-13.124c4.545-3.261,11.402-3.258,15.952,0.009l18.239,13.103
+                                        c0.447,0.32,1.725,0.332,2.166,0.012l18.27-13.124c4.546-3.261,11.402-3.258,15.953,0.009l18.238,13.103
+                                        c0.443,0.32,1.721,0.332,2.165,0.012l18.271-13.124c4.545-3.261,11.401-3.258,15.951,0.009l22.778,16.365
+                                        c2.649,1.902,3.252,5.591,1.349,8.241C410.535,434.323,408.725,435.176,406.888,435.176z" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </i>
+                        <div class="media-body">
+                            <h2 class="card-title h3">Upcoming Birthdays</h2>
+                            <p class="card-subtitle">List of employees whose birthdays are in the month of August</p>
+                        </div>
+                    </div>
+                    <!-- Card list -->
+                    <ul class="list-group pmd-list">
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-1.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Robert P. Kinder</h3>
+                                <p class="pmd-list-subtitle">August 2<sup>nd</sup>, 2018</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-2.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Darlene C. Larsen</h3>
+                                <p class="pmd-list-subtitle">August 12<sup>th</sup>, 2018</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-3.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Fay A. Sayer</h3>
+                                <p class="pmd-list-subtitle">August 15<sup>th</sup>, 2018</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-4.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Jonathan M. Blackmon</h3>
+                                <p class="pmd-list-subtitle">August 15<sup>th</sup>, 2018</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-6.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Samuel K. Smith</h3>
+                                <p class="pmd-list-subtitle">August 20<sup>th</sup>, 2018</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end Upcoming Birthdays-->
+            <!-- Upcoming Work Anniversaries -->
+            <div class="col-lg-4 col-sm-6 col-12">
+                <div class="card pmd-card">
+                    <!-- Card hedaer -->
+                    <div class="card-header pmd-card-border d-flex">
+                        <i class="pmd-icon-circle icon-circle-48 border border-primary mr-3 md-dark">
+                            <svg viewBox="127.561 250.867 340.158 340.158">
+                                <path d="M225.912,286.132c-4.056,0.445-7.1,3.917-7.012,7.997v11.811H179.53c-12.95,0-23.622,10.672-23.622,23.622v199.543
+                                c0,12.951,10.672,23.622,23.622,23.622H415.75c12.95,0,23.622-10.671,23.622-23.622V329.562c0-12.95-10.672-23.622-23.622-23.622
+                                h-39.37v-11.811c0.094-4.348-3.355-7.949-7.704-8.042c-0.344-0.007-0.688,0.008-1.03,0.046c-4.058,0.445-7.102,3.917-7.014,7.997
+                                v11.811H234.648v-11.811c0.094-4.348-3.355-7.949-7.704-8.042C226.6,286.079,226.255,286.094,225.912,286.132z M179.53,321.688
+                                H218.9v11.811c-0.062,4.349,3.414,7.924,7.762,7.986c4.349,0.061,7.924-3.414,7.986-7.763c0-0.074,0-0.149,0-0.223v-11.811h125.984
+                                v11.811c-0.063,4.349,3.414,7.924,7.763,7.986c4.349,0.061,7.924-3.414,7.985-7.763c0.001-0.074,0.001-0.149,0-0.223v-11.811h39.37
+                                c4.498,0,7.874,3.376,7.874,7.874v199.543c0,4.499-3.376,7.874-7.874,7.874H179.53c-4.499,0-7.874-3.375-7.874-7.874V329.562
+                                C171.656,325.064,175.031,321.688,179.53,321.688z M297.025,369.248c-2.479,0.208-4.715,1.577-6.028,3.69l-17.963,28.79
+                                l-32.48,8.366c-4.196,1.141-6.675,5.467-5.534,9.664c0.286,1.053,0.788,2.036,1.475,2.885l21.407,26.207l-2.215,33.956
+                                c-0.321,4.337,2.935,8.114,7.271,8.437c1.213,0.09,2.43-0.104,3.555-0.563l31.127-12.672l31.127,12.672
+                                c4.027,1.643,8.623-0.291,10.266-4.318c0.459-1.126,0.651-2.342,0.561-3.556l-2.214-33.956l21.407-26.207
+                                c2.733-3.382,2.208-8.34-1.175-11.074c-0.849-0.686-1.832-1.188-2.886-1.475l-32.479-8.366l-17.963-28.79
+                                C302.738,370.455,299.943,369.034,297.025,369.248z M297.64,391.885l12.795,20.793c1.068,1.773,2.792,3.056,4.799,3.568
+                                l23.621,6.027l-15.624,18.947c-1.302,1.541-1.962,3.522-1.846,5.537l1.6,24.605l-22.392-9.104c-1.895-0.767-4.012-0.767-5.906,0
+                                l-22.392,9.104l1.6-24.605c0.116-2.015-0.544-3.996-1.846-5.537l-15.625-18.947l23.622-6.027c2.006-0.513,3.73-1.795,4.798-3.568
+                                L297.64,391.885z" />
+                            </svg>
+                        </i>
+                        <div class="media-body">
+                            <h2 class="card-title h3">Upcoming Work Anniversaries</h2>
+                            <p class="card-subtitle">List of employees with work anniversaries</p>
+                        </div>
+                    </div>
+                    <!-- Card list -->
+                    <ul class="list-group pmd-list">
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-7.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Samuel K. Smith</h3>
+                                <p class="pmd-list-subtitle">8 years</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-8.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Wendell M. Glover</h3>
+                                <p class="pmd-list-subtitle">2 years</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-9.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Jonathan M. Blackmon</h3>
+                                <p class="pmd-list-subtitle">3 years</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-10.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Fay A. Sayer</h3>
+                                <p class="pmd-list-subtitle">2 years</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex flex-row">
+                            <a href="javascript:void(0);" class="pmd-avatar-list-img" title="profile-link">
+                                <img alt="40x40" class="img-fluid" src="~/Content/images/profile-11.jpg">
+                            </a>
+                            <div class="media-body">
+                                <h3 class="pmd-list-title">Darlene C. Larsen</h3>
+                                <p class="pmd-list-subtitle">6 years</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end Upcoming Work Anniversaries -->
+            <!-- project progress -->
+            <div class="col-lg-4 col-sm-12 col-12">
+                <div class="card pmd-card recent-activites">
+                    <!-- Card hedaer -->
+                    <div class="card-header pmd-card-border d-flex align-items-start">
+                        <i class="pmd-icon-circle icon-circle-48 border border-primary mr-3 md-dark">
+                            <svg viewBox="127.561 250.867 340.158 340.158">
+                                <g>
+                                    <path d="M263.662,364.702h-11.939c-5.799,0-10.233,4.435-10.233,10.233c0,5.799,4.435,10.233,10.233,10.233h11.939
+                                    c5.799,0,10.234-4.434,10.234-10.233C273.896,369.137,269.12,364.702,263.662,364.702z" />
+                                    <path d="M215.906,364.702h-11.939c-5.798,0-10.233,4.435-10.233,10.233c0,5.799,4.435,10.233,10.233,10.233h11.939
+                                    c5.799,0,10.233-4.434,10.233-10.233C226.14,369.137,221.364,364.702,215.906,364.702z" />
+                                    <path d="M299.479,385.169h11.939c5.798,0,10.233-4.434,10.233-10.233c0-5.798-4.436-10.233-10.233-10.233h-11.939
+                                    c-5.799,0-10.233,4.435-10.233,10.233C289.245,380.735,293.68,385.169,299.479,385.169z" />
+                                    <path d="M347.234,385.169h11.939c5.799,0,10.233-4.434,10.233-10.233c0-5.798-4.435-10.233-10.233-10.233h-11.939
+                                    c-5.798,0-10.232,4.435-10.232,10.233C337.001,380.735,341.436,385.169,347.234,385.169z" />
+                                    <path d="M263.662,404.954h-11.939c-5.799,0-10.233,4.434-10.233,10.233c0,5.799,4.435,10.233,10.233,10.233h11.939
+                                    c5.799,0,10.234-4.434,10.234-10.233C273.896,409.388,269.12,404.954,263.662,404.954z" />
+                                    <path d="M215.906,404.954h-11.939c-5.798,0-10.233,4.434-10.233,10.233c0,5.799,4.435,10.233,10.233,10.233h11.939
+                                    c5.799,0,10.233-4.434,10.233-10.233C226.14,409.388,221.364,404.954,215.906,404.954z" />
+                                    <path d="M263.662,444.182h-11.939c-5.799,0-10.233,4.434-10.233,10.234c0,5.798,4.435,10.232,10.233,10.232h11.939
+                                    c5.799,0,10.234-4.435,10.234-10.232C273.896,448.615,269.12,444.182,263.662,444.182z" />
+                                    <path d="M215.906,444.182h-11.939c-5.798,0-10.233,4.434-10.233,10.234c0,5.798,4.435,10.232,10.233,10.232h11.939
+                                    c5.799,0,10.233-4.435,10.233-10.232C226.14,448.615,221.364,444.182,215.906,444.182z" />
+                                    <path d="M415.798,410.07v-98.922c0-5.799-4.435-10.233-10.233-10.233h-26.266V290.34c0-5.799-4.434-10.233-10.233-10.233
+                                    s-10.233,4.435-10.233,10.233v10.575H204.308V290.34c0-5.799-4.435-10.233-10.233-10.233c-5.799,0-10.233,4.435-10.233,10.233
+                                    v10.575h-26.266c-5.799,0-10.233,4.435-10.233,10.233v192.046c0,5.799,4.434,10.233,10.233,10.233H284.47
+                                    c13.645,29.677,43.662,50.144,78.114,50.144c47.414,0,85.961-38.546,85.961-85.961C448.203,449.98,435.582,425.762,415.798,410.07z
+                                     M167.809,492.619V321.381h16.033v5.799c0,5.799,4.434,10.233,10.233,10.233c5.799,0,10.233-4.435,10.233-10.233v-5.799h154.524
+                                    v5.799c0,5.799,4.434,10.233,10.233,10.233s10.233-4.435,10.233-10.233v-5.799h16.032v76.75
+                                    c-10.233-4.094-21.149-6.481-32.747-6.481c-17.396,0-33.429,5.117-47.074,13.986c-1.364-0.682-2.728-0.682-4.092-0.682h-11.939
+                                    c-5.799,0-10.233,4.434-10.233,10.233c0,4.093,2.388,7.504,5.799,9.21c-11.598,14.667-18.42,33.088-18.42,53.213
+                                    c0,5.117,0.341,10.233,1.364,15.351H167.809V492.619z M362.584,543.104c-36.157,0-65.494-29.335-65.494-65.494
+                                    c0-36.158,29.336-65.494,65.494-65.494s65.493,29.336,65.493,65.494C428.077,513.77,398.402,543.104,362.584,543.104z" />
+                                    <path d="M390.214,473.176h-21.49v-31.723c0-5.799-4.434-10.234-10.233-10.234c-5.798,0-10.232,4.436-10.232,10.234v41.957
+                                    c0,5.799,4.435,10.232,10.232,10.232h31.724c5.8,0,10.233-4.434,10.233-10.232C400.448,477.61,396.014,473.176,390.214,473.176z" />
+                                </g>
+                            </svg>
+                        </i>
+                        <div class="media-body">
+                            <h2 class="card-title h3">Events and Activities</h2>
+                            <p class="card-subtitle">List of events and activities that happened or are upcoming</p>
+                        </div>
+                        <a class="btn pmd-ripple-effect btn-outline-primary ml-auto btn-sm" href="interview.html">View All</a>
+                    </div>
+                    <!-- Card list -->
+                    <ul class="list-group pmd-list pmd-list-border pmd-list-progress">
+                        <li class="list-group-item list-group-item-success">
+                            <small>March 2<sup>nd</sup>, 2018</small>
+                            <h2 class="pmd-list-title">XYZ's Birthday Party</h2>
+                            <p>This March, XYZ will turn 20 and we have decided to have a 2 days celebration on this ocassion. We are planning a lot of activities and fun games.</p>
+                        </li>
+                        <li class="list-group-item list-group-item-disabled">
+                            <small>January 5<sup>th</sup>, 2018</small>
+                            <h2 class="pmd-list-title">XYZ went on camping at Pacific Rim National Park</h2>
+                            <p>Last weekend XYZ went on a camping trip to Pacific Rim National Park along with their families.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end project progress -->
+            <!-- Leave Application Block -->
+            <div class="col-12">
+                <!-- Card Component -->
+                <div class="card pmd-card">
+                    <!-- Card Header -->
+                    <div class="card-header pmd-card-border d-flex align-items-start">
+                        <div class="media-body">
+                            <h2 class="card-title h3">Leave Applications</h2>
+                            <p class="card-subtitle">Application of Leaves by Employees</p>
+                        </div>
+                        <a class="btn pmd-ripple-effect btn-outline-primary ml-auto btn-sm" href="/User/Leave/">View All</a>
+                    </div>
+                    <!-- Card Header End -->
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table pmd-table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee</th>
+                                            <th>Leave Type</th>
+                                            <th>Half Day</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Reason</th>
+                                            <th>No of Leave</th>
+                                            <th>Paid / Unpaid</th>
+                                            <th>Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tarah L. Faulkner</td>
+                                            <td>Casual Leave</td>
+                                            <td>No</td>
+                                            <td>1<sup>st</sup> September, 2018</td>
+                                            <td>3<sup>rd</sup> September, 2018</td>
+                                            <td>Attend Cousin's Wedding</td>
+                                            <td>3</td>
+                                            <td>Paid</td>
+                                            <td>Pending</td>
+                                            <td>
+                                                <a href="javascript:void(0);" class="pmd-btn-fab btn-xs btn-outline-secondary pmd-ripple-effect btn mr-2">
+                                                    <i class="material-icons">done</i>
+                                                </a>
+                                                <a href="javascript:void(0);" title="Reject" class="pmd-btn-fab btn-xs btn-outline-danger pmd-ripple-effect btn" data-toggle="modal" data-target="#reject-modal">
+                                                    <i class="material-icons">close</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Julia Warne</td>
+                                            <td>Sick Leave</td>
+                                            <td>Yes</td>
+                                            <td>1<sup>st</sup> December, 2018</td>
+                                            <td>1<sup>st</sup> December, 2018</td>
+                                            <td>Not feeling well</td>
+                                            <td>0.5</td>
+                                            <td>Paid</td>
+                                            <td>Pending</td>
+                                            <td>
+                                                <a href="javascript:void(0);" class="pmd-btn-fab btn-xs btn-outline-secondary btn mr-2 pmd-ripple-effect">
+                                                    <i class="material-icons">done</i>
+                                                </a>
+                                                <a href="javascript:void(0);" title="Reject" class="pmd-btn-fab btn-xs btn-outline-danger btn pmd-ripple-effect" data-toggle="modal" data-target="#reject-modal">
+                                                    <i class="material-icons">close</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Body End -->
+                </div>
+                <!-- Card Component End -->
+            </div>
+            <!-- Leave Application Block End -->
+        </div>
+    </div>
+    <!--end content area-->
+    <!-- Footer Starts -->
+    @*<footer class="pmd-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 align-self-center">
+                    <div class="pmd-site-info">
+                        © <span class="auto-update-year"></span> A <a href="https://pro.propeller.in/" target="_blank"><strong>Propeller Pro </strong></a> Theme
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>*@
+    <!-- Footer Ends -->
+    <!-- Reject Leave Request Modal -->
+    <div class="modal pmd-modal fade text-center delete-modal" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="reject-modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <i class="material-icons md-danger pmd-icon-circle bg-danger pmd-icon-md"><strong>error_outline</strong></i>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <h2 class="modal-title">Are you sure?</h2>
+                    <p>Do you really want to reject the employee's leave? <br /> This process cannot be undone.</p>
+                    <a href="javascript:void(0);" class="btn btn-outline-dark pmd-btn-raised pmd-ripple-effect" title="Cancel" data-dismiss="modal">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-primary pmd-btn-raised pmd-ripple-effect" title="Delete">Reject</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var sPath = window.location.pathname;
+            var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+            $(".pmd-sidebar-nav").each(function () {
+                $(this).find("a[href='" + sPage + "']").parents(".collapse").addClass("show");
+                $(this).find("a[href='" + sPage + "']").parents(".collapse").prev('a.nav-link').addClass("active");
+                $(this).find("a[href='" + sPage + "']").addClass("active");
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+            var toggles = document.querySelectorAll(".c-hamburger");
+            for (var i = toggles.length - 1; i >= 0; i--) {
+                var toggle = toggles[i];
+                toggleHandler(toggle);
+            };
+            function toggleHandler(toggle) {
+                toggle.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
+                });
+            }
+
+        })();
+    </script>
+
+    <!-- Javascript for Payroll Status -->
+    <script>
+        function shuffle(o) { //v1.0
+            for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
+        }
+        var colors = [
+            ['#e1e5e8', '#00aa49'], ['#dfe3e6', '#fd5c28']
+        ], circles = [];
+        for (var i = 1; i <= 3; i++) {
+            var child = document.getElementById('circles-' + i),
+                percentage = 100 - i * 35;
+            circles.push(Circles.create({
+                id: child.id,
+                value: percentage,
+                radius: 40,
+                width: 3,
+                colors: colors[i - 1]
+            }));
+        }
+    </script>
+    <script>
+        // Department Wise Head Count Bar Chart
+        $(function () {
+
+            //get the bar chart canvas
+            var ctx = $("#bar-chartcanvas");
+
+            //bar chart data
+            var data = {
+                labels: ["Design", "Development", "Sales", "Marketing", "Human Resource", "Finance", "Support", "Management", "Quality Assurance"],
+                datasets: [
+                    {
+                        label: "Department wise Head Count",
+                        data: [15, 50, 30, 40, 3, 10, 25, 5, 10],
+                        backgroundColor: [
+                            "#3075BA",
+                            "#00AA4A",
+                            "#3075BA",
+                            "#00AA4A",
+                            "#3075BA",
+                            "#00AA4A",
+                            "#3075BA",
+                            "#00AA4A",
+                            "#3075BA"
+                        ],
+                        borderWidth: 0
+                    }
+                ]
+            };
+
+            //options
+            var options = {
+                responsive: true,
+                title: {
+                    display: true,
+                    position: "top",
+                    fontSize: 18,
+                    fontColor: "#111"
+                },
+                categoryPercentage: 0.1,
+                barPercentage: 0.1,
+                barThickness: 0,
+                legend: {
+                    display: false,
+                    position: "bottom",
+                    labels: {
+                        fontColor: "#333",
+                        fontSize: 16
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0
+                        }
+                    }]
+                },
+                maintainAspectRatio: false,
+            };
+
+            //create Chart class object
+            var chart = new Chart(ctx, {
+                type: "bar",
+                data: data,
+                options: options
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+
+            //get the doughnut chart canvas
+            var ctx1 = $("#doughnut-chartcanvas");
+
+            //doughnut chart data
+            var data1 = {
+                labels: ["Present", "Absent"],
+                datasets: [
+                    {
+                        label: "",
+                        data: [180, 20],
+                        backgroundColor: [
+                            "#3075BA",
+                            "#00AA4A"
+                        ],
+                        borderColor: [
+                            "#3075BA",
+                            "#00AA4A"
+                        ],
+                        borderWidth: [1, 1]
+                    },
+                ]
+            };
+
+            //options
+            var options = {
+                responsive: true,
+                legend: {
+                    display: true,
+                    position: "bottom",
+                    labels: {
+                        fontColor: "#333",
+                        fontSize: 16
+                    }
+                },
+                cutoutPercentage: 70,
+                maintainAspectRatio: false,
+            };
+
+            //create Chart class object
+            var chart1 = new Chart(ctx1, {
+                type: "doughnut",
+                data: data1,
+                options: options
+            });
+        });
+    </script>
+
+    <script>
+        // Show Hide Todo Form
+        $(".add-todo-form").hide();
+        $("#add-todo").click(function () {
+            $(".add-todo-form").show();
+            $("#add-todo").hide();
+            $("#taskname").focus()
+        });
+        $(".cancel-todo").click(function () {
+            $(".add-todo-form").hide();
+            $("#add-todo").show();
+        });
+    </script>
+
+</body>
+</html>

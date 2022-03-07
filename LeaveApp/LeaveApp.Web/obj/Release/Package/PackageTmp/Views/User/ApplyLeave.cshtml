@@ -1,0 +1,439 @@
+﻿
+@{
+    ViewBag.Title = "ApplyLeave";
+}
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Apply leave form template. Bootstrap 4 Admin HTML Theme is a material design and bootstrap 4 based responsive dashboard template by propeller created mainly for admin and backend applications.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Apply For Leave.</title>
+    <link rel="shortcut icon" type="image/x-icon" href="themes/images/favicon.ico">
+
+    <!-- Google icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Rubik Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" rel="stylesheet">
+    <style>
+        #leaveList table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #leaveList th, #leaveList td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #leaveList tr:nth-child(even) {
+            background-color: #D6EEEE;
+        }
+        label.error {
+            color: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar Ends -->
+    <!--content area start-->
+    <div id="content" class="pmd-content admin section-container">
+        <!-- Title -->
+        <h1>Apply Leave</h1>
+        <!-- End Title -->
+        <!--breadcrum start-->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pmd-breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/User/Dashboard">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Apply Leave</li>
+            </ol>
+        </nav>
+        <!--breadcrum end-->
+
+        <div class="page-content">
+            <!-- Apply Leave Form -->
+            <div class="card pmd-card single-col-form">
+                <form autocomplete="off" id="applyLeaveForm" name="applyLeaveForm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                    <label for="leave-type">Leave Type</label>
+                                    <select name="LeaveType" id="LeaveType" class="form-control" title="Please select a Leave Type" required>
+                                        <option value=""></option>
+                                        <option value="1">Sick Leave</option>
+                                        <option value="2">Paid Leave</option>
+                                        <option value="3">Non Paid Leave</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                    <label class="control-label" for="datepickerstart">Start Date</label>
+                                    <input type="text" autocomplete="false" class="form-control" id="LeaveStartDate" name="LeaveStartDate">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                    <label class="control-label" for="datepickerend">End Date</label>
+                                    <input type="text" autocomplete="false" class="form-control" id="LeaveEndDate" name="LeaveEndDate">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div id="leaveList">
+                                </div>
+                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                    <label>Reason</label>
+                                    <textarea class="form-control" id="LeaveReason" name="LeaveReason"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="custom-control">
+                                    @*<input class="custom-control-input" type="checkbox" value="" id="inverse_defaultCheck1" />*@
+                                    <label id="NumberOfDaysLeave" class="" for="NumberOfDaysLeave">
+                                       
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary pmd-ripple-effect pmd-btn-raised" onclick="applyLeave()" value="Apply Leave">Apply Leave</button> <a href="/User/Leave" class="btn btn-outline-secondary pmd-ripple-effect">Cancel</a>
+                    </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+    <!-- content area end -->
+    <!-- Footer Starts -->
+    @*<footer class="pmd-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 align-self-center">
+                    <div class="pmd-site-info">
+                        © <span class="auto-update-year"></span> A <a href="https://pro.propeller.in/" target="_blank"><strong>Propeller Pro </strong></a> Theme
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>*@
+
+    <script>
+ //       $(document).ready(function () {
+	//	var sPath=window.location.pathname;
+	//	var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+	//	$(".pmd-sidebar-nav").each(function(){
+	//		$(this).find("a[href='"+sPage+"']").parents(".collapse").addClass("show");
+	//		$(this).find("a[href='"+sPage+"']").parents(".collapse").prev('a.nav-link').addClass("active");
+	//		$(this).find("a[href='"+sPage+"']").addClass("active");
+	//	});
+	//	$(".auto-update-year").html(new Date().getFullYear());
+	//});
+
+    // Upload Profile Picture
+    //var readURL = function(input) {
+    //    if (input.files && input.files[0]) {
+    //        var reader = new FileReader();
+    //        reader.onload = function (e) {
+    //            $('.profile-pic').attr('src', e.target.result);
+    //        }
+    //        reader.readAsDataURL(input.files[0]);
+    //    }
+        //}
+        $(document).ready(function () {
+            getLeaveRules();
+        });
+
+    // Add Education start date date and time picker
+    $('#LeaveStartDate').datetimepicker({
+            format: 'MM-DD-YYYY'
+    });
+
+    // Add Education End date date and time picker
+    $('#LeaveEndDate').datetimepicker({
+        useCurrent: false,
+            format: 'MM-DD-YYYY'
+    });
+
+    // start date picker
+    $("#LeaveStartDate").on("dp.change", function (e) {
+            setTableData();
+            $('#LeaveEndDate').data("DateTimePicker").minDate(e.date);
+    });
+    // end date picker
+        $("#LeaveEndDate").on("dp.change", function (e) {
+            setTableData();
+        $('#LeaveStartDate').data("DateTimePicker").maxDate(e.date);
+        });
+    </script>
+    <script type="text/javascript">//jQuery Validation
+    //$.validator.setDefaults( {
+    //    submitHandler: function () {
+    //        alert( "submitted!" );
+    //    }
+    //} );
+
+    //$( document ).ready( function () {
+    //    $( "#apply-leave" ).validate( {
+    //        rules: {
+    //            datepickerstart: "required",
+    //            datepickerend: "required",
+    //            reason: "required"
+    //        },
+    //        messages: {
+    //            datepickerstart: "Please enter a valid Start Date",
+    //            datepickerend: "Please select a valid End Date",
+    //            reason: "Please enter a reason for your leave",
+    //        },
+    //        errorElement: "em",
+
+    //        errorPlacement: function ( error, element ) {
+    //            // Add the `invalid-feedback` class to the error element
+    //            error.addClass( "invalid-feedback" );
+    //            if ( element.prop( "type" ) === "checkbox" ) {
+    //                error.insertAfter(element.next( "label" ));
+    //            } else {
+    //                error.insertAfter(element.next(".pmd-textfield-focused"));
+    //            }
+    //        },
+    //        highlight: function ( element, errorClass, validClass ) {
+    //            $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+    //        },
+    //        unhighlight: function (element, errorClass, validClass) {
+    //            $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+    //        }
+    //    } );
+    //});
+
+        //for leve table.
+        Date.prototype.addDays = function (days) {
+            var date = new Date(this.valueOf());
+            date.setDate(date.getDate() + days);
+            return date;
+        }
+
+        function getDates(startDate, stopDate) {
+            var dateArray = new Array();
+            var currentDate = startDate;
+            while (currentDate <= stopDate) {
+                var temp = moment(currentDate).format('MM-DD-YYYY');
+                dateArray.push(temp);
+                currentDate = currentDate.addDays(1);
+            }
+            return dateArray;
+        }
+
+        var noOfDay = 0;
+        function setTableData() {
+            var starDate = new Date($('#LeaveStartDate').val());
+            var endDate = new Date($('#LeaveEndDate').val());
+            var range = getDates(starDate, endDate);
+            noOfDay = range.length;
+            var table = '<table><thead><tr><td>Leave Date</td> <td>Leave Category</td></tr></thead><tbody>';
+            $.each(range, function (index, value) {
+                table += '<tr style="width:100%;" id="item_' + index + '"><td class="LeaveDate">' + value + '</td> <td> <b>Full Day</b>: <input name="LeaveCategory_' + index + '" class="LeaveCategory" type="radio" value="1" /> | <b>First Half</b>: <input name="LeaveCategory_' + index + '" class="LeaveCategory" type="radio" value="2" /> | <b>Second Half</b>: <input name="LeaveCategory_' + index + '" class="LeaveCategory" type="radio" value="3" /></td></tr>';
+            });
+            table += '</tbody></table>';
+            $("#leaveList").html("");
+            if (range.length > 0)
+            $("#leaveList").html(table);
+            $("#NumberOfDaysLeave").html("");
+            var no = "Number of days leave: " + noOfDay;
+            $("#NumberOfDaysLeave").html(no);
+
+            var tableRows = $("#leaveList tbody tr");
+            $.each(tableRows, function (index, value) {
+                
+                $("#item_" + index + " .LeaveCategory[value='1']").prop('checked', true);
+            });
+        }
+
+        function applyLeave() {
+            toastr.options.preventDuplicates = true;
+            var model = {
+                "EmployeeLeave": {
+                    "LeaveType": $("#LeaveType").val(),
+                    "LeaveStatus": 1,
+                    "LeaveStartDate": $('#LeaveStartDate').val(),
+                    "LeaveEndDate": $('#LeaveEndDate').val(),
+                    "NumberOfDaysLeave": noOfDay,
+                    "LeaveReason": $("#LeaveReason").val()
+                },
+                "EmployeeLeaveDetails": []
+            }
+            
+            var tableRows = $("#leaveList tbody tr");
+            $.each(tableRows, function (index, value) {
+                var indexedValues = {};
+                indexedValues.LeaveDate = $("#item_" + index + " .LeaveDate").html();
+                indexedValues.LeaveCategory = $("#item_" + index + " .LeaveCategory:checked").val();
+                model.EmployeeLeaveDetails.push(indexedValues);
+            });
+
+            if (!$("form[name='applyLeaveForm']").valid()) {
+                return;
+            }
+            if (!isValidLeaves(model)) {
+                $.each(validationMsgs, function (index, value) {
+                    toastr.error(value);
+                });
+                return;
+            }
+            loader.start();
+            $.ajax({
+                url: "/User/ApplyLeave",
+                data: model,
+                type: "POST",
+                async: true,
+                success: function (response) {
+                    loader.stop();
+                    location.href = "/User/Leave";
+                    
+                },
+                error: function (ex) {
+                    // for errors - red box
+                    toastr.error('operation failed');
+                    loader.stop();
+                }
+            });
+        }
+
+        var leaveRulesModel = {
+            LeaveRules: {
+                TotalHoliday: 0,
+                Sick: 0,
+                Paid:0
+            },
+            TotalHolidayApplyed: 0,
+            SickApplyed: 0,
+            PaidApplyed: 0,
+            TotalHoliday: 0,
+            Sick: 0,
+            Paid:0
+        };
+        function getLeaveRules()
+        {
+            loader.start();
+            $.ajax({
+                url: "/User/GetLeaveRules",
+                type: "GET",
+                async: true,
+                success: function (response) {
+                    leaveRulesModel = response;
+                    loader.stop();
+                },
+                error: function (ex) {
+                    // for errors - red box
+                    toastr.error('operation failed');
+                    loader.stop();
+                }
+            });
+        }
+        var validationMsgs = [];
+        function isValidLeaves(formData)
+        {
+            debugger
+            validationMsgs = [];
+            var sick = 0;
+            var paid = 0;
+            try {
+                switch (formData.EmployeeLeave.LeaveType) {
+                    case "1":
+                        for (var i = 0; i < formData.EmployeeLeaveDetails.length; i++) {
+                            switch (formData.EmployeeLeaveDetails[i].LeaveCategory) {
+                                case "1":
+                                    sick += 1;
+                                    break;
+                                case "2":
+                                    sick += .5;
+                                    break;
+                                case "3":
+                                    sick += .5;
+                                    break;
+                            }
+                        }
+                        break;
+                    case "2":
+                        for (var i = 0; i < formData.EmployeeLeaveDetails.length; i++) {
+                            switch (formData.EmployeeLeaveDetails[i].LeaveCategory) {
+                                case "1":
+                                    paid += 1;
+                                    break;
+                                case "2":
+                                    paid += .5;
+                                    break;
+                                case "3":
+                                    paid += .5;
+                                    break;
+                            }
+                        }
+                        break;
+                    case "3":
+                        return true;
+                }
+
+                if (leaveRulesModel.Sick < sick) {
+                    validationMsgs.push("You have " + leaveRulesModel.Sick + " sick leave");
+                    return false;
+                }
+                if (leaveRulesModel.Paid < paid) {
+                    validationMsgs.push("You have " + leaveRulesModel.Paid + " paid leave");
+                    return false;
+                }
+            } catch (e) {
+                return false;
+            }
+            return true;
+        }
+
+        // Wait for the DOM to be ready
+        function validateForm() {
+            // Initialize form validation on the registration form.
+            // It has the name attribute "registration"
+           $("form[name='applyLeaveForm']").validate({
+                // Specify validation rules
+                rules: {
+                    // The key name on the left side is the name attribute
+                    // of an input field. Validation rules are defined
+                    // on the right side
+                    LeaveType: "required",
+                    LeaveStartDate: "required",
+                    LeaveEndDate: "required",
+                    LeaveReason: "required",
+                    //email: {
+                    //    required: true,
+                    //    // Specify that email should be validated
+                    //    // by the built-in "email" rule
+                    //    email: true
+                    //},
+                    //password: {
+                    //    required: true,
+                    //    minlength: 5
+                    //}
+                },
+                // Specify validation error messages
+                messages: {
+                    LeaveType: "Please enter your leave type",
+                    LeaveStartDate: "Please enter your leave start date",
+                    LeaveEndDate: "Please enter your leave end date",
+                    LeaveReason: "Please enter your leave reason"
+                },
+                // Make sure the form is submitted to the destination defined
+                // in the "action" attribute of the form when valid
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+        }
+        validateForm();
+    </script>
+    <!-- Scripts Ends -->
+
+</body>
+</html>
+

@@ -1,0 +1,421 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Claims
+<!--Admin css-->
+<!doctype html>
+<html class="login-html" lang="">
+<head>
+    <title>@ViewBag.Title</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap4-admin-compress.min.css">
+    <link rel="stylesheet" href="~/Content/propeller-topbar.css" type="text/css" media="all" />
+    @*<link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">*@ <!--load all styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/toastme.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js">
+    </script>
+    <script type="text/javascript" src="~/Scripts/bootstrap4-admin-compress.min.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/propeller-topbar.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/toastme.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="~/Scripts/site.js"></script>
+
+    <!-- Google icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Rubik Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" rel="stylesheet">
+    <style>
+        label.error {
+            color: #ff0000 !important;
+            margin-bottom:15px;
+        }
+
+        .div-error label.error {
+            color: #ff0000 !important;
+            position: absolute;
+            margin-top: 33px;
+            white-space: nowrap;
+        }
+
+        @@media only screen and (max-width: 1103px) {
+            .div-error label.error {
+                color: #ff0000 !important;
+                position: absolute;
+                margin-top: 50px;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Starts -->
+    <nav class="navbar navbar-expand-xl fixed-top navbar-light bg-white pmd-navbar pmd-z-depth-light-1">
+        <a href="javascript:void(0);" onclick="openSidebar()" data-target="basicSidebar" data-placement="left" data-position="slidepush" is-open="true" is-open-width="1300" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pmd-sidebar-toggle"><i class="material-icons md-dark">menu</i></a>
+
+        <!-- Navbar Brand -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/User/Dashboard">
+                <img style="width: 100%; height: auto; max-width: 200px; margin:10px;" src="~/Content/images/Avidclan Name Logo.png" />
+            </a>
+
+        </div>
+
+        <!-- Search Form -->
+        <form class="col-md-6 col-lg-4 d-none d-md-block ml-lg-5 ml-md-2">
+            <div class="input-group pmd-search">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="material-icons md-dark pmd-icon-sm">search</i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </form>
+
+        <!-- Right Menu -->
+        <div class="pmd-navbar-right-icon ml-auto">
+            <div class="nav-item d-inline-block dropdown pmd-dropdown">
+                @*<a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat" id="emailDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i data-badge="50" class="material-icons pmd-badge pmd-badge-overlap pmd-badge-success md-dark pmd-sm">
+                            mail_outline
+                        </i>
+                    </a>*@
+                @*<div class="dropdown-menu dropdown-menu-right notifications-col" aria-labelledby="emailDropdown">
+                        <div class="card pmd-card mb-0">
+                            <div class="card-header d-flex w-100 justify-content-between pmd-card-border">
+                                <h3 class="pmd-list-title mb-0">Emails</h3>
+                                <a href="inbox.html" class="text-primary"><small>5 New Emails</small></a>
+                            </div>
+                            <div class="list-group pmd-list pmd-list-border">
+                                <a class="list-group-item d-flex flex-row" href="inbox-detail.html">
+                                    <span class="pmd-avatar-list-img">
+                                        <img alt="40x40" data-src="holder.js/40x40" class="img-fluid" src="themes/images/profile-1.jpg" data-holder-rendered="true">
+                                    </span>
+                                    <div class="media-body">
+                                        <h3 class="pmd-list-title">Mitrea</h3>
+                                        <p class="pmd-list-subtitle">Desktop Application developer expert</p>
+                                    </div>
+                                </a>
+                                <a class="list-group-item d-flex flex-row unread" href="inbox-detail.html">
+                                    <span class="pmd-avatar-list-img">
+                                        <img alt="40x40" data-src="holder.js/40x40" class="img-fluid" src="themes/images/profile-2.jpg" data-holder-rendered="true">
+                                    </span>
+                                    <div class="media-body">
+                                        <h3 class="pmd-list-title">Keel</h3>
+                                        <p class="pmd-list-subtitle">Getting Started with Bootstrap 4 Admin</p>
+                                    </div>
+                                </a>
+                                <a class="list-group-item d-flex flex-row" href="inbox-detail.html">
+                                    <span class="pmd-avatar-list-img">
+                                        <img alt="40x40" data-src="holder.js/40x40" class="img-fluid" src="themes/images/profile-3.jpg" data-holder-rendered="true">
+                                    </span>
+                                    <div class="media-body">
+                                        <h3 class="pmd-list-title">John</h3>
+                                        <p class="pmd-list-subtitle">Website Speed Issues</p>
+                                    </div>
+                                </a>
+                                <a class="list-group-item d-flex flex-row" href="inbox-detail.html">
+                                    <span class="pmd-avatar-list-img">
+                                        <img alt="Keel" data-src="holder.js/40x40" class="img-fluid" src="themes/images/profile-2.jpg" data-holder-rendered="true">
+                                    </span>
+                                    <div class="media-body">
+                                        <h3 class="pmd-list-title">Baykam</h3>
+                                        <p class="pmd-list-subtitle">Develop a simple Amazon Fire Stick TV App</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+            <div class="nav-item dropdown pmd-dropdown d-inline-block">
+                @*<a class="btn btn-sm pmd-btn-fab pmd-btn-flat" href="javascript:void(0);" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i data-badge="3" class="material-icons pmd-badge pmd-badge-overlap pmd-badge-success md-dark pmd-sm">notifications_none</i>
+                    </a>*@
+                @*<div class="dropdown-menu dropdown-menu-right notifications-col" aria-labelledby="navbarDropdown">
+                        <div class="card pmd-card mb-0">
+                            <div class="card-header d-flex w-100 justify-content-between pmd-card-border">
+                                <h3 class="pmd-list-title mb-0">Notifications</h3>
+                                <a href="notifications.html" class="text-primary"><small>3 New Notifications</small></a>
+                            </div>
+                            <div class="list-group pmd-list pmd-list-border">
+                                <a class="list-group-item d-flex flex-row" href="javascript:void(0);">
+                                    <span class="pmd-avatar-list-img">
+                                        <img alt="40x40" data-src="holder.js/40x40" class="img-fluid" src="themes/images/profile-1.jpg" data-holder-rendered="true">
+                                    </span>
+                                    <div class="media-body">
+                                        <h3 class="pmd-list-title"><span>Prathit</span> posted a new challanegs</h3>
+                                        <p class="pmd-list-subtitle">5 Minutes ago</p>
+                                    </div>
+                                </a>
+                                <a class="list-group-item d-flex flex-row unread" href="javascript:void(0);">
+                                    <span class="pmd-avatar-list-img">
+                                        <img alt="40x40" data-src="holder.js/40x40" class="img-fluid" src="themes/images/profile-2.jpg" data-holder-rendered="true">
+                                    </span>
+                                    <div class="media-body">
+                                        <h3 class="pmd-list-title">Keel Cloned 2 challenges.</h3>
+                                        <p class="pmd-list-subtitle">15 Minutes ago</p>
+                                    </div>
+                                </a>
+                                <a class="list-group-item d-flex flex-row" href="javascript:void(0);">
+                                    <span class="pmd-avatar-list-img">
+                                        <img alt="40x40" data-src="holder.js/40x40" class="img-fluid" src="themes/images/profile-3.jpg" data-holder-rendered="true">
+                                    </span>
+                                    <div class="media-body">
+                                        <h3 class="pmd-list-title">John posted new collection.</h3>
+                                        <p class="pmd-list-subtitle">25 Minutes ago</p>
+                                    </div>
+                                </a>
+                                <a class="list-group-item d-flex flex-row">
+                                    <span class="pmd-avatar-list-img">
+                                        <img alt="Keel" data-src="holder.js/40x40" class="img-fluid" src="themes/images/profile-2.jpg" data-holder-rendered="true">
+                                    </span>
+                                    <div class="media-body">
+                                        <h3 class="pmd-list-title">Today is <strong>Wendell Grover</strong>'s first day.</h3>
+                                        <p class="pmd-list-subtitle">15 Minutes ago</p>
+                                    </div>
+                                </a>
+
+                                <a class="list-group-item d-flex flex-row">
+                                    <span class="pmd-avatar-list-img">
+                                        <img alt="Keel" data-src="holder.js/40x40" class="img-fluid" src="themes/images/profile-2.jpg" data-holder-rendered="true">
+                                    </span>
+                                    <div class="media-body">
+                                        <h3 class="pmd-list-title">Today is <strong>Samuel Smith</strong>'s birthday.</h3>
+                                        <p class="pmd-list-subtitle">15 Minutes ago</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </nav>
+    <!-- Header Ends -->
+    <!-- Sidebar Starts -->
+    <div class="pmd-sidebar-overlay"></div>
+
+    <!-- Left sidebar -->
+    <aside id="basicSidebar" class="pmd-sidebar pmd-sidebar-dark pmd-sidebar-slide-push pmd-sidebar-open bg-primary pmd-z-depth-light-2" role="navigation">
+        <ul class="nav flex-column pmd-sidebar-nav">
+
+            <!-- User info -->
+            <li class="nav-item pmd-user-info mb-0">
+                <a href="javascript:void(0);" class="nav-link btn-user text-center">
+                    <img id="profileImage" class="rounded-circle m-auto" src="~/Content/images/user-icon.jpg" width="40" height="40" alt="avatar">
+                    <h3 class="pmd-title m-0">
+
+                        @if (Request.IsAuthenticated)
+                        {
+                            @User.Identity.GetUserName()
+                        }
+                    </h3>
+                    <p class="pmd-subheading1 m-0">
+
+                    </p>
+                </a>
+            </li>
+            <!-- End user info -->
+
+            <li class="nav-item">
+                <a class="nav-link pmd-ripple-effect" href="/User/Dashboard">
+                    <i class="material-icons pmd-list-icon pmd-sm md-light">
+                        <svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enable-background="new 287.725 407.535 19.83 18" xml:space="preserve">
+                        <g><path d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z M296.834,415.271h-9.109v10.264h9.109V415.271z M307.555,419.303h-9.108v6.232h9.108V419.303z" /></g>
+                    </svg>
+                    </i>
+                    <span class="media-body">Dashboard</span>
+                </a>
+            </li>
+            @if (Request.IsAuthenticated)
+            {
+                var IsAdmin = ((ClaimsIdentity)User.Identity).Claims
+                .Any(x => x.Value.Equals("Admin"));
+                if (IsAdmin)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#employee-menu">
+                            <i class="material-icons pmd-list-icon pmd-sm md-light">
+                                people
+                            </i>
+                            <span class="media-body">Employees</span>
+                            <div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
+                        </a>
+                        <ul class="collapse" id="employee-menu" data-parent="#basicSidebar">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/User/EmployeeList">Employee List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/AddEmployee">Add Employee</a>
+                            </li>
+                            @*<li class="nav-item">
+                                <a class="nav-link pmd-ripple-effect" href="/User/EmployeeDetail">Employee Detail</a>
+                            </li>*@
+                        </ul>
+                    </li>
+                }
+            }
+
+
+            @*<li class="nav-item">
+                    <a class="nav-link pmd-ripple-effect" href="interview.html">
+                        <i class="material-icons pmd-list-icon pmd-sm md-light">
+                            <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="188 188 24 24" enable-background="new 188 188 24 24" xml:space="preserve">
+                            <path d="M200.172,212.25c-2.004,0-4-0.514-5.785-1.487l-3.21,0.908c-0.596,0.186-1.428,0.005-1.935-0.503
+                                c-0.514-0.512-0.709-1.279-0.497-1.954l0.923-3.145c-0.987-1.772-1.508-3.775-1.508-5.808c0-6.623,5.378-12.011,11.988-12.011
+                                c6.623,0,12.012,5.388,12.012,12.011C212.16,206.872,206.782,212.25,200.172,212.25z M194.604,209.234l0.271,0.18
+                                c1.646,0.938,3.469,1.424,5.298,1.424c5.832,0,10.576-4.744,10.576-10.576c0-5.844-4.754-10.6-10.6-10.6
+                                c-5.832,0-10.577,4.755-10.577,10.6c0,1.855,0.493,3.684,1.424,5.287l0.152,0.262l-0.039,0.36l-1.014,3.454
+                                c-0.059,0.188,0,0.401,0.144,0.544c0.142,0.143,0.36,0.202,0.533,0.15L194.604,209.234z" />
+                            <path d="M205.317,196.705h-2.579v-1.29c0-0.715-0.573-1.289-1.289-1.289h-2.578c-0.715,0-1.29,0.573-1.29,1.289v1.29h-2.578
+                                c-0.715,0-1.283,0.573-1.283,1.29l-0.006,7.09c0,0.716,0.574,1.289,1.289,1.289h10.314c0.715,0,1.288-0.573,1.288-1.289v-7.09
+                                C206.605,197.278,206.032,196.705,205.317,196.705z M201.449,196.705h-2.578v-1.29h2.578V196.705z" />
+                            </svg>
+                        </i>
+                        <span class="media-body">Interview</span>
+                    </a>
+                </li>*@
+
+            <li class="nav-item">
+                <a class="nav-link pmd-ripple-effect" href="/User/Leave">
+                    <i class="material-icons pmd-list-icon pmd-sm md-light">
+                        date_range
+                    </i>
+                    <span class="media-body">Leave</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                    <a class="nav-link pmd-ripple-effect" href="/Account/ChangePassword">
+                        <i class="material-icons pmd-list-icon pmd-sm md-light">
+                            settings
+                        </i>
+                        <span class="media-body">Change Password</span>
+                    </a>
+                </li>
+
+            @*<li class="nav-item">
+                    <a class="nav-link pmd-ripple-effect" href="calendar.html">
+                        <i class="material-icons pmd-list-icon pmd-sm md-light">
+                            today
+                        </i>
+                        <span class="media-body">Event Calendar</span>
+                    </a>
+                </li>*@
+
+            @*<li class="nav-item">
+                    <a class="nav-link pmd-ripple-effect" href="notifications.html">
+                        <i class="material-icons pmd-list-icon pmd-sm md-light">
+                            notifications
+                        </i>
+                        <span class="media-body">Notifications</span>
+                    </a>
+                </li>*@
+
+
+
+            @*<li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#login-menu">
+                        <i class="material-icons pmd-list-icon pmd-sm md-light">
+                            exit_to_app
+                        </i>
+                        <span class="media-body">Login</span>
+                        <div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
+                    </a>
+                    <ul class="collapse" id="login-menu" data-parent="#basicSidebar">
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Login Option 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login2.html">Login Option 2</a>
+                        </li>
+                    </ul>
+                </li>*@
+
+            @*<li class="nav-item">
+                    <a class="nav-link" href="contact.html">
+                        <i class="material-icons pmd-list-icon pmd-sm md-light">
+                            call
+                        </i>
+                        <span class="media-body">Contact</span>
+                    </a>
+                </li>*@
+
+            @*<li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#thirdpartyelements">
+                        <i class="material-icons pmd-list-icon pmd-sm">
+                            pages
+                        </i>
+                        <span class="media-body">Other Pages</span>
+                        <div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
+                    </a>
+                    <ul class="collapse" id="thirdpartyelements" data-parent="#basicSidebar">
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="alert.html">Alerts and Warnings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="404.html">404</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="404-with-sidebar.html">404 with Sidebar</a>
+                        </li>
+                    </ul>
+                </li>*@
+            @*<li class="nav-item">
+                    <a class="nav-link pmd-ripple-effect" href="account-settings.html">
+                        <i class="material-icons pmd-list-icon pmd-sm md-light">
+                            settings
+                        </i>
+                        <span class="media-body">Account Settings</span>
+                    </a>
+                </li>*@
+            <li class="nav-item">
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
+                        <i class="material-icons pmd-list-icon pmd-sm">power_settings_new</i>
+                        <span class="media-body">Logout</span>
+                    </a>
+                }
+            </li>
+        </ul>
+    </aside>
+    <!-- End Left sidebar -->
+    @RenderBody()
+    <script>
+        $(document).ready(function () {
+            var winWidth = $("body").width();
+            if (winWidth < 1300) {
+                $("#basicSidebar").removeClass("pmd-sidebar-open");
+            }
+            else {
+                $(".navbar").css("z-index", "99999");
+            }
+            getUserProfileData();
+        });
+        function openSidebar() {
+            $("#basicSidebar").css("z-index", "9999");
+            $(".navbar").css("z-index", "");
+            $(".pmd-sidebar-overlay").css("z-index", "8888");
+            $(".pmd-sidebar-overlay").addClass("pmd-sidebar-overlay-active");
+            $("#basicSidebar").addClass("pmd-sidebar-open");
+        }
+        $(".pmd-sidebar-overlay").on("click", function () {
+            $(".pmd-sidebar-overlay").removeClass("pmd-sidebar-overlay-active");
+            $("#basicSidebar").removeClass("pmd-sidebar-open");
+        });
+
+       
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,383 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!doctype html>
+<html class="login-html" lang="">
+<head>
+    <title>Login Page.</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Google icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Rubik Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" rel="stylesheet">
+    <!-- build:remove -->
+    <!--Admin css-->
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap4-admin-compress.min.css?v=">
+    <!-- /build -->
+    <style>
+        .error {
+            color: red !important;
+        }
+    </style>
+</head>
+
+<body class="body-custom mb-0">
+    <div class="user-onboarding">
+        <div class="container">
+            <div class="login-container row d-flex justify-content-between">
+                <div class="col-sm-6 align-self-md-center login-content">
+                    @*<h1 class="newlogin-logo">AvidClan  <span>Portal</span> </h1>*@
+                    <img style="width: 75%;" src="~/Content/images/Avidclan Name Logo.png" />
+                    <hr>
+                    <h3 class="pmd-display5 text-white"></h3>
+                    <p class="lead"></p>
+                </div>
+                <div class="col-sm-6 align-self-md-center">
+                    <div class="new-logincard card pmd-card">
+                        <div class="login-card">
+                            <div class="card-header">
+                                <center><h2 class="card-title"><span>LogIn</span></h2></center>
+                                <p class="card-subtitle text-danger">
+                                    @if (@ViewBag.error != null)
+                                    {
+                                        @ViewBag.error
+                                    }
+                                </p>
+                            </div>
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name= "login" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @*<form id="loginForm" method="post">*@
+                                <div class="card-body">
+                                    <div class="input-group pmd-input-group pmd-input-group-icon mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="material-icons md-dark pmd-sm">perm_identity</i>
+                                            </div>
+                                        </div>
+                                        <div class="pmd-textfield pmd-textfield-floating-label">
+                                            <label for="exampleInputAmount">Username</label>
+                                            <input type="text" class="form-control" aria-describedby="basic-addon3" name="Email" id="Email" >
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group pmd-input-group pmd-input-group-icon">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="material-icons md-dark pmd-sm">lock_outline</i>
+                                            </div>
+                                        </div>
+                                        <div class="pmd-textfield pmd-textfield-floating-label">
+                                            <label for="exampleInputAmount1">Password</label>
+                                            <input type="password" class="form-control" aria-describedby="basic-addon3" name="Password" id="Password" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <div class="form-group clearfix">
+                                        <div class="float-left">
+                                            <div class="custom-control custom-checkbox pmd-checkbox">
+                                                <input style="z-index:9999; width:100px; height:20px;" class="custom-control-input" type="checkbox" value="true" id="RememberMe" name="RememberMe" />
+                                                <label class="custom-control-label" for="inverse_defaultCheck1">
+                                                    Remember Me
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <span class="float-right">
+                                            <a href="javascript:void(0);" class="forgot-password text-primary">Forgot password?</a>
+                                        </span>
+                                    </div>
+                                    <button type="submit" class="btn pmd-ripple-effect btn-primary btn-block btn-lg pmd-btn-raised m-0">Login</button>
+                                    <p class="mt-3 mb-0 mb-0">Don't have an account? <a href="javascript:void(0);" class="login-register text-primary">Sign Up</a>. </p>
+                                </div>
+                            }
+                            @*</form>*@
+                        </div>
+
+                        <div class="register-card">
+                            <div class="card-header">
+                                <h2 class="card-title"><span>SignUp</span></h2>
+                                <p class="card-subtitle">Start your free account now.</p>
+                            </div>
+                            @*<form>*@
+                            @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name="signUp" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="card-body">
+                                    <div class="input-group pmd-input-group pmd-input-group-icon mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="material-icons md-dark pmd-sm">perm_identity</i>
+                                            </div>
+                                        </div>
+                                        <div class="pmd-textfield pmd-textfield-floating-label">
+                                            <label for="exampleInputAmount">Username</label>
+                                            <input type="text" class="form-control" name="UserName" id="UserName" aria-describedby="basic-addon3" >
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group pmd-input-group pmd-input-group-icon mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="material-icons md-dark pmd-sm">email</i>
+                                            </div>
+                                        </div>
+                                        <div class="pmd-textfield pmd-textfield-floating-label">
+                                            <label for="exampleInputAmount">Email address</label>
+                                            <input type="email" class="form-control" name="Email" id="Email" aria-describedby="basic-addon3" >
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group pmd-input-group pmd-input-group-icon mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="material-icons md-dark pmd-sm">lock_outline</i>
+                                            </div>
+                                        </div>
+                                        <div class="pmd-textfield pmd-textfield-floating-label">
+                                            <label for="exampleInputAmount1">Password</label>
+                                            <input type="password" class="form-control" name="Password" id="Password" aria-describedby="basic-addon3" >
+                                        </div>
+                                    </div>
+                                    <div class="input-group pmd-input-group pmd-input-group-icon">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="material-icons md-dark pmd-sm">lock_outline</i>
+                                            </div>
+                                        </div>
+                                        <div class="pmd-textfield pmd-textfield-floating-label">
+                                            <label for="confirm-password">Confirm Password</label>
+                                            <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" aria-describedby="basic-addon3" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer text-center">
+                                    <button type="submit" class="btn pmd-ripple-effect btn-primary btn-block btn-lg pmd-btn-raised m-0">Sign Up</button>
+                                    <p class="mt-3 mb-0">Already have an account? <a href="javascript:void(0);" class="register-login text-primary">Sign In</a>. </p>
+                                </div>
+                            }
+                                @*</form>*@
+                            </div>
+
+                        <div class="forgot-password-card">
+                            <div class="card-header">
+                                <h2 class="card-title">Forgot password?</h2>
+                                <p class="card-subtitle">Submit your email address and we'll send you a link to reset your password.</p>
+                            </div>
+                            @*<form>*@
+                            @using (Html.BeginForm("ForgotPassword", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name="forgatPassword" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="card-body">
+                                    <div class="input-group pmd-input-group pmd-input-group-icon mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="material-icons md-dark pmd-sm">email</i>
+                                            </div>
+                                        </div>
+                                        <div class="pmd-textfield pmd-textfield-floating-label">
+                                            <label for="exampleInputAmount">Email address</label>
+                                            <input type="email" class="form-control" aria-describedby="basic-addon3" id="Email" name="Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button type="submit" class="btn pmd-ripple-effect btn-primary btn-block btn-lg pmd-btn-raised m-0">Submit</button>
+                                    <p class="mt-3 mb-0">Already registered? <a href="javascript:void(0);" class="register-login text-primary">Sign In</a></p>
+                                </div>
+                            }
+                                @*</form>*@
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="position-relative">
+                <footer class="pmd-footer login-footer text-white">
+                    © <span class="auto-update-year"></span>  <a href="https://AvidClan.com/" target="_blank" class="text-white"><strong>AvidClan </strong></a> 
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- build:include snippets/js-files-404.html -->
+    <!-- /build -->
+    <!-- build:remove -->
+    <!--Admin js-->
+    <script type="text/javascript" src="~/Scripts/bootstrap4-admin-compress.min.js"></script>
+    <!-- /build -->
+
+    <script>
+        $(document).ready(function () {
+            var sPath = window.location.pathname;
+            var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+            $(".pmd-sidebar-nav").each(function () {
+                $(this).find("a[href='" + sPage + "']").parents(".collapse").addClass("show");
+                $(this).find("a[href='" + sPage + "']").parents(".collapse").prev('a.nav-link').addClass("active");
+                $(this).find("a[href='" + sPage + "']").addClass("active");
+            });
+
+            $(".auto-update-year").html(new Date().getFullYear());
+            //$('#loginForm').validate({ // initialize the plugin
+            //    rules: {
+            //        userName: {
+            //            required: true
+            //        },
+            //        password: {
+            //            required: true
+            //        }
+            //    }
+            //});
+        });
+        
+    </script>
+    <!-- login page sections show hide -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.app-list-icon li a').addClass("active");
+            $(".login-for").click(function () {
+                $('.login-card').hide()
+                $('.forgot-password-card').show();
+            });
+            $(".signin").click(function () {
+                $('.login-card').show()
+                $('.forgot-password-card').hide();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".login-register").click(function () {
+                $('.login-card').hide()
+                $('.forgot-password-card').hide();
+                $('.register-card').show();
+            });
+
+            $(".register-login").click(function () {
+                $('.register-card').hide()
+                $('.forgot-password-card').hide();
+                $('.login-card').show();
+            });
+            $(".forgot-password").click(function () {
+                $('.login-card').hide()
+                $('.register-card').hide()
+                $('.forgot-password-card').show();
+            });
+        });
+
+        function login() {
+            debugger
+            var model = {
+                Email: $("#userName").val(),
+                Password: $("#password").val(),
+                ConfirmPassword: $("#password").val(),
+                RememberMe: $('#RememberMe').is(":checked") //$("#RememberMe").val()
+            }
+            var isValid = $('#loginForm').validate().invalid;
+            if (isValid.password || isValid.userName) {
+                return;
+            }
+
+            $.ajax({
+                url: '/Account/Login',
+                type: 'POST',
+                data: model,
+                success: function (response) {
+                    if (response == true || response == "True") {
+                        location.href = '/User/Dashboard';
+                    }
+                    else {
+                        alert('Wrong User name or Password!');
+                    }
+                    
+                },
+                error: function () {
+                    alert('Login failed!');
+                }
+            });
+        }
+
+        // Wait for the DOM to be ready
+        function validateLoginForm() {
+            $("form[name='login']").validate({
+                rules: {
+                    Email: "required",
+                    Password: "required",
+                    
+                    //email: {
+                    //    required: true,
+                    //    // Specify that email should be validated
+                    //    // by the built-in "email" rule
+                    //    email: true
+                    //},
+                    
+                },
+                messages: {
+                    Email: "Please enter user name",
+                    Password: "Please enter password",
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+        }
+
+        function validateSignUpForm() {
+            $("form[name='signUp']").validate({
+                rules: {
+                    UserName: "required",
+                    Email: "required",
+                    Password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    ConfirmPassword: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#Password"
+                    },
+                    //email: {
+                    //    required: true,
+                    //    // Specify that email should be validated
+                    //    // by the built-in "email" rule
+                    //    email: true
+                    //},
+
+                },
+                messages: {
+                    UserName: "Please enter user name",
+                    Email: "Please enter email",
+                    Password: "Please enter password",
+                    ConfirmPassword: "Password and confirm password is not matched",
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+        }
+
+        function validateForgatPasswordForm() {
+            $("form[name='forgatPassword']").validate({
+                rules: {
+                    Email: "required",
+                },
+                messages: {
+                    Email: "Please enter email",
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+        }
+
+
+        validateLoginForm();
+        validateSignUpForm();
+        validateForgatPasswordForm();
+
+    </script>
+    <!-- Scripts Ends -->
+
+</body>
+</html>

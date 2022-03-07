@@ -1,0 +1,743 @@
+﻿@model LeaveApp.Core.ViewModel.EmployeeDetailsViewModel
+@using System.Text.RegularExpressions
+@{
+    ViewBag.Title = "Employee Details";
+}
+
+<!doctype html>
+<html lang="en-US">
+<head>
+
+</head>
+
+<body>
+
+    <!--content area start-->
+    <div id="content" class="pmd-content inner-page profile-page">
+        <div class="cover-content">
+            <div class="page-content">
+                <div class="d-flex d-flex-row align-items-center mobile-view">
+                    <img alt="Profile-Pic" src="@Model.EmployeeDetail.ProfileImage" class="profile-pic rounded-circle pmd-z-depth-light-2-1 mr-md-4 mr-sm-0" height="200" width="200">
+                    <div class="media-body">
+                        <h1>@Model.EmployeeDetail.FirstName @Model.EmployeeDetail.LastName</h1>
+                        <p class="pmd-list-subtitle">@Regex.Replace(@Model.EmployeeDetail.Designation.ToString(), "(\\B[A-Z])", " $1")</p>
+                        <p>@Model.EmployeeDetail.Description</p>
+                        <div class="pmd-social-icon">
+                            
+                            @*<a class="btn btn-sm pmd-btn-fab pmd-ripple-effect btn-dark ml-0" href="javascript:void(0);" title="Facebook">
+                                <svg>
+                                    <g id="XMLID_834_">
+                                        <path id="XMLID_835_" d="M81.703,165.106h33.981V305c0,2.762,2.238,5,5,5h57.616c2.762,0,5-2.238,5-5V165.765h39.064   c2.54,0,4.677-1.906,4.967-4.429l5.933-51.502c0.163-1.417-0.286-2.836-1.234-3.899c-0.949-1.064-2.307-1.673-3.732-1.673h-44.996   V71.978c0-9.732,5.24-14.667,15.576-14.667c1.473,0,29.42,0,29.42,0c2.762,0,5-2.239,5-5V5.037c0-2.762-2.238-5-5-5h-40.545   C187.467,0.023,186.832,0,185.896,0c-7.035,0-31.488,1.381-50.804,19.151c-21.402,19.692-18.427,43.27-17.716,47.358v37.752H81.703   c-2.762,0-5,2.238-5,5v50.844C76.703,162.867,78.941,165.106,81.703,165.106z"></path>
+                                    </g>
+                                </svg>
+                            </a>
+                            <a class="btn btn-sm pmd-btn-fab pmd-ripple-effect btn-dark" href="javascript:void(0);" title="Twitter">
+                                <svg version="1.1" x="0px" y="0px" viewBox="0 0 310 310" style="enable-background:new 0 0 310 310;" xml:space="preserve" class="svg replaced-svg replaced-svg">
+                                <g id="XMLID_826_">
+                                <path id="XMLID_827_" d="M302.973,57.388c-4.87,2.16-9.877,3.983-14.993,5.463c6.057-6.85,10.675-14.91,13.494-23.73   c0.632-1.977-0.023-4.141-1.648-5.434c-1.623-1.294-3.878-1.449-5.665-0.39c-10.865,6.444-22.587,11.075-34.878,13.783   c-12.381-12.098-29.197-18.983-46.581-18.983c-36.695,0-66.549,29.853-66.549,66.547c0,2.89,0.183,5.764,0.545,8.598   C101.163,99.244,58.83,76.863,29.76,41.204c-1.036-1.271-2.632-1.956-4.266-1.825c-1.635,0.128-3.104,1.05-3.93,2.467   c-5.896,10.117-9.013,21.688-9.013,33.461c0,16.035,5.725,31.249,15.838,43.137c-3.075-1.065-6.059-2.396-8.907-3.977   c-1.529-0.851-3.395-0.838-4.914,0.033c-1.52,0.871-2.473,2.473-2.513,4.224c-0.007,0.295-0.007,0.59-0.007,0.889   c0,23.935,12.882,45.484,32.577,57.229c-1.692-0.169-3.383-0.414-5.063-0.735c-1.732-0.331-3.513,0.276-4.681,1.597   c-1.17,1.32-1.557,3.16-1.018,4.84c7.29,22.76,26.059,39.501,48.749,44.605c-18.819,11.787-40.34,17.961-62.932,17.961   c-4.714,0-9.455-0.277-14.095-0.826c-2.305-0.274-4.509,1.087-5.294,3.279c-0.785,2.193,0.047,4.638,2.008,5.895   c29.023,18.609,62.582,28.445,97.047,28.445c67.754,0,110.139-31.95,133.764-58.753c29.46-33.421,46.356-77.658,46.356-121.367   c0-1.826-0.028-3.67-0.084-5.508c11.623-8.757,21.63-19.355,29.773-31.536c1.237-1.85,1.103-4.295-0.33-5.998   C307.394,57.037,305.009,56.486,302.973,57.388z"></path>
+									</g> 
+								</svg>
+                            </a>*@
+                            <a target="_blank" class="btn btn-sm pmd-btn-fab pmd-ripple-effect btn-dark" href="@Model.EmployeeDetail.SocialMediaLinks" title="LinkedIn">
+                                <svg version="1.1" x="0px" y="0px" viewBox="0 0 310 310" style="enable-background:new 0 0 310 310;" xml:space="preserve" class="svg replaced-svg replaced-svg">
+                                <g id="XMLID_801_">
+                                <path id="XMLID_802_" d="M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73   C77.16,101.969,74.922,99.73,72.16,99.73z"></path>
+                                <path id="XMLID_803_" d="M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4   c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z"></path>
+                                <path id="XMLID_804_" d="M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599   c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319   c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995   C310,145.43,300.549,94.761,230.454,94.761z"></path>
+									</g> 
+								</svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content profile-view">
+            <div class="row">
+                <div class="col-12">
+                    <div class="pmd-tabs">
+                        <div class="pmd-tab-active-bar" style="width: 97.9531px; left: 0px;"></div><ul class="nav nav-tabs" role="tablist" style="width: 343.813px;">
+                            <li class="nav-item"><a class="nav-link active" href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documents</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#salary" aria-controls="salary" role="tab" data-toggle="tab">Salary</a></li>
+                        </ul>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!-- About Tab -->
+                        <div role="tabpanel" class="tab-pane active" id="about">
+                            <div class="card pmd-card">
+                                <div class="card-body">
+
+                                    <!-- Basic Information -->
+                                    <div class="details-tab">
+                                        <div class="d-flex flex-row align-items-center mb-2">
+                                            <h3 class="card-title media-body">Basic Information</h3>
+                                        </div>
+                                        <div class="row view-basic-card">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">First Name</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.FirstName</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Last Name</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.LastName</p>
+                                            </div>
+                                            @*<div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Middle Name</label>
+                                                <p class="pmd-list-title">Maynard</p>
+                                            </div>*@
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Phone</label>
+                                                <p class="pmd-list-title"><a href="tel:@Model.EmployeeDetail.Phone" title="@Model.EmployeeDetail.Phone">@Model.EmployeeDetail.Phone</a></p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Personal Email</label>
+                                                <p class="pmd-list-title"><a href="mailto:@Model.EmployeeDetail.PersonalEmail" title="@Model.EmployeeDetail.PersonalEmail">@Model.EmployeeDetail.PersonalEmail</a></p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Date of Birth</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.DOB.ToString("MM/dd/yyyy")</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Gender</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.Gender</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Marital Status</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.MaritalStatus</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <!-- Employee Information -->
+                                    <div class="details-tab">
+                                        <div class="d-flex flex-row align-items-center mb-2">
+                                            <h3 class="card-title media-body">Employee Information</h3>
+                                            
+                                        </div>
+                                        <!-- View Card -->
+                                        <div class="row view-employee-card">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Employee Enrollment ID</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.EnrollmentId</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Date of Joining</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.DateOfJoining.ToString("MM/dd/yyyy")</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Company Email</label>
+                                                <p class="pmd-list-title"><a href="mailto:@Model.EmployeeDetail.CompanyEmail" title="@Model.EmployeeDetail.CompanyEmail">@Model.EmployeeDetail.CompanyEmail</a></p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Department</label>
+                                                <p class="pmd-list-title">@Regex.Replace(@Model.EmployeeDetail.Department.ToString(), "(\\B[A-Z])", " $1")</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Designation</label>
+                                                <p class="pmd-list-title">@Regex.Replace(@Model.EmployeeDetail.Designation.ToString(), "(\\B[A-Z])", " $1")</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Reporting Employee</label>
+                                                <select disabled name="ReportingEmployee" id="ReportingEmployee" class="form-control">
+                                                    
+                                                </select>
+                                                <input type="hidden" id="reportingEmployeeValue" value="@Model.EmployeeDetail.ReportingEmployee" />
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Type of Employee</label>
+                                                <p class="pmd-list-title">@Regex.Replace(@Model.EmployeeDetail.EmployeeType.ToString(), "(\\B[A-Z])", " $1")</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Annual Gross Salary</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.AnnualSalary</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <!-- Contact Information -->
+                                    <div class="details-tab">
+                                        <!-- View Card -->
+                                        <div class="d-flex flex-row align-items-center mb-2">
+                                            <h3 class="card-title media-body">Contact Information</h3>
+                                        </div>
+                                        <div class="row view-contact-card">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Current Address</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.CurrentAddress</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Permanent Address</label>
+                                                <p class="pmd-list-title">@Model.EmployeeDetail.PermanentAddress</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">City</label>
+                                                <p class="pmd-list-title">@Regex.Replace(@Model.EmployeeDetail.City.ToString(), "(\\B[A-Z])", " $1")</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">State</label>
+                                                <p class="pmd-list-title">@Regex.Replace(@Model.EmployeeDetail.State.ToString(), "(\\B[A-Z])", " $1")</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Pin Code</label>
+                                                <p class="pmd-list-title">@Regex.Replace(@Model.EmployeeDetail.PinCode.ToString(), "(\\B[A-Z])", " $1")</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Country</label>
+                                                <p class="pmd-list-title">@Regex.Replace(@Model.EmployeeDetail.Country.ToString(), "(\\B[A-Z])", " $1")</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <!-- Education Information -->
+                                    <div class="details-tab mt-4">
+                                        <h3 class="card-title pt-2 pb-3">Education</h3>
+                                        <!-- View Education Details -->
+                                        <div class="row no-gutters card-row">
+                                            @foreach (var item in Model.EmployeeEducations)
+                                            {
+                                                <div class="col-lg-6">
+                                                    <div class="media media-card">
+                                                        <i class="material-icons pmd-icon-lg md-dark mr-md-3 mr-sm-0">
+                                                            <svg x="0px" y="0px" viewBox="164 164 72 72" enable-background="new 164 164 72 72" xml:space="preserve">
+                                                            <g>
+                                                            <path d="M229.152,194.031v-9.361l-28.862-16.544l-28.862,16.544v9.361h4.644v27.937h-5.224v10.158h58.159v-10.158h-4.426v-27.937
+                                                                    H229.152z M226.104,224.87v4.354H173.75v-4.354H226.104z M179.057,221.968v-27.937h8.127v27.937H179.057z M190.39,221.968v-27.937
+                                                                    h8.127v27.937H190.39z M201.864,221.968v-27.937h8.127v27.937H201.864z M213.56,221.968v-27.937h8.127v27.937H213.56z
+                                                                    M174.331,191.128v-4.644l25.959-15.093l25.958,15.093v4.644H174.331z" />
+                                                            <path d="M200.291,177.342c-2.846,0-5.152,2.307-5.152,5.152c0,2.846,2.306,5.152,5.152,5.152c2.845,0,5.152-2.306,5.152-5.152
+                                                                    C205.442,179.648,203.136,177.342,200.291,177.342z M200.291,184.743c-1.243,0-2.25-1.007-2.25-2.25c0-1.243,1.007-2.25,2.25-2.25
+                                                                    s2.25,1.007,2.25,2.25C202.54,183.736,201.533,184.743,200.291,184.743z" />
+                                                                </g>
+                                                            </svg>
+                                                        </i>
+                                                        <div class="media-body">
+                                                            <h4 class="media-title">@item.Institute</h4>
+                                                            <p class="card-subtitle">@item.StartDate.ToString("yyyy") - @item.EndDate.ToString("yyyy")</p>
+                                                            <p>@item.Degree, @Regex.Replace(@item.Specialization.ToString(), "(\\B[A-Z])", " $1"), @item.Score</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Experience Information -->
+                                    <div class="details-tab mt-4">
+                                        <h3 class="card-title pt-2 pb-3">Experience</h3>
+                                        <div class="row no-gutters card-row">
+                                            @foreach (var item in Model.EmployeeExperiences)
+                                            {
+                                                <div class="col-lg-6">
+                                                    <div class="media media-card">
+                                                        <i class="material-icons pmd-icon-lg md-dark mr-md-3 mr-sm-0">
+                                                            <svg version="1.1" x="0px" y="0px" viewBox="164 164 72 72" enable-background="new 164 164 72 72" xml:space="preserve">
+                                                            <path d="M227.199,187.72H202.72V173.8c0-2.56-2.08-4.8-4.8-4.8H172.8c-2.72,0-4.8,2.24-4.8,4.8v54.4c0,2.72,2.08,4.8,4.8,4.8h54.399
+                                                                    c2.721,0,4.801-2.08,4.801-4.8v-35.68C232,189.8,229.92,187.72,227.199,187.72z M178.08,229.8v-9.12c0-0.799,0.64-1.6,1.6-1.6h4
+                                                                    v10.72H178.08z M192.48,229.8h-5.6v-10.72h4c0.96,0,1.6,0.801,1.6,1.6V229.8z M199.52,229.8h-3.68v-9.12
+                                                                    c0-2.72-2.08-4.799-4.8-4.799h-11.2c-2.72,0-4.8,2.079-4.8,4.799v9.12h-2.24c-0.8,0-1.6-0.64-1.6-1.6v-54.4c0-0.96,0.8-1.6,1.6-1.6
+                                                                    h25.12c0.8,0,1.6,0.64,1.6,1.6V229.8z M228.8,228.2c0,0.96-0.8,1.6-1.601,1.6H202.72v-38.88h24.479c0.801,0,1.601,0.8,1.601,1.601
+                                                                    V228.2z" />
+                                                            <g>
+                                                            <path d="M194.08,179.88h-17.6c-0.96,0-1.6-0.64-1.6-1.6s0.64-1.6,1.6-1.6h17.6c0.96,0,1.6,0.64,1.6,1.6
+                                                                        S195.04,179.88,194.08,179.88z" />
+                                                                </g>
+                                                            <g>
+                                                            <path d="M194.08,187.88h-17.6c-0.96,0-1.6-0.64-1.6-1.6s0.64-1.6,1.6-1.6h17.6c0.96,0,1.6,0.64,1.6,1.6
+                                                                        S195.04,187.88,194.08,187.88z" />
+                                                                </g>
+                                                            <g>
+                                                            <path d="M194.08,195.88h-17.6c-0.96,0-1.6-0.64-1.6-1.6s0.64-1.6,1.6-1.6h17.6c0.96,0,1.6,0.64,1.6,1.6
+                                                                        S195.04,195.88,194.08,195.88z" />
+                                                                </g>
+                                                            <g>
+                                                            <path d="M194.08,203.881h-17.6c-0.96,0-1.6-0.641-1.6-1.601s0.64-1.601,1.6-1.601h17.6c0.96,0,1.6,0.641,1.6,1.601S195.04,203.881,194.08,203.881z" />
+                                                                </g>
+                                                            <g>
+                                                            <path d="M224.48,199.08H206.88c-0.96,0-1.601-0.64-1.601-1.6s0.641-1.6,1.601-1.6h17.601c0.96,0,1.6,0.64,1.6,1.6
+                                                                        S225.44,199.08,224.48,199.08z" />
+                                                                </g>
+                                                            <g>
+                                                            <path d="M224.48,207.08H206.88c-0.96,0-1.601-0.641-1.601-1.6c0-0.961,0.641-1.6,1.601-1.6h17.601c0.96,0,1.6,0.639,1.6,1.6
+                                                                        C226.08,206.439,225.44,207.08,224.48,207.08z" />
+                                                                </g>
+                                                            <g>
+                                                            <path d="M224.48,215.08H206.88c-0.96,0-1.601-0.641-1.601-1.6c0-0.961,0.641-1.6,1.601-1.6h17.601c0.96,0,1.6,0.639,1.6,1.6
+                                                                        C226.08,214.439,225.44,215.08,224.48,215.08z" />
+                                                                </g>
+                                                            </svg>
+                                                        </i>
+                                                        <div class="media-body">
+                                                            <h4 class="media-title">@item.Designation, @item.Organization</h4>
+                                                            <p class="mb-1">@item.StartDate.ToString("MM/dd/yyyy") to @item.EndDate.ToString("MM/dd/yyyy"), &#8377;@item.StartSalary to &#8377;@item.EndSalary</p>
+                                                            <p>@item.Reason</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Documents Tab -->
+                        <div role="tabpanel" class="tab-pane" id="documents">
+                            <!-- Documents -->
+                            <div class="card pmd-card">
+                                <div class="card-body">
+                                    <div class="details-tab">
+                                        <div class="d-flex flex-row align-items-center mb-2">
+                                            <div class="media-body">
+                                                <h3 class="card-title">Employee Documents</h3>
+                                            </div>
+                                            @*<button data-target="#add-document-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-outline-primary pmd-btn-flat btn-sm pmd-btn-fab" type="button"><i class="material-icons pmd-sm">add</i></button>*@
+                                        </div>
+                                        <!-- Documents Table -->
+                                        <div class="table-responsive pt-2">
+                                            <table class="table pmd-table table-bordered" id="table-propeller">
+                                                <thead>
+                                                    <tr>
+                                                        <th>File Name</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="empDocs">
+                                                    @foreach (var item in Model.EmployeeDocuments)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @item.FileName
+                                                            </td>
+                                                            <td>
+                                                                <a href="/User/DisplayEmployeeDocument/@item.DocumentId" onclick="openWindow(this.href); return false;" class="btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2"><i class="material-icons pmd-sm">visibility</i></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="/User/DownloadEmployeeDocument/@item.DocumentId" class="btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2"><i class="material-icons pmd-sm">download</i></a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add Document Dialog -->
+                        <div tabindex="-1" class="modal pmd-modal fade add-dialog" id="add-document-dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header pmd-modal-border">
+                                        <h2 class="modal-title">Add Document</h2>
+                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                <label for="filename">File Name</label>
+                                                <input type="text" class="mat-input form-control" id="filename" value="">
+                                            </div>
+                                            <div class="custom-file pmd-custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile">
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn pmd-ripple-effect btn-primary pmd-btn-raised" type="button">Add</button>
+                                        <button data-dismiss="modal" class="btn pmd-ripple-effect btn-outline-secondary" type="button">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Salary Tab -->
+                        <div role="tabpanel" class="tab-pane" id="salary">
+                            <!-- Basic Information -->
+                            <div class="card pmd-card">
+                                <div class="card-body">
+                                    <div class="details-tab">
+                                        <div class="d-flex flex-row align-items-center mb-2">
+                                            <div class="media-body">
+                                                <h3 class="card-title">Salary Information</h3>
+                                            </div>
+                                            <div class="dropdown pmd-dropdown pmd-user-info ml-auto">
+                                                <a href="#" class="pmd-btn-fab btn-outline-dark pmd-btn-flat btn btn-sm" data-toggle="dropdown" aria-expanded="true"><i class="material-icons pmd-icon-sm">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item d-flex flex-row" id="edit-salary-info" href="javascript:void(0);"><i class="material-icons md-dark pmd-icon-xs mr-3">edit</i><span class="media-body">Edit</span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row view-salary-card">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Actual Hourly Salary</label>
+                                                <p class="pmd-list-title">$25/hr</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Total Monthly Salary</label>
+                                                <p class="pmd-list-title">$6000</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Annual Gross Salary</label>
+                                                <p class="pmd-list-title">$72000</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Federal Withholding</label>
+                                                <p class="pmd-list-title">$12500</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Medicare</label>
+                                                <p class="pmd-list-title">$1800</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Social Security</label>
+                                                <p class="pmd-list-title">$2500</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Allowances</label>
+                                                <p class="pmd-list-title">$0</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Add. Allowances</label>
+                                                <p class="pmd-list-title">$0</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="pmd-list-subtitle">Net Pay</label>
+                                                <p class="pmd-list-title">$88800</p>
+                                            </div>
+                                        </div>
+                                        <form class="edit-salary-card">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                        <label for="hourly" class="col-form-label control-label">Actual Hourly Salary</label>
+                                                        <input type="text" class="form-control" value="$25/hr" id="hourly">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                        <label for="monthly" class="col-form-label control-label">Total Monthly Salary</label>
+                                                        <input type="text" class="form-control" value="$6000" id="monthly">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                        <label for="annual" class="col-form-label control-label">Annual Gross Salary</label>
+                                                        <input type="text" class="form-control" value="$72000" id="annual">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                        <label for="federal" class="col-form-label control-label">Federal Withholding</label>
+                                                        <input type="text" class="form-control" value="$12500" id="federal">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                        <label for="medicare" class="col-form-label control-label">Medicare</label>
+                                                        <input type="text" class="form-control" value="$1800" id="medicare">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                        <label for="social" class="col-form-label control-label">Social Security</label>
+                                                        <input type="text" class="form-control" value="$2500" id="social">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                        <label for="allowances" class="col-form-label control-label">Allowances</label>
+                                                        <input type="text" class="form-control" value="$0" id="allowances">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                        <label for="add-allowances" class="col-form-label control-label">Add Allowances</label>
+                                                        <input type="text" class="form-control" value="$0" id="add-allowances">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                        <label for="net-pay" class="col-form-label control-label">Net Pay</label>
+                                                        <input type="text" class="form-control" value="$88800" id="net-pay" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary pmd-ripple-effect pmd-btn-raised" type="submit" id="view-salary-info">Submit</button> <button class="btn btn-outline-secondary pmd-ripple-effect" type="submit" id="reset-salary-info">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content area end -->
+    <!-- Delete Document Modal -->
+    <div class="modal pmd-modal fade text-center delete-modal" id="delete_document_modal" tabindex="-1" role="dialog" aria-labelledby="delete_employee_label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <i class="material-icons md-danger pmd-icon-circle bg-danger pmd-icon-md"><strong>error_outline</strong></i>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <h2 class="modal-title">Are you sure?</h2>
+                    <p>Do you really want to delete the document details? <br /> This process cannot be undone.</p>
+                    <a href="javascript:void(0);" class="btn btn-outline-dark pmd-btn-raised" title="Cancel" data-dismiss="modal">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-primary pmd-btn-raised" title="Delete">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            var sPath = window.location.pathname;
+            var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+            $(".pmd-sidebar-nav").each(function () {
+                $(this).find("a[href='" + sPage + "']").parents(".collapse").addClass("show");
+                $(this).find("a[href='" + sPage + "']").parents(".collapse").prev('a.nav-link').addClass("active");
+                $(this).find("a[href='" + sPage + "']").addClass("active");
+            });
+            $(".auto-update-year").html(new Date().getFullYear());
+            getEmployeeDDL();
+        });
+
+        // Show Hide Edit Basic Info Card
+        $(".edit-basic-card").hide();
+        $("#edit-basic-info").click(function () {
+            $(".edit-basic-card").show();
+            $(".view-basic-card").hide();
+        });
+        $("#view-basic-info").click(function () {
+            $(".view-basic-card").show();
+            $(".edit-basic-card").hide();
+        });
+        $("#reset-basic-info").click(function () {
+            $(".view-basic-card").show();
+            $(".edit-basic-card").hide();
+        });
+
+        // Show Hide Edit Employee Info Card
+        $(".edit-employee-card").hide();
+        $("#edit-employee-info").click(function () {
+            $(".edit-employee-card").show();
+            $(".view-employee-card").hide();
+        });
+        $("#view-employee-info").click(function () {
+            $(".view-employee-card").show();
+            $(".edit-employee-card").hide();
+        });
+        $("#reset-employee-info").click(function () {
+            $(".view-employee-card").show();
+            $(".edit-employee-card").hide();
+        });
+
+        // Show Hide Edit Contact Info Card
+        $(".edit-contact-card").hide();
+        $("#edit-contact-info").click(function () {
+            $(".edit-contact-card").show();
+            $(".view-contact-card").hide();
+        });
+        $("#view-contact-info").click(function () {
+            $(".view-contact-card").show();
+            $(".edit-contact-card").hide();
+        });
+        $("#reset-contact-info").click(function () {
+            $(".view-contact-card").show();
+            $(".edit-contact-card").hide();
+        });
+
+        // Show Hide Edit Salary Info Card
+        $(".edit-salary-card").hide();
+        $("#edit-salary-info").click(function () {
+            $(".edit-salary-card").show();
+            $(".view-salary-card").hide();
+        });
+        $("#view-salary-info").click(function () {
+            $(".view-salary-card").show();
+            $(".edit-salary-card").hide();
+        });
+        $("#reset-salary-info").click(function () {
+            $(".view-salary-card").show();
+            $(".edit-salary-card").hide();
+        });
+
+        //Birthday DatePicker
+        $('#birthdate-picker').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+
+        //Joining DatePicker
+        $('#joindate-picker').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+
+        // Passing Year
+        $('#passing-year').datetimepicker({
+            viewMode: 'years',
+            format: 'YYYY'
+        });
+
+        // Passing Year
+        $('#edit-passing-year').datetimepicker({
+            viewMode: 'years',
+            format: 'YYYY'
+        });
+
+        // Add Education start date date and time picker
+        $('#datepicker-start').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+
+        // Add Education End date date and time picker
+        $('#datepicker-end').datetimepicker({
+            useCurrent: false,
+            format: 'DD-MM-YYYY'
+        });
+
+        // start date picker for Add Education
+        $("#datepicker-start").on("dp.change", function (e) {
+            $('#datepicker-end').data("DateTimePicker").minDate(e.date);
+        });
+        // end date picker for Add Education
+        $("#datepicker-end").on("dp.change", function (e) {
+            $('#datepicker-start').data("DateTimePicker").maxDate(e.date);
+        });
+
+        // edit Education start date date and time picker
+        $('#edit-datepicker-start').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+
+        // edit Education End date date and time picker
+        $('#edit-datepicker-end').datetimepicker({
+            useCurrent: false,
+            format: 'DD-MM-YYYY'
+        });
+
+        // start date picker for edit Education
+        $("#edit-datepicker-start").on("dp.change", function (e) {
+            $('#edit-datepicker-end').data("DateTimePicker").minDate(e.date);
+        });
+        // end date picker for edit Education
+        $("#edit-datepicker-end").on("dp.change", function (e) {
+            $('#edit-datepicker-start').data("DateTimePicker").maxDate(e.date);
+        });
+
+        // edit experience  start date date and time picker
+        $('#editexp-datepicker-start').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+
+        // edit experience End date date and time picker
+        $('#editexp-datepicker-end').datetimepicker({
+            useCurrent: false,
+            format: 'DD-MM-YYYY'
+        });
+
+        // edit experience start date picker
+        $("#editexp-datepicker-start").on("dp.change", function (e) {
+            $('#edit-datepicker-end').data("DateTimePicker").minDate(e.date);
+        });
+        // edit experience end date picker
+        $("#editexp-datepicker-end").on("dp.change", function (e) {
+            $('#edit-datepicker-start').data("DateTimePicker").maxDate(e.date);
+        });
+
+        // add experience  start date date and time picker
+        $('#exp-datepicker-start').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+
+        // add experience End date date and time picker
+        $('#exp-datepicker-end').datetimepicker({
+            useCurrent: false,
+            format: 'DD-MM-YYYY'
+        });
+
+        // add experience start date picker
+        $("#exp-datepicker-start").on("dp.change", function (e) {
+            $('#edit-datepicker-end').data("DateTimePicker").minDate(e.date);
+        });
+        // add experience end date picker
+        $("#exp-datepicker-end").on("dp.change", function (e) {
+            $('#edit-datepicker-start').data("DateTimePicker").maxDate(e.date);
+        });
+
+        //function getEmployeeDDL() {
+        //    $.ajax({
+        //        url: '/User/GetEmployeeDDL',
+        //        type: 'GET',
+        //        success: function (response) {
+        //            if (response.Data) {
+        //                ddlHtml = '';
+        //                $("#ReportingEmployee").html("");
+        //                $.each(response.Data, function (index, value) {
+        //                    ddlHtml += '<option value="' + value.Key + '">' + value.Value + '</option>';
+        //                });
+        //                $("#ReportingEmployee").html(ddlHtml);
+        //                $("#ReportingEmployee").val($("#reportingEmployeeValue").val());
+        //            }
+        //            else {
+
+        //            }
+
+        //        },
+        //        error: function () {
+
+        //        }
+        //    });
+        //}
+        function getEmployeeDDL() {
+            $.ajax({
+                url: '/User/GetEmployeeDDL',
+                type: 'GET',
+                success: function (response) {
+                    debugger
+                    if (response.Data) {
+                        var ddlHtml = '<option value="-1" selected></option>';
+                        $("#ReportingEmployee").html("");
+                        $.each(response.Data, function (index, value) {
+                            var key = value.Key.split(":")[0];
+                            ddlHtml += '<option value="' + key + '">' + value.Value + '</option>';
+                        });
+                        $("#ReportingEmployee").html(ddlHtml);
+                        $("#ReportingEmployee").val($("#reportingEmployeeValue").val());
+                    }
+                    else {
+
+                    }
+
+                },
+                error: function () {
+
+                }
+            });
+        }
+        function openWindow(url) {
+            window.open(url, `targetWindow`, `toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=SomeSize,height=SomeSize`);
+        }
+
+    </script>
+
+    <!-- Scripts Ends -->
+
+</body>
+</html>
+

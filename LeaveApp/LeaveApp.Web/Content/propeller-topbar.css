@@ -1,0 +1,19 @@
+/* ----------------------------
+	Propeller top bar
+---------------------------- */
+.propeller-topbar-body .navbar{ position: relative; margin-bottom: 0;}
+/*.propeller-topbar .navbar-brand{ padding: 0; margin-bottom:0; margin-left: 0;}*/
+/*.by-digicorp { font-size: 11px; font-weight: 300; line-height: 1; margin-bottom: 0; margin-right: 2px; margin-top: -12px; text-align: right; position: absolute;  color: rgba(255,255,255,.6); top: 48px; left: 96px;}
+.by-digicorp a, .by-digicorp a strong{ color: #fff;}*/
+.propeller-topbar a svg{ height: 40px;}
+/*.propeller-topbar .pmd-navbar-right-icon { padding-top: 8px;}*/
+.propeller-topbar-body .propeller-topbar{ background-color: #4acc8e; height: 56px; width: 100%; position: fixed; z-index: 100;}
+.propeller-topbar-body .pmd-sidebar {padding-top: 120px;}
+.propeller-topbar-body .pmd-content{padding-top: 1.5rem;}
+.inner-page { transition:inherit;}
+.propeller-topbar-body .inner-page { margin-bottom: 0; padding-top:0;}
+	@media screen and (max-width: 767px){
+		.propeller-topbar .navbar-header{ float: left;}
+	}
+/*.hidden-propeller .pmd-content {padding-top: 32px; transition: none;}
+.hidden-propeller .pmd-sidebar {padding-top: 64px; transition: none;}*/

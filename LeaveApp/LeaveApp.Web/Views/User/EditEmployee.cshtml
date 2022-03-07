@@ -1,0 +1,1396 @@
+﻿@{
+    ViewBag.Title = "Edit Employee";
+}
+
+<!doctype html>
+<html lang="en-US">
+<head>
+
+</head>
+
+<body>
+    <!-- Sidebar Ends -->
+    <!--content area start-->
+    <div id="content" class="pmd-content admin section-container">
+        <!-- Title -->
+        <h1>Edit Employee</h1>
+        <!-- End Title -->
+        <!--breadcrum start-->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pmd-breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/User/Dashboard">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item"><a href="/User/EmployeeList">Employees</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Employee</li>
+            </ol>
+        </nav>
+        <!--breadcrum end-->
+
+        <div class="page-content">
+            <div class="pmd-tabs pmd-tabs-dark bg-primary">
+                <ul class="nav nav-tabs" role="tablist" style="width: 343.813px;">
+                    <li class="nav-item"><a class="nav-link active" href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documents</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#salary" aria-controls="salary" role="tab" data-toggle="tab">Salary</a></li>
+                </ul>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- About Tab -->
+                <div role="tabpanel" class="tab-pane active" id="about">
+                    <div class="card pmd-card">
+                        <form id="addEmployeeDetails" name="addEmployeeDetails">
+                            <div class="card-body">
+                                <!-- Upload Picture -->
+                                <div class="details-tab">
+                                    <h3 class="card-title mb-3">Profile Picture</h3>
+                                    <div data-provides="fileinput" class="fileinput fileinput-new">
+                                        <div id="profileImage" data-trigger="fileinput" class="fileinput-preview thumbnail img-fluid rounded-circle mb-0">
+                                            <img src="~/Content/images/avtar-b.jpg" width="200" alt="profile avatar">
+                                        </div>
+                                        <div class="action-button">
+                                            <span class="btn btn-secondary pmd-btn-fab btn-sm pmd-btn-raised btn-file pmd-ripple-effect">
+                                                <span class="fileinput-new"><i class="material-icons pmd-xs">add</i></span>
+                                                <span class="fileinput-exists"><i class="material-icons pmd-xs">mode_edit</i></span>
+                                                <input type="file" name="...">
+                                            </span>
+                                            <a data-dismiss="fileinput" class="btn btn-danger btn-sm pmd-btn-fab pmd-ripple-effect pmd-btn-raised btn-file fileinput-exists" href="javascript:void(0);"><i class="material-icons pmd-sm">close</i></a>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="employeeDetailId" />
+                                </div>
+
+                                <!-- Basic Information -->
+                                <div class="details-tab">
+                                    <h3 class="card-title">Basic Information</h3>
+                                    <div class="row">
+                                        @*<div class="col-12 col-sm-6 col-md-3">
+                                        <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                            <label for="mn" class="col-form-label control-label">User Name</label>
+                                            <input type="text" class="form-control" value="" id="userName" name="userName">
+                                        </div>
+                                    </div>*@
+                                        <div class="col-12 col-sm-6 col-md-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="fn" class="col-form-label control-label">First Name</label>
+                                                <input type="text" class="form-control" value="" id="firstName" name="firstName">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="ln" class="col-form-label control-label">Last Name</label>
+                                                <input type="text" class="form-control" value="" id="lastName" name="lastName">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="phone" class="col-form-label control-label">Phone</label>
+                                                <input type="tel" class="form-control" value="" id="phone" name="phone">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="personal-email" class="col-form-label control-label">Personal Email</label>
+                                                <input type="email" class="form-control" id="personalEmail" name="personalEmail" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                <label for="dob" class="col-form-label control-label">Date of Birth</label>
+                                                <input type="text" class="form-control" id="dob" name="dob">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-3">
+                                            <label for="email" class="d-block title-label">Gender</label>
+                                            <div class="custom-control custom-radio pmd-radio custom-control-inline">
+                                                <input type="radio" id="male" value="Male" name="gender" class="custom-control-input">
+                                                <label class="custom-control-label pmd-radio-ripple-effect" for="male">Male</label>
+                                            </div>
+                                            <div class="custom-control custom-radio pmd-radio custom-control-inline">
+                                                <input type="radio" id="female" value="Female" name="gender" class="custom-control-input">
+                                                <label class="custom-control-label pmd-radio-ripple-effect" for="female">Female</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-md-3">
+                                            <label for="marital" class="d-block title-label">Marital Status</label>
+                                            <div class="custom-control custom-radio pmd-radio custom-control-inline">
+                                                <input type="radio" id="married" value="Married" name="marital" class="custom-control-input">
+                                                <label class="custom-control-label pmd-radio-ripple-effect" for="married">Married</label>
+                                            </div>
+                                            <div class="custom-control custom-radio pmd-radio custom-control-inline">
+                                                <input type="radio" id="unmarried" value="Unmarried" name="marital" class="custom-control-input">
+                                                <label class="custom-control-label pmd-radio-ripple-effect" for="unmarried">Unmarried</label>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-12 col-md-6 col-lg-4">
+                                        <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                            <label for="fb" class="col-form-label control-label">Facebook Profile</label>
+                                            <input type="url" class="form-control" value="" id="fb">
+                                        </div>
+                                    </div>*@
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="linkedin" class="col-form-label control-label">LinkedIn Profile</label>
+                                                <input type="url" class="form-control" value="" id="linkedin" name="linkedin">
+                                            </div>
+                                        </div>
+                                        @*<div class="col-12 col-md-6 col-lg-4">
+                                        <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                            <label for="twitter" class="col-form-label control-label">Twitter Profile</label>
+                                            <input type="url" class="form-control" value="" id="twitter">
+                                        </div>
+                                    </div>*@
+                                        <div class="col-12 col-8">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                <label>Description</label>
+                                                <textarea class="form-control" id="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Employee Information -->
+                                <div class="details-tab">
+                                    <h3 class="card-title">Employee Information</h3>
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="id" class="col-form-label control-label">Employee Enrollment ID</label>
+                                                <input type="text" class="form-control" value="" id="enrollmentId" name="enrollmentId">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                <label for="doj" class="col-form-label control-label">Date of Joining</label>
+                                                <input type="text" class="form-control" id="joindatePicker" name="joindatePicker">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="email" class="col-form-label control-label">Company Email</label>
+                                                <input type="email" class="form-control" value="" id="companyEmail" name="companyEmail">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="advance_department">Department</label>
+                                                <select name="department" id="department" class="form-control">
+                                                    <option value="-1"></option>
+                                                    <option value="1">Hr</option>
+                                                    <option value="2">Design</option>
+                                                    <option value="3">Development</option>
+                                                    <option value="4">Marketing</option>
+                                                    <option value="5">Sales</option>
+                                                    <option value="6">Quality Assurance</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                <label for="annual" class="col-form-label control-label">Annual Gross Salary</label>
+                                                <input type="text" class="form-control" value="" id="annual" name="annual">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="advance_designation">Designation</label>
+                                                <select name="designation" id="designation" class="form-control">
+                                                    <option value="-1"></option>
+                                                    <option value="1">UI / UX Designer</option>
+                                                    <option value="2">DotNet Developer</option>
+                                                    <option value="3">Full Stack DotNet Developer</option>
+                                                    <option value="4">Mobile App Developer</option>
+                                                    <option value="5">Marketing Manager</option>
+                                                    <option value="6">Sales and Marketing Head</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-3">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="reporting">Reporting Employee</label>
+                                                <select name="reporting" id="reporting" class="form-control">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-3">
+                                            <label for="type" class="d-block title-label">Type of Employee</label>
+                                            <div class="custom-control custom-radio pmd-radio custom-control-inline">
+                                                <input type="radio" id="full-time" value="1" name="employeeType" class="custom-control-input">
+                                                <label class="custom-control-label pmd-radio-ripple-effect" for="full-time">Full Time</label>
+                                            </div>
+                                            <div class="custom-control custom-radio pmd-radio custom-control-inline">
+                                                <input type="radio" id="part-time" value="2" name="employeeType" class="custom-control-input">
+                                                <label class="custom-control-label pmd-radio-ripple-effect" for="part-time">Part Time</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Contact Information -->
+                                <div class="details-tab">
+                                    <h3 class="card-title">Contact Information</h3>
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="addline1" class="col-form-label control-label">Current Address</label>
+                                                <input type="text" class="form-control" value="" id="addline1" name="addline1">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="addline2" class="col-form-label control-label">Permanent Address</label>
+                                                <input type="text" class="form-control" id="addline2" name="addline2" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="city" class="col-form-label control-label">City</label>
+                                                <input type="text" class="form-control" value="" id="city" name="city">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="state">State</label>
+                                                <select name="state" id="state" class="form-control">
+                                                    <option value="-1"></option>
+                                                    <option value="1">Andhra Pradesh</option>
+                                                    <option value="2">Arunachal Pradesh</option>
+                                                    <option value="3">Assam           </option>
+                                                    <option value="4">Bihar           </option>
+                                                    <option value="5">Chhattisgarh    </option>
+                                                    <option value="6">Goa             </option>
+                                                    <option value="7">Gujarat         </option>
+                                                    <option value="8">Haryana         </option>
+                                                    <option value="9">Himachal Pradesh </option>
+                                                    <option value="10">Jharkhand       </option>
+                                                    <option value="11">Karnataka       </option>
+                                                    <option value="12">Kerala          </option>
+                                                    <option value="13">Madhya Pradesh   </option>
+                                                    <option value="14">Maharashtra     </option>
+                                                    <option value="15">Manipur         </option>
+                                                    <option value="16">Meghalaya       </option>
+                                                    <option value="17">Mizoram         </option>
+                                                    <option value="18">Nagaland        </option>
+                                                    <option value="19">Odisha          </option>
+                                                    <option value="20">Punjab          </option>
+                                                    <option value="21">Rajasthan       </option>
+                                                    <option value="22">Sikkim          </option>
+                                                    <option value="23">TamilNadu       </option>
+                                                    <option value="24">Telangana       </option>
+                                                    <option value="25">Tripura         </option>
+                                                    <option value="26">Uttar Pradesh    </option>
+                                                    <option value="27">Uttarakhand     </option>
+                                                    <option value="28">West Bengal      </option>
+                                                    <option value="29">Andaman And Nicobar Islands</option>
+                                                    <option value="30">Chandigarh</option>
+                                                    <option value="31">Dadra Nagar Haveli And Daman Diu</option>
+                                                    <option value="32">Delhi</option>
+                                                    <option value="33">Jammu And Kashmir</option>
+                                                    <option value="34">Ladakh         </option>
+                                                    <option value="35">Lakshadweep    </option>
+                                                    <option value="36">Puducherry     </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                <label for="zipcode" class="col-form-label control-label">Pin Code</label>
+                                                <input type="text" class="form-control" value="" id="pinCode" name="pinCode">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                <label for="country">Country</label>
+                                                <select name="country" id="country" class="form-control">
+                                                    <option value="-1"></option>
+                                                    <option value="1">India</option>
+                                                    <option value="2">United States</option>
+                                                    <option value="3">Australia</option>
+                                                    <option value="4">Germany</option>
+                                                    <option value="5">Japan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Education Information -->
+                                <div class="details-tab">
+                                    <h3 class="card-title">Education</h3>
+                                    <div class="edu-form">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-4">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label for="degree">Degree</label>
+                                                    <select name="degree" id="degree" class="form-control">
+                                                        <option value="-1"></option>
+                                                        <option value="1">BTech</option>
+                                                        <option value="2">BCA</option>
+                                                        <option value="3">MCA</option>
+                                                        <option value="4">MBA</option>
+                                                        <option value="5">BA</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-4">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label for="specialization">Specialization</label>
+                                                    <select name="specialization" id="specialization" class="form-control">
+                                                        <option value="-1"></option>
+                                                        <option value="1">Computer Science</option>
+                                                        <option value="2">Information Technology</option>
+                                                        <option value="3">Mechanical Engineering</option>
+                                                        <option value="4">Automobile Engineering</option>
+                                                        <option value="5">Accounts</option>
+                                                        <option value="6">Finance</option>
+                                                        <option value="7">Marketing</option>
+                                                        <option value="8">Human Resource</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            @*<div class="col-md-4">
+                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                        <label class="control-label" for="passing-year">Passing Year</label>
+                        <input type="text" class="form-control" id="passing-year">
+                    </div>
+                </div>*@
+                                            <div class="col-md-8 col-lg-6">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label for="institute">Institute</label>
+                                                    <input type="text" class="mat-input form-control" id="institute" name="institute" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label class="control-label" for="datepickerStart">Start Date</label>
+                                                    <input type="text" class="form-control" id="datepickerStart" name="datepickerStart">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label class="control-label" for="datepickerEnd">End Date</label>
+                                                    <input type="text" class="form-control" id="datepickerEnd" name="datepickerEnd">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label for="score">Score</label>
+                                                <div id="pmd-slider-tooltip" class="pmd-range-slider pmd-range-tooltip"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form to add more education details -->
+                                    <button class="btn pmd-ripple-effect btn-dark mb-2" type="button" id="emp-education-add" data-edit="0" onclick="addEducation()">Add</button>
+                                    <button class="btn pmd-ripple-effect btn-dark mb-2" type="button" id="emp-education-cancel" style="display:none;" data-edit="0">Cancel</button>
+                                    <button class="btn pmd-ripple-effect btn-dark mt-2" type="button" id="emp-education-add-more">Add Education</button>
+
+                                    <!-- Education View Card After Save -->
+                                    <div class="emp-edu-view-card-template" style="display:none;">
+                                        <div class="row" id="education-card-data_{{index}}">
+                                            <div class="col-lg-6">
+                                                <div class="media media-card">
+                                                    <i class="material-icons pmd-icon-lg md-dark mr-3 align-self-start">
+                                                        <svg x="0px" y="0px" viewBox="164 164 72 72" enable-background="new 164 164 72 72" xml:space="preserve">
+                                                        <g>
+                                                        <path d="M229.152,194.031v-9.361l-28.862-16.544l-28.862,16.544v9.361h4.644v27.937h-5.224v10.158h58.159v-10.158h-4.426v-27.937
+                                                                H229.152z M226.104,224.87v4.354H173.75v-4.354H226.104z M179.057,221.968v-27.937h8.127v27.937H179.057z M190.39,221.968v-27.937
+                                                                h8.127v27.937H190.39z M201.864,221.968v-27.937h8.127v27.937H201.864z M213.56,221.968v-27.937h8.127v27.937H213.56z
+                                                                 M174.331,191.128v-4.644l25.959-15.093l25.958,15.093v4.644H174.331z" />
+                                                        <path d="M200.291,177.342c-2.846,0-5.152,2.307-5.152,5.152c0,2.846,2.306,5.152,5.152,5.152c2.845,0,5.152-2.306,5.152-5.152
+                                                                C205.442,179.648,203.136,177.342,200.291,177.342z M200.291,184.743c-1.243,0-2.25-1.007-2.25-2.25c0-1.243,1.007-2.25,2.25-2.25
+                                                                s2.25,1.007,2.25,2.25C202.54,183.736,201.533,184.743,200.291,184.743z" />
+                                                        </g>
+                                                    </svg>
+                                                    </i>
+                                                    <div class="media-body">
+                                                        <h4 class="media-title" id="cardTitle">University of Pennsylvania</h4>
+                                                        <p class="card-subtitle" id="cardSubtitle">2016 - 2018</p>
+                                                        <p id="cardText">Maters of Engineering, Computer Engineering, 8.5</p>
+                                                    </div>
+                                                    <button data-target="#edit-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-dark btn-sm pmd-btn-fab pmd-btn-flat ml-auto" type="button" id="editCard"><i onclick="editCardBtn()" class="material-icons pmd-icon-xs">edit</i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="edu-view-card">
+
+                                    </div>
+                                </div>
+
+                                <!-- Experience Information -->
+                                <div class="details-tab">
+                                    <h3 class="card-title">Experience</h3>
+                                    <div class="exp-form">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label for="organization">Organization</label>
+                                                    <input type="text" class="mat-input form-control" id="organization" name="organization" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label for="exp_esignation">Designation</label>
+                                                    <input type="text" class="mat-input form-control" id="expDesignation" name="expDesignation" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label class="control-label" for="expDatepickerStart">Start Date</label>
+                                                    <input type="text" class="form-control" id="expDatepickerStart" name="expDatepickerStart">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label class="control-label" for="expDatepickerEnd">End Date</label>
+                                                    <input type="text" class="form-control" id="expDatepickerEnd" name="expDatepickerEnd">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label for="start_salary">Start Salary</label>
+                                                    <input type="text" class="mat-input form-control" id="start_salary" name="start_salary" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label for="end_salary">End Salary</label>
+                                                    <input type="text" class="mat-input form-control" id="end_salary" name="end_salary" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                    <label>Reason</label>
+                                                    <textarea id="reason" name="reason" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Add More Experince Form -->
+                                    <button class="btn pmd-ripple-effect btn-dark" type="button" onclick="addExperiences()" data-edit="0" id="emp-exp-add">Add</button>
+                                    <button class="btn pmd-ripple-effect btn-dark" type="button" data-edit="0" id="emp-exp-cancel" style="display:none;">Cancel</button>
+                                    <button class="btn pmd-ripple-effect btn-dark mt-2" type="button" id="emp-exp-add-more">Add Experience</button>
+
+                                    <!-- Experience View Card After Save -->
+                                    <div class="exp-view-card-template" style="display: none;">
+                                        <div class="row" id="experiences-card-data_{{index}}">
+                                            <div class="col-lg-6">
+                                                <div class="media media-card">
+                                                    <i class="material-icons pmd-icon-lg md-dark mr-3 align-self-start">
+                                                        <svg version="1.1" x="0px" y="0px" viewBox="164 164 72 72" enable-background="new 164 164 72 72" xml:space="preserve">
+                                                        <path d="M227.199,187.72H202.72V173.8c0-2.56-2.08-4.8-4.8-4.8H172.8c-2.72,0-4.8,2.24-4.8,4.8v54.4c0,2.72,2.08,4.8,4.8,4.8h54.399
+                                                            c2.721,0,4.801-2.08,4.801-4.8v-35.68C232,189.8,229.92,187.72,227.199,187.72z M178.08,229.8v-9.12c0-0.799,0.64-1.6,1.6-1.6h4
+                                                            v10.72H178.08z M192.48,229.8h-5.6v-10.72h4c0.96,0,1.6,0.801,1.6,1.6V229.8z M199.52,229.8h-3.68v-9.12
+                                                            c0-2.72-2.08-4.799-4.8-4.799h-11.2c-2.72,0-4.8,2.079-4.8,4.799v9.12h-2.24c-0.8,0-1.6-0.64-1.6-1.6v-54.4c0-0.96,0.8-1.6,1.6-1.6
+                                                            h25.12c0.8,0,1.6,0.64,1.6,1.6V229.8z M228.8,228.2c0,0.96-0.8,1.6-1.601,1.6H202.72v-38.88h24.479c0.801,0,1.601,0.8,1.601,1.601
+                                                            V228.2z" />
+                                                        <g>
+                                                        <path d="M194.08,179.88h-17.6c-0.96,0-1.6-0.64-1.6-1.6s0.64-1.6,1.6-1.6h17.6c0.96,0,1.6,0.64,1.6,1.6
+                                                                S195.04,179.88,194.08,179.88z" />
+                                                        </g>
+                                                        <g>
+                                                        <path d="M194.08,187.88h-17.6c-0.96,0-1.6-0.64-1.6-1.6s0.64-1.6,1.6-1.6h17.6c0.96,0,1.6,0.64,1.6,1.6
+                                                                S195.04,187.88,194.08,187.88z" />
+                                                        </g>
+                                                        <g>
+                                                        <path d="M194.08,195.88h-17.6c-0.96,0-1.6-0.64-1.6-1.6s0.64-1.6,1.6-1.6h17.6c0.96,0,1.6,0.64,1.6,1.6
+                                                                S195.04,195.88,194.08,195.88z" />
+                                                        </g>
+                                                        <g>
+                                                        <path d="M194.08,203.881h-17.6c-0.96,0-1.6-0.641-1.6-1.601s0.64-1.601,1.6-1.601h17.6c0.96,0,1.6,0.641,1.6,1.601
+                                                                S195.04,203.881,194.08,203.881z" />
+                                                        </g>
+                                                        <g>
+                                                        <path d="M224.48,199.08H206.88c-0.96,0-1.601-0.64-1.601-1.6s0.641-1.6,1.601-1.6h17.601c0.96,0,1.6,0.64,1.6,1.6
+                                                                S225.44,199.08,224.48,199.08z" />
+                                                        </g>
+                                                        <g>
+                                                        <path d="M224.48,207.08H206.88c-0.96,0-1.601-0.641-1.601-1.6c0-0.961,0.641-1.6,1.601-1.6h17.601c0.96,0,1.6,0.639,1.6,1.6
+                                                                C226.08,206.439,225.44,207.08,224.48,207.08z" />
+                                                        </g>
+                                                        <g>
+                                                        <path d="M224.48,215.08H206.88c-0.96,0-1.601-0.641-1.601-1.6c0-0.961,0.641-1.6,1.601-1.6h17.601c0.96,0,1.6,0.639,1.6,1.6
+                                                                C226.08,214.439,225.44,215.08,224.48,215.08z" />
+                                                        </g>
+                                                    </svg>
+                                                    </i>
+                                                    <div class="media-body">
+                                                        <h4 class="media-title" id="expCardTitle"></h4>
+                                                        <p class="mb-1" id="expCardSubtitle"></p>
+                                                        <p id="expCardText"></p>
+                                                    </div>
+                                                    <button data-target="#edit-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-dark btn-sm pmd-btn-fab pmd-btn-flat ml-auto" type="button" id="expCardEdit"><i class="material-icons pmd-icon-xs">edit</i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="exp-view-card-data" style="display:none;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer pmd-card-border">
+                                <button class="btn pmd-ripple-effect btn-primary pmd-btn-raised" onclick="editEmployee()" type="button">Update</button>
+                                <button class="btn pmd-ripple-effect btn-outline-secondary" onclick="resetForm()" type="button">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Documents Tab -->
+                <div role="tabpanel" class="tab-pane" id="documents">
+
+                    <!-- Documents -->
+                    <div class="card pmd-card">
+                        <div class="card-body">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="media-body">
+                                    <h3 class="card-title">Employee Documents</h3>
+                                </div>
+                                <button data-target="#add-document-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-outline-primary pmd-btn-flat btn-sm pmd-btn-fab" type="button"><i class="material-icons pmd-sm">add</i></button>
+                            </div>
+
+                            <div class="details-tab">
+                                <!-- Documents Table -->
+                                <div class="table-responsive">
+                                    <table class="table pmd-table table-bordered" id="table-propeller">
+                                        <thead>
+                                            <tr>
+                                                <th>File Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="empDocs">
+                                            @*<tr>
+                                            <td colspan="2" class="text-center">
+                                            <div class="no-data-msg">
+                                                <p class="mb-0">No Records Found</p>
+                                                </div>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        </tr>*@
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Document Dialog -->
+                    <div tabindex="-1" class="modal pmd-modal fade add-dialog" id="add-document-dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header pmd-modal-border">
+                                    <h2 class="modal-title">Add Documents</h2>
+                                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                            <input type="file" accept="image/*,.doc, .docx,.pdf" class="" name="empfile" id="empfile" multiple>
+                                            @*<label class="custom-file-label" for="customFile">Choose file</label>*@
+                                        </div>
+                                        <div class="mt-4">
+                                            <button data-dismiss="modal1" id="btnfileUpload" class="btn pmd-ripple-effect btn-primary pmd-btn-raised" type="button">Add</button>
+                                            <button data-dismiss="modal" class="btn pmd-ripple-effect btn-outline-secondary" type="button">Reset</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-lg">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div hight="90%" width="90%" id="displayFile"></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+    <!-- content area end -->
+
+    <script>
+        $(document).ready(function () {
+            var sPath = window.location.pathname;
+            var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+            $(".pmd-sidebar-nav").each(function () {
+                $(this).find("a[href='" + sPage + "']").parents(".collapse").addClass("show");
+                $(this).find("a[href='" + sPage + "']").parents(".collapse").prev('a.nav-link').addClass("active");
+                $(this).find("a[href='" + sPage + "']").addClass("active");
+            });
+            $(".auto-update-year").html(new Date().getFullYear());
+
+            // Add More Education Form
+            $(".add-more-edu-form").hide();
+            $(".edu-view-card").hide();
+            $("#education-add-more").hide();
+            $("#education-add").click(function () {
+                $(".edu-view-card").show();
+                $(".first-edu-form").hide();
+                $("#education-add").hide();
+                $("#education-add-more").show();
+            });
+            $("#education-add-more").click(function () {
+                $(".add-more-edu-form").show();
+            });
+            // Add More Experience Form
+            $(".add-more-exp-form").hide();
+            $(".experience-view-card").hide();
+            $("#exp-add-more").hide();
+            $("#exp-add").click(function () {
+                $(".experience-view-card").show();
+                $(".first-exp-form").hide();
+                $("#exp-add").hide();
+                $("#exp-add-more").show();
+            });
+            $("#exp-add-more").click(function () {
+                $(".add-more-exp-form").show();
+            });
+
+
+
+            getEmployeeDDL();
+            $("#emp-education-add-more").show();
+            $("#emp-education-add").hide();
+            $("#emp-exp-add-more").show();
+            $(".exp-form").hide();
+            $("#emp-exp-add").hide();
+            $(".edu-form").hide();
+            $(".edu-view-card").show();
+            $(".experience-view-card-data").show();
+            $(".edu-view-card-template").hide();
+            $(".experience-view-card-template").hide();
+            //getEmployeeFormData();
+            //focuseForm();
+        });
+        function focuseForm() {
+            $.each($("input"), function () {
+                $(this).focus();
+            });
+            $.each($("select"), function () {
+                $(this).focus();
+            });
+            $.each($("textarea"), function () {
+                $(this).focus();
+            });
+        }
+        function focuseExperienceForm() {
+            $.each($(".exp-form").find("input"), function () {
+                $(this).focus();
+            });
+            $.each($(".exp-form").find("select"), function () {
+                $(this).focus();
+            });
+            $.each($(".exp-form").find("textarea"), function () {
+                $(this).focus();
+            });
+        }
+        function focuseEducationForm() {
+            $.each($(".edu-form").find("input"), function () {
+                $(this).focus();
+            });
+            $.each($(".edu-form").find("select"), function () {
+                $(this).focus();
+            });
+            $.each($(".edu-form").find("textarea"), function () {
+                $(this).focus();
+            });
+        }
+
+        // Upload Profile Picture
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.profile-pic').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function () {
+            $(".file-upload").click();
+        });
+
+        //Birthday DatePicker
+        $('#dob').datetimepicker({
+            format: 'MM-DD-YYYY'
+        });
+
+        //Joining DatePicker
+        $('#joindatePicker').datetimepicker({
+            format: 'MM-DD-YYYY'
+        });
+
+        // Passing Year
+        $('#passing-year').datetimepicker({
+            viewMode: 'years',
+            format: 'YYYY'
+        });
+
+        // Add Education start date date and time picker
+        $('#datepickerStart').datetimepicker({
+            format: 'MM-DD-YYYY'
+        });
+
+        // Add Education End date date and time picker
+        $('#datepickerEnd').datetimepicker({
+            useCurrent: false,
+            format: 'MM-DD-YYYY'
+        });
+
+        // start date picker for Add Education
+        $("#datepickerStart").on("dp.change", function (e) {
+            $('#datepickerEnd').data("DateTimePicker").minDate(e.date);
+        });
+        // end date picker for Add Education
+        $("#datepickerEnd").on("dp.change", function (e) {
+            $('#datepickerStart').data("DateTimePicker").maxDate(e.date);
+        });
+
+        // add experience  start date date and time picker
+        $('#expDatepickerStart').datetimepicker({
+            format: 'MM-DD-YYYY'
+        });
+
+        // add experience End date date and time picker
+        $('#expDatepickerEnd').datetimepicker({
+            /*useCurrent: false,*/
+            format: 'MM-DD-YYYY'
+        });
+
+        // add experience start date picker
+        $("#expDatepickerStart").on("dp.change", function (e) {
+            $('#expDatepickerEnd').data("DateTimePicker").minDate(e.date);
+        });
+        // add experience end date picker
+        $("#expDatepickerEnd").on("dp.change", function (e) {
+            $('#expDatepickerStart').data("DateTimePicker").maxDate(e.date);
+        });
+
+        // single range slider with default tooltip open
+        var pmdSliderTooltip = document.getElementById('pmd-slider-tooltip');
+        noUiSlider.create(pmdSliderTooltip, {
+            start: [3],
+            connect: 'lower',
+            tooltips: [wNumb({ decimals: 0 })],
+            range: {
+                'min': [0],
+                'max': [10]
+            }
+        });
+
+        //function getEmployeeDDL() {
+        //    $.ajax({
+        //        url: '/User/GetEmployeeDDL',
+        //        type: 'GET',
+        //        success: function (response) {
+        //            if (response.Data) {
+        //                ddlHtml = '<option value="-1" selected></option>';
+        //                $("#reporting").html("");
+        //                $.each(response.Data, function (index, value) {
+        //                    ddlHtml += '<option value="' + value.Key + '">' + value.Value + '</option>';
+        //                });
+        //                $("#reporting").html(ddlHtml);
+        //            }
+        //            else {
+
+        //            }
+
+        //        },
+        //        error: function () {
+
+        //        }
+        //    });
+        //}
+        function getEmployeeDDL() {
+            loader.start();
+            $.ajax({
+                url: '/User/GetEmployeeDDL',
+                type: 'GET',
+                success: function (response) {
+                    if (response.Data) {
+                        var ddlHtml = '<option value="" selected></option>';
+                        $("#reporting").html("");
+                        $.each(response.Data, function (index, value) {
+                            var key = value.Key.split(":")[0];
+                            ddlHtml += '<option value="' + key + '">' + value.Value + '</option>';
+                        });
+                        $("#reporting").html(ddlHtml);
+                    }
+                    else {
+
+                    }
+                    getEmployeeFormData();
+                    focuseForm();
+                },
+                error: function () {
+                    loader.stop();
+                }
+            });
+        }
+
+        var employeeEducations = [];
+        var employeeExperiences = [];
+        function addEducation() {
+            var temp = {
+                Degree: $("#degree").val(),
+                Specialization: $("#specialization").val(),
+                Institute: $("#institute").val(),
+                StartDate: $("#datepickerStart").val(),
+                EndDate: $("#datepickerEnd").val(),
+                Score: $(".noUi-tooltip").text()
+            }
+            if (temp.Degree == "-1" || temp.Specialization == "-1" || temp.Institute == "" || temp.StartDate == "" || temp.EndDate == "") {
+                $(".edu-form").show(1000);
+                $("#emp-education-add").show(1000);
+                $("#emp-education-add-more").hide(1000);
+                toastr.error('Please provide full education details.');
+                return;
+            }
+            var isEdit = $("#emp-education-add").text();
+            if (isEdit == "UPDATE") {
+                var editIndex = $("#emp-education-add").attr('data-edit');
+                employeeEducations[editIndex] = temp;
+                $("#education-card-data_" + editIndex).show();
+            }
+            else {
+                employeeEducations.push(temp);
+            }
+
+            showEducationCard();
+            $(".edu-view-card-template").show(500);
+            $(".edu-form").hide(1000);
+            $("#emp-education-add").hide(1000);
+            $("#emp-education-cancel").hide(1000);
+            $("#emp-education-add-more").show(100);
+            $("#emp-education-add").text("ADD");
+            $("#emp-education-add").attr('data-edit', 0);
+            temp = {};
+            $("#degree").val("");
+            $("#specialization").val("");
+            $("#institute").val("");
+            $("#datepickerStart").val("");
+            $("#datepickerEnd").val("");
+            $("#pmd-slider-tooltip").val("");
+        }
+        $("#emp-education-add-more").click(function () {
+            $(".edu-form").show(1000);
+            $("#emp-education-add").show(1000);
+            $("#emp-education-cancel").show(1000);
+            $("#emp-education-add-more").hide(100);
+        });
+        $("#emp-education-cancel").click(function () {
+
+            var isEdit = $("#emp-education-add").text();
+            if (isEdit == "UPDATE") {
+                var editIndex = $("#emp-education-add").attr('data-edit');
+                $("#education-card-data_" + editIndex).show();
+                $(".edu-form").hide(1000);
+                $("#emp-education-add").hide(1000);
+                $("#emp-education-cancel").hide(1000);
+                $("#emp-education-add-more").show(100);
+                $("#emp-education-add").text("ADD");
+                $("#emp-education-add").attr('data-edit', 0);
+                $("#degree").val("");
+                $("#specialization").val("");
+                $("#institute").val("");
+                $("#datepickerStart").val("");
+                $("#datepickerEnd").val("");
+                $("#pmd-slider-tooltip").val("");
+            }
+            else {
+                $(".edu-form").hide(1000);
+                $("#emp-education-add").hide(1000);
+                $("#emp-education-cancel").hide(1000);
+                $("#emp-education-add-more").show(100);
+            }
+        });
+        function showEducationCard() {
+            $(".edu-view-card").html('');
+            $.each(employeeEducations, function (index, value) {
+                $("#cardTitle").text('');
+                $("#cardSubtitle").text('');
+                $("#cardText").text('');
+                $("#editCard").html('');
+                $("#cardTitle").text(value.Institute);
+                $("#cardSubtitle").text(value.StartDate.split('-')[2] + ' - ' + value.EndDate.split('-')[2]);
+                $("#cardText").text($('#degree').find('option[value="' + value.Degree + '"]').text() + ', ' + $('#specialization').find('option[value="' + value.Specialization + '"]').text() + ', ' + value.Score);
+                $("#editCard").html('<i onclick="editEducationCard(' + index + ')" class="material-icons pmd-icon-xs">edit</i>');
+                var temp = $(".emp-edu-view-card-template").html();
+                temp = temp.replace("{{index}}", index);
+                $(".edu-view-card").append(temp);
+            });
+            $(".edu-view-card").show(500);
+            $(".edu-view-card-template").hide();
+        }
+        function editEducationCard(index) {
+            var isEdit = $("#emp-education-add").text();
+            if (isEdit == "UPDATE") { return }
+            var temp = employeeEducations[index];
+            $("#degree").val(temp.Degree);
+            $("#specialization").val(temp.Specialization);
+            $("#institute").val(temp.Institute);
+            $("#datepickerStart").val(temp.StartDate);
+            $("#datepickerEnd").val(temp.EndDate);
+            $(".noUi-tooltip").text(temp.Score);
+            $("#emp-education-add-more").click();
+            $("#emp-education-add").text("UPDATE");
+            $("#emp-education-add").attr('data-edit', index);
+            focuseEducationForm();
+            $("#education-card-data_" + index).hide();
+        }
+
+        function addExperiences() {
+            
+            var temp = {
+                Organization: $("#organization").val(),
+                Designation: $("#expDesignation").val(),
+                StartDate: $("#expDatepickerStart").val(),
+                EndDate: $("#expDatepickerEnd").val(),
+                StartSalary: $("#start_salary").val(),
+                EndSalary: $("#end_salary").val(),
+                Reason: $("#reason").val()
+            }
+            if (temp.Organization == "" || temp.Designation == "" || temp.StartDate == "" || temp.EndDate == "" || temp.StartSalary == "" || temp.EndSalary == "" || temp.Reason == "") {
+                $(".exp-form").show(1000);
+                $("#emp-exp-add").show(1000);
+                $("#emp-exp-add-more").hide(1000);
+                toastr.error('Please provide full experience.');
+                return;
+            }
+            var isEdit = $("#emp-exp-add").text();
+            if (isEdit == "UPDATE") {
+                var editIndex = $("#emp-exp-add").attr('data-edit');
+                employeeExperiences[editIndex] = temp;
+                $("#experiences-card-data_" + editIndex).show();
+            }
+            else {
+                employeeExperiences.push(temp);
+            }
+
+            showExperiencesCard();
+            $(".experience-view-card-template").show(500);
+            $(".exp-form").hide(1000);
+            $("#emp-exp-add").hide(1000);
+            $("#emp-exp-cancel").hide(1000);
+            $("#emp-exp-add-more").show(100);
+            $("#emp-exp-add").text("ADD");
+            $("#emp-exp-add").attr('data-edit', 0);
+            temp = {};
+            $("#organization").val("");
+            $("#expDesignation").val("");
+            $("#expDatepickerStart").val("");
+            $("#expDatepickerEnd").val("");
+            $("#start_salary").val("");
+            $("#end_salary").val("");
+            $("#reason").val("");
+        }
+        $("#emp-exp-add-more").click(function () {
+            $(".exp-form").show(1000);
+            $("#emp-exp-add").show(1000);
+            $("#emp-exp-cancel").show(1000);
+            $("#emp-exp-add-more").hide(1000);
+        });
+        $("#emp-exp-cancel").click(function () {
+            var isEdit = $("#emp-exp-add").text();
+            if (isEdit == "UPDATE") {
+                var editIndex = $("#emp-exp-add").attr('data-edit');
+                $("#experiences-card-data_" + editIndex).show();
+                $(".exp-form").hide(1000);
+                $("#emp-exp-add").hide(1000);
+                $("#emp-exp-cancel").hide(1000);
+                $("#emp-exp-add-more").show(100);
+                $("#emp-exp-add").text("ADD");
+                $("#emp-exp-add").attr('data-edit', 0);
+                $("#organization").val("");
+                $("#expDesignation").val("");
+                $("#expDatepickerStart").val("");
+                $("#expDatepickerEnd").val("");
+                $("#start_salary").val("");
+                $("#end_salary").val("");
+                $("#reason").val("");
+            }
+            else {
+                $(".exp-form").hide(1000);
+                $("#emp-exp-add").hide(1000);
+                $("#emp-exp-cancel").hide(1000);
+                $("#emp-exp-add-more").show(1000);
+            }
+        });
+        function showExperiencesCard() {
+            $(".exp-view-card-data").html('');
+            $.each(employeeExperiences, function (index, value) {
+                $("#expCardTitle").text('');
+                $("#expCardSubtitle").text('');
+                $("#expCardText").text('');
+                $("#expCardEdit").html('');
+                $("#expCardTitle").text(value.Designation + ', ' + value.Organization);
+                $("#expCardSubtitle").text(value.StartDate + ' to ' + value.EndDate + ', ' + value.StartSalary + ', ' + value.EndSalary);
+                $("#expCardText").text(value.Reason);
+                $("#expCardEdit").html('<i onclick="editExperiencesCard(' + index + ')" class="material-icons pmd-icon-xs">edit</i>');
+                var temp = $(".exp-view-card-template").html();
+                temp = temp.replace("{{index}}", index);
+                $(".exp-view-card-data").append(temp);
+            });
+            $(".exp-view-card-data").show(500);
+            $(".exp-view-card-template").hide();
+        }
+        function editExperiencesCard(index) {
+            var isEdit = $("#emp-exp-add").text();
+            if (isEdit == "UPDATE") { return; }
+            var temp = employeeExperiences[index];
+            $("#organization").val(temp.Organization);
+            $("#expDesignation").val(temp.Designation);
+            $("#expDatepickerStart").val(temp.StartDate);
+            $("#expDatepickerEnd").val(temp.EndDate);
+            $("#start_salary").val(temp.StartSalary);
+            $("#end_salary").val(temp.EndSalary);
+            $("#reason").val(temp.Reason);
+            $("#emp-exp-add-more").click();
+            $("#emp-exp-add").text("UPDATE");
+            $("#emp-exp-add").attr('data-edit', index);
+            focuseExperienceForm();
+            $("#experiences-card-data_" + index).hide();
+        }
+
+        function resetForm() {
+
+        }
+        function editEmployee() {
+            
+            if (!$("form[name='addEmployeeDetails']").valid()) {
+                return;
+            }
+            if (employeeEducations.length < 1) {
+                toastr.error('Please add education details.');
+                return;
+            }
+            if (employeeExperiences.length < 1) {
+                toastr.error('Please add experience details.');
+                return;
+            }
+
+            var model = {
+                EmployeeDetail: {
+                    EmployeeDetailId: $("#employeeDetailId").val(),
+                    FirstName: $("#firstName").val(),
+                    UserName: $("#userName").val(),
+                    LastName: $("#lastName").val(),
+                    ProfileImage: $("#profileImage").find("img").attr("src"),
+                    Phone: $("#phone").val(),
+                    PersonalEmail: $("#personalEmail").val(),
+                    DOB: $("#dob").val(),
+                    Gender: $('input[name="gender"]:checked').val(),
+                    MaritalStatus: $('input[name="marital"]:checked').val(),
+                    SocialMediaLinks: $("#linkedin").val(),
+                    Description: $("#description").val(),
+                    EnrollmentId: $("#enrollmentId").val(),
+                    DateOfJoining: $("#joindatePicker").val(),
+                    CompanyEmail: $("#companyEmail").val(),
+                    Department: $("#department").val(),
+                    Designation: $("#designation").val(),
+                    AnnualSalary: $("#annual").val(),
+                    ReportingEmployee: $("#reporting").val(),
+                    EmployeeType: $('input[name="employeeType"]:checked').val(),
+                    CurrentAddress: $("#addline1").val(),
+                    PermanentAddress: $("#addline2").val(),
+                    City: $("#city").val(),
+                    State: $("#state").val(),
+                    PinCode: $("#pinCode").val(),
+                    Country: $("#country").val(),
+                },
+                //lists.
+                EmployeeEducations: employeeEducations,
+                EmployeeExperiences: employeeExperiences
+            }
+            loader.start();
+            $.ajax({
+                url: '/User/EditEmployee',
+                type: 'POST',
+                data: model,
+                success: function (response) {
+                    if (response.Data) {
+                        location.href = '/User/EmployeeList';
+                    }
+                    else {
+                        toastr.error('operation failed');
+                    }
+                    loader.stop();
+                },
+                error: function () {
+                    toastr.error('operation failed');
+                    loader.stop();
+                }
+            });
+        }
+        function validateForm() {
+            $("form[name='addEmployeeDetails']").validate({
+                focusInvalid: false,
+                invalidHandler: function (form, validator) {
+
+                    if (!validator.numberOfInvalids())
+                        return;
+
+                    $('html, body').animate({
+                        scrollTop: $(validator.errorList[0].element).offset().top - 130
+                    }, 1000);
+
+                },
+                rules: {
+                    employeeId: "required",
+                    firstName: "required",
+                    phone: "required",
+                    dob: "required",
+                    gender: "required",
+                    marital: "required",
+                    enrollmentId: "required",
+                    joindatePicker: "required",
+                    companyEmail: "required",
+                    department: "required",
+                    designation: "required",
+                    annual: "required",
+                    reporting: "required",
+                    employeeType: "required",
+                    addline2: "required",
+                    city: "required",
+                    state: "required",
+                    pinCode: "required",
+                    country: "required",
+                    degree: "required",
+                    specialization: "required",
+                    institute: "required",
+                    datepickerStart: "required",
+                    datepickerEnd: "required",
+                    organization: "required",
+                    expDesignation: "required",
+                    expDatepickerStart: "required",
+                    expDatepickerEnd: "required",
+                    reason: "required",
+                    phone: {
+                        required: true,
+                        number: true,
+                        minlength: 10,
+                        maxlength: 10
+                    }
+                },
+                messages: {
+                    employeeId: "Please enter your employeeId",
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+        }
+        validateForm();
+
+        function getEmployeeFormData()
+        {
+            debugger
+            loader.start();
+            var Id = getUrlParameter('Id');
+            $.ajax({
+                url: '/User/GetEditEmployee/' + Id,
+                type: 'Get',
+                async: true,
+                success: function (response) {
+                    
+                    if (response.Data) {
+                        var temp = response.Data.EmployeeDetail;
+                        console.log(temp);
+                        $("#employeeDetailId").val(temp.EmployeeDetailId);
+                            $("#firstName").val(temp.FirstName);
+                            //$("#userName").hide();
+                            $("#lastName").val(temp.LastName);
+                            $("#profileImage").find("img").attr("src", temp.ProfileImage);
+                            $("#phone").val(temp.Phone);
+                            $("#personalEmail").val(temp.PersonalEmail);
+                        $("#dob").data("DateTimePicker").date(moment(temp.DOB).format('MM-DD-YYYY'));
+                        //$('input[name="gender"]:checked').val();
+                        $.each($('input[name="gender"]'), function (index, value) {
+                            if (temp.Gender == value.value) {
+                                $(this).click();
+                            }
+                        });
+                            //$('input[name="marital"]:checked').val(temp.MaritalStatus);
+                        $.each($('input[name="marital"]'), function (index, value) {
+                            if (temp.MaritalStatus == value.value) {
+                                $(this).click();
+                            }
+                        });
+                            $("#linkedin").val(temp.SocialMediaLinks);
+                            $("#description").val(temp.Description);
+                        $("#enrollmentId").val(temp.EnrollmentId);
+                        $("#joindatePicker").data("DateTimePicker").date(moment(temp.DateOfJoining).format('MM-DD-YYYY'));
+                            $("#companyEmail").val(temp.CompanyEmail);
+                            $("#department").val(temp.Department);
+                            $("#designation").val(temp.Designation);
+                            $("#annual").val(temp.AnnualSalary);
+                            $("#reporting").val(temp.ReportingEmployee);
+                            //$('input[name="employeeType"]:checked').val(temp.EmployeeType);
+                        $.each($('input[name="employeeType"]'), function (index, value) {
+                            if (temp.EmployeeType == value.value) {
+                                $(this).click();
+                            }
+                        });
+                            $("#addline1").val(temp.CurrentAddress);
+                            $("#addline2").val(temp.PermanentAddress);
+                            $("#city").val(temp.City);
+                            $("#state").val(temp.State);
+                            $("#pinCode").val(temp.PinCode);
+                            $("#country").val(temp.Country);
+
+                        var empEducations = response.Data.EmployeeEducations;
+                        for (var i = 0; i < empEducations.length; i++)
+                        {
+                           empEducations[i].EndDate = moment(empEducations[i].EndDate).format('MM-DD-YYYY')
+                           empEducations[i].StartDate = moment(empEducations[i].StartDate).format('MM-DD-YYYY')
+                           employeeEducations.push(empEducations[i]);
+                        }
+                        var empExperiences = response.Data.EmployeeExperiences;
+                        for (var i = 0; i < empExperiences.length; i++) {
+                            empExperiences[i].EndDate = moment(empExperiences[i].EndDate).format('MM-DD-YYYY')
+                            empExperiences[i].StartDate = moment(empExperiences[i].StartDate).format('MM-DD-YYYY')
+                            employeeExperiences.push(empExperiences[i]);
+                        }
+                        var empDocuments = response.Data.EmployeeDocuments;
+                        $("#empDocs").html('');
+                        
+                        for (var i = 0; i < empDocuments.length; i++) {
+                            var docsHtml = '<tr>';
+                            docsHtml += '<td> ' + empDocuments[i].FileName +' </td><td>';
+                            docsHtml += '<a href="/User/DisplayEmployeeDocument/' + empDocuments[i].DocumentId + '" onclick="openWindow('+ empDocuments[i].DocumentId +'); return false;" class="btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2"><i class="material-icons pmd-sm">visibility</i></a>';
+                            docsHtml += '<a href="/User/DownloadEmployeeDocument/' + empDocuments[i].DocumentId +' " class="btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2"><i class="material-icons pmd-sm">download</i></a>';
+                            docsHtml += '<a href="javascript:void(0);" onclick="deleteDocument(' + empDocuments[i].DocumentId +')" class="btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm" data-toggle="modal" data-target="#delete_document_modal"><i class="material-icons pmd-sm">delete_outline</i> </td></tr>';
+                            $("#empDocs").append(docsHtml);
+                        }
+
+                        showEducationCard();
+                        showExperiencesCard();
+                        focuseForm();
+                        
+                    }
+                    else {
+                        toastr.error('operation failed');
+                    }
+                    doScroll.top();
+                    loader.stop();
+                },
+                error: function (ex) {
+                    console.log(ex)
+                    toastr.error('operation failed');
+                    doScroll.top();
+                    loader.stop();
+                }
+            });
+        }
+
+        $('#btnfileUpload').click(function () {
+            if (window.FormData !== undefined) {
+                var fileUpload = $("#empfile").get(0);
+                var files = fileUpload.files;
+                var fileData = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+                fileData.append("EmployeeDetailId", $("#employeeDetailId").val());
+                $.ajax({
+                    url: '/User/UploadEmployeeDocuments',
+                    type: "POST",
+                    contentType: false,
+                    processData: false,
+                    data: fileData,
+                    success: function (response) {
+                        if (response.Data) {
+                            location.reload();
+                        }
+                        else if (response.Error == "FormDataNotValid") {
+                            toastr.error('Invalid file type');
+                        }
+                        else { toastr.error('operation failed'); }
+                    },
+                    error: function (err) {
+                        toastr.error('operation failed');
+                    }
+                });
+            } else {
+                toastr.error('Your browser doesn support FormData');
+            }
+        });
+
+        function deleteDocument(id)
+        {
+            if (id > 0) {
+                var result = confirm("Want to delete?");
+                if (result) {
+                    loader.start();
+                    $.ajax({
+                        url: '/User/DeleteEmployeeDocument/'+ id,
+                        type: "GET",
+                        success: function (response) {
+                            if (response.Data) {
+                                location.reload();
+                            }
+                            else {
+                                toastr.error('operation failed');
+                            }
+                            loader.stop();
+                        },
+                        error: function (err) {
+                            toastr.error('operation failed');
+                            loader.stop();
+                        }
+                    });
+                }
+            }
+            else {
+                toastr.error('operation failed');
+            }
+        }
+
+        function openWindow(url) {
+            var win;
+            if (Number.isInteger(url)) {
+                var _url = '/User/DisplayEmployeeDocument/' + url;
+              win =  window.open(_url, `targetWindow`, `toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=SomeSize,height=SomeSize`);
+            }
+            else {
+                win = window.open(url, `targetWindow`, `toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=SomeSize,height=SomeSize`);
+            }
+            win.document.title = 'Doc';
+        }
+        
+    </script>
+
+    <!-- Scripts Ends -->
+</body>
+</html>
+

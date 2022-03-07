@@ -1,0 +1,9 @@
+E:\Avidclan\LeaveApp\LeaveApp\LeaveApp.Core\bin\Release\LeaveApp.Core.dll
+E:\Avidclan\LeaveApp\LeaveApp\LeaveApp.Core\bin\Release\LeaveApp.Core.pdb
+E:\Avidclan\LeaveApp\LeaveApp\LeaveApp.Core\bin\Release\AutoMapper.dll
+E:\Avidclan\LeaveApp\LeaveApp\LeaveApp.Core\bin\Release\AutoMapper.xml
+E:\Avidclan\LeaveApp\LeaveApp\LeaveApp.Core\obj\Release\LeaveApp.Core.csprojAssemblyReference.cache
+E:\Avidclan\LeaveApp\LeaveApp\LeaveApp.Core\obj\Release\LeaveApp.Core.csproj.CoreCompileInputs.cache
+E:\Avidclan\LeaveApp\LeaveApp\LeaveApp.Core\obj\Release\LeaveApp.Core.csproj.CopyComplete
+E:\Avidclan\LeaveApp\LeaveApp\LeaveApp.Core\obj\Release\LeaveApp.Core.dll
+E:\Avidclan\LeaveApp\LeaveApp\LeaveApp.Core\obj\Release\LeaveApp.Core.pdb
