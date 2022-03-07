@@ -11,6 +11,7 @@ namespace LeaveApp.Data.DataModel
             EmployeeEducations = new HashSet<EmployeeEducation>();
             EmployeeExperiences = new HashSet<EmployeeExperience>();
             EmployeeDocuments = new HashSet<EmployeeDocument>();
+            EmployeeBonusLeaves = new HashSet<EmployeeBonusLeave>();
         }
         public int EmployeeDetailId { get; set; }
         public string EmployeeId { get; set; }
@@ -58,6 +59,7 @@ namespace LeaveApp.Data.DataModel
         //Experience
         public virtual ICollection<EmployeeExperience> EmployeeExperiences { get; set; }
         public virtual ICollection<EmployeeDocument> EmployeeDocuments { get; set; }
+        public virtual ICollection<EmployeeBonusLeave> EmployeeBonusLeaves { get; set; }
 
     }
 }

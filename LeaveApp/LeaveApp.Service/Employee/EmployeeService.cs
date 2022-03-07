@@ -121,7 +121,11 @@ namespace LeaveApp.Service.Employee
                 if (!item.IsDeleted)
                 employeeDetailsViewModel.EmployeeDocuments.Add(employeeDocument);
             }
-
+            foreach (var item in EmployeeDetails.EmployeeBonusLeaves)
+            {
+                var employeeBonusLeaves = _dataHelper.AutoMap<Data.DataModel.EmployeeBonusLeave, EmployeeBonusLeave>(item);
+                employeeDetailsViewModel.EmployeeBonusLeaves.Add(employeeBonusLeaves);
+            }
             return employeeDetailsViewModel;
         }
         public async Task<IList<EmployeeListModal>> GetAllEmployeeDetailsAsync()

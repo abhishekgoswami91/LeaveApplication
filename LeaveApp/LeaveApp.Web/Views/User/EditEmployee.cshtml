@@ -29,10 +29,10 @@
 
         <div class="page-content">
             <div class="pmd-tabs pmd-tabs-dark bg-primary">
-                <ul class="nav nav-tabs" role="tablist" style="width: 343.813px;">
+                <ul class="nav nav-tabs" role="tablist" style="width: 500px;">
                     <li class="nav-item"><a class="nav-link active" href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documents</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#salary" aria-controls="salary" role="tab" data-toggle="tab">Salary</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bonusLeaves" aria-controls="bonusLeaves" role="tab" data-toggle="tab">Bonus Leaves</a></li>
                 </ul>
             </div>
             <!-- Tab panes -->
@@ -66,11 +66,11 @@
                                     <h3 class="card-title">Basic Information</h3>
                                     <div class="row">
                                         @*<div class="col-12 col-sm-6 col-md-3">
-                                        <div class="form-group pmd-textfield pmd-textfield-floating-label ">
-                                            <label for="mn" class="col-form-label control-label">User Name</label>
-                                            <input type="text" class="form-control" value="" id="userName" name="userName">
-                                        </div>
-                                    </div>*@
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                    <label for="mn" class="col-form-label control-label">User Name</label>
+                                                    <input type="text" class="form-control" value="" id="userName" name="userName">
+                                                </div>
+                                            </div>*@
                                         <div class="col-12 col-sm-6 col-md-3">
                                             <div class="form-group pmd-textfield pmd-textfield-floating-label ">
                                                 <label for="fn" class="col-form-label control-label">First Name</label>
@@ -124,11 +124,11 @@
                                             </div>
                                         </div>
                                         @*<div class="col-12 col-md-6 col-lg-4">
-                                        <div class="form-group pmd-textfield pmd-textfield-floating-label ">
-                                            <label for="fb" class="col-form-label control-label">Facebook Profile</label>
-                                            <input type="url" class="form-control" value="" id="fb">
-                                        </div>
-                                    </div>*@
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                    <label for="fb" class="col-form-label control-label">Facebook Profile</label>
+                                                    <input type="url" class="form-control" value="" id="fb">
+                                                </div>
+                                            </div>*@
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="form-group pmd-textfield pmd-textfield-floating-label ">
                                                 <label for="linkedin" class="col-form-label control-label">LinkedIn Profile</label>
@@ -136,11 +136,11 @@
                                             </div>
                                         </div>
                                         @*<div class="col-12 col-md-6 col-lg-4">
-                                        <div class="form-group pmd-textfield pmd-textfield-floating-label ">
-                                            <label for="twitter" class="col-form-label control-label">Twitter Profile</label>
-                                            <input type="url" class="form-control" value="" id="twitter">
-                                        </div>
-                                    </div>*@
+                                                <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                                    <label for="twitter" class="col-form-label control-label">Twitter Profile</label>
+                                                    <input type="url" class="form-control" value="" id="twitter">
+                                                </div>
+                                            </div>*@
                                         <div class="col-12 col-8">
                                             <div class="form-group pmd-textfield pmd-textfield-floating-label">
                                                 <label>Description</label>
@@ -351,11 +351,11 @@
                                                 </div>
                                             </div>
                                             @*<div class="col-md-4">
-                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                        <label class="control-label" for="passing-year">Passing Year</label>
-                        <input type="text" class="form-control" id="passing-year">
-                    </div>
-                </div>*@
+                                                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                                        <label class="control-label" for="passing-year">Passing Year</label>
+                                                        <input type="text" class="form-control" id="passing-year">
+                                                    </div>
+                                                </div>*@
                                             <div class="col-md-8 col-lg-6">
                                                 <div class="form-group pmd-textfield pmd-textfield-floating-label">
                                                     <label for="institute">Institute</label>
@@ -565,15 +565,15 @@
                                         </thead>
                                         <tbody id="empDocs">
                                             @*<tr>
-                                            <td colspan="2" class="text-center">
-                                            <div class="no-data-msg">
-                                                <p class="mb-0">No Records Found</p>
-                                                </div>
-                                            </td>
-                                            <td>
+                                                    <td colspan="2" class="text-center">
+                                                    <div class="no-data-msg">
+                                                        <p class="mb-0">No Records Found</p>
+                                                        </div>
+                                                    </td>
+                                                    <td>
 
-                                            </td>
-                                        </tr>*@
+                                                    </td>
+                                                </tr>*@
                                         </tbody>
                                     </table>
                                 </div>
@@ -606,6 +606,59 @@
                     </div>
                 </div>
 
+                <!-- Bonus Leaves Tab -->
+                <div role="tabpanel" class="tab-pane" id="bonusLeaves">
+
+                    <!-- Bonus Leaves -->
+                    <div class="card pmd-card">
+                        <div class="card-body">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="media-body">
+                                    <h3 class="card-title">Bonus Leaves</h3>
+                                </div>
+                                <button data-target="#add-bonusLeaves-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-outline-primary pmd-btn-flat btn-sm pmd-btn-fab" type="button"><i class="material-icons pmd-sm">add</i></button>
+                            </div>
+                            <div class="details-tab">
+                                <!-- Documents Table -->
+                                <div class="table-responsive">
+                                    <table class="table pmd-table table-bordered" id="table-propeller">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Bonus Leaves</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="empBonusLeaves">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Bonus Leaves Dialog -->
+                    <div tabindex="-1" class="modal pmd-modal fade add-dialog" id="add-bonusLeaves-dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header pmd-modal-border">
+                                    <h2 class="modal-title">Bonus Leaves</h2>
+                                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                            <input type="number" id="numBonusLeaves" value="0" />
+                                        </div>
+                                        <div class="mt-4">
+                                            <button id="btnBonusLeaves" class="btn pmd-ripple-effect btn-primary pmd-btn-raised" type="button">Add</button>
+                                            <button data-dismiss="modal" class="btn pmd-ripple-effect btn-outline-secondary" type="button">Reset</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
                     <div class="modal-dialog modal-lg">
@@ -627,8 +680,6 @@
                     </div>
                 </div>
             </div>
-
-        </div>
         </div>
     </div>
     <!-- content area end -->
@@ -970,7 +1021,7 @@
         }
 
         function addExperiences() {
-            
+
             var temp = {
                 Organization: $("#organization").val(),
                 Designation: $("#expDesignation").val(),
@@ -1086,7 +1137,7 @@
 
         }
         function editEmployee() {
-            
+
             if (!$("form[name='addEmployeeDetails']").valid()) {
                 return;
             }
@@ -1214,7 +1265,6 @@
 
         function getEmployeeFormData()
         {
-            debugger
             loader.start();
             var Id = getUrlParameter('Id');
             $.ajax({
@@ -1222,7 +1272,7 @@
                 type: 'Get',
                 async: true,
                 success: function (response) {
-                    
+
                     if (response.Data) {
                         var temp = response.Data.EmployeeDetail;
                         console.log(temp);
@@ -1283,7 +1333,7 @@
                         }
                         var empDocuments = response.Data.EmployeeDocuments;
                         $("#empDocs").html('');
-                        
+
                         for (var i = 0; i < empDocuments.length; i++) {
                             var docsHtml = '<tr>';
                             docsHtml += '<td> ' + empDocuments[i].FileName +' </td><td>';
@@ -1292,11 +1342,18 @@
                             docsHtml += '<a href="javascript:void(0);" onclick="deleteDocument(' + empDocuments[i].DocumentId +')" class="btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm" data-toggle="modal" data-target="#delete_document_modal"><i class="material-icons pmd-sm">delete_outline</i> </td></tr>';
                             $("#empDocs").append(docsHtml);
                         }
+                        var empBonusLeaves = response.Data.EmployeeBonusLeaves;
+                        for (var i = 0; i < empBonusLeaves.length; i++) {
+                            var html = '<tr>';
+                            html += '<td>' + moment(empBonusLeaves[i].CreatedDate).format('MM-DD-YYYY') + '</td>';
+                            html += '<td>' + empBonusLeaves[i].BonusLeave +  '</td></tr>';
+                            $("#empBonusLeaves").append(html);
+                        }
 
                         showEducationCard();
                         showExperiencesCard();
                         focuseForm();
-                        
+
                     }
                     else {
                         toastr.error('operation failed');
@@ -1387,7 +1444,38 @@
             }
             win.document.title = 'Doc';
         }
-        
+        //add bonus leaves.
+        $('#btnBonusLeaves').click(function () {
+
+            var model = {
+                EmployeeId: $("#employeeDetailId").val(),
+                Leaves: $('#numBonusLeaves').val()
+            }
+            if (model.Leaves < 1) {
+                $('#numBonusLeaves').css("color", "red");
+                $('#numBonusLeaves').css("border-color", "red");
+                setTimeout(function () {
+                    $('#numBonusLeaves').css("color", "");
+                    $('#numBonusLeaves').css("border-color", "");
+                }, 2000);
+                return;
+            }
+            $.ajax({
+                url: '/User/AddBonusLeaves/',
+                type: 'POST',
+                data: model,
+                dataType: 'Json',
+                success: function (response) {
+                    console.log(response);
+                    location.reload();
+                },
+                error: function (ex) {
+                    alert('Something went wrong!')
+                }
+
+            });
+        });
+
     </script>
 
     <!-- Scripts Ends -->

@@ -149,7 +149,7 @@ namespace LeaveApp.Web.Controllers
                 return Json(_responseModel);
             }
             _responseModel.Data = await _apiService.MakePrivateApiCallAsync<ApplyLeaveViewModel>("api/User/GetLeaveFormData/" + LeaveId, HttpMethod.Get, _token);
-            
+
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
         public async Task<ActionResult> DeleteLeave(int id)
@@ -159,9 +159,9 @@ namespace LeaveApp.Web.Controllers
                 _responseModel.Error = ResponseMessages.FormDataNotValid.ToString();
                 return Json(_responseModel);
             }
-          
+
             _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/User/DeleteLeave/" + id, HttpMethod.Get, _token);
-           
+
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
         [Authorize(Roles = "Admin")]
@@ -169,8 +169,8 @@ namespace LeaveApp.Web.Controllers
         public async Task<ActionResult> ResetLeaveStatus(int Id, int Option = 1)
         {
 
-            _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/User/ResetLeaveStatus/" + Id +"/"+ Option, HttpMethod.Get, _token);
-            
+            _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/User/ResetLeaveStatus/" + Id + "/" + Option, HttpMethod.Get, _token);
+
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
         //[Authorize(Roles ="Admin")]
@@ -221,7 +221,7 @@ namespace LeaveApp.Web.Controllers
                 _responseModel.Error = ResponseMessages.FormDataNotValid.ToString();
                 return Json(_responseModel);
             }
-            
+
             _responseModel.Data = await _apiService.MakePrivateApiCallAsync<EmployeeDetailsViewModel>("api/User/GetEmployeeDetails/" + Id, HttpMethod.Get, _token);
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
@@ -243,7 +243,7 @@ namespace LeaveApp.Web.Controllers
             model.EmployeeDetail.ModifiedBy = _userId;
 
             _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/User/EditEmployeeDetails/", HttpMethod.Post, _token, model);
-            return Json(_responseModel,JsonRequestBehavior.AllowGet);
+            return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         [Authorize(Roles = "Admin")]
@@ -295,7 +295,7 @@ namespace LeaveApp.Web.Controllers
             {
                 var file = HttpContext.Request.Files[i];
                 String FileExt = Path.GetExtension(file.FileName).ToUpper();
-                List<string> acceptExtList = new List<string> {".PDF",".DOC",".DOCX",".JPG",".JPEG",".PNG"};
+                List<string> acceptExtList = new List<string> { ".PDF", ".DOC", ".DOCX", ".JPG", ".JPEG", ".PNG" };
                 var doUpload = acceptExtList.Any(x => x.Equals(FileExt));
                 if (!doUpload)
                 {
@@ -368,7 +368,7 @@ namespace LeaveApp.Web.Controllers
                     return new FileStreamResult(fileStream, "application/pdf");
             }
         }
-         
+
         private string GetDoc(Data.DataModel.EmployeeDocument docx)
         {
             object documentFormat = 8;
@@ -432,7 +432,12 @@ namespace LeaveApp.Web.Controllers
             _responseModel.Data = await _apiService.MakePrivateApiCallAsync<ProfileViewModel>("api/User/GetProfileData/" + _userId, HttpMethod.Get, _token);
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
-
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> AddBonusLeaves(int EmployeeId, int Leaves)
+        {
+            _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/User/AddBonusLeaves/" + _userId + "/" + EmployeeId + "/" + Leaves, HttpMethod.Post, _token);
+            return Json(_responseModel, JsonRequestBehavior.AllowGet);
+        }
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {
             return new JsonResult()
@@ -446,8 +451,7 @@ namespace LeaveApp.Web.Controllers
         }
 
         #endregion
-
-        private ActionResult LogOff()
+        public ActionResult LogOff()
         {
             return RedirectToAction("LogOff", "Account");
         }

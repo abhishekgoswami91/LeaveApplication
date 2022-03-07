@@ -85,7 +85,7 @@ namespace LeaveApp.Service.Leave
                     employeeLeaveDetail.DeletedBy = "";
                     employeeLeaveDetail.EmployeeLeaveId = entity.EmployeeLeaveId;
                     _db.EmployeeLeaveDetails.Add(employeeLeaveDetail);
-                    
+
                 }
 
                 _db.EmployeeLeaves.Attach(entity);
@@ -107,13 +107,13 @@ namespace LeaveApp.Service.Leave
             var EmployeeLeave = await _db.EmployeeLeaves.Where(x => x.EmployeeLeaveId.Equals(LeaveId)).FirstOrDefaultAsync();
             applyLeaveViewModel.EmployeeLeave = _dataHelper.AutoMap<Data.DataModel.EmployeeLeave, EmployeeLeave>(EmployeeLeave);
             var leaveList = await _db.EmployeeLeaveDetails.Where(x => x.EmployeeLeaveId.Equals(applyLeaveViewModel.EmployeeLeave.EmployeeLeaveId)).ToListAsync();
-                foreach (var subItem in leaveList)
-                {
-                    EmployeeLeaveDetail employeeLeaveDetail = new EmployeeLeaveDetail();
-                    employeeLeaveDetail.LeaveCategory = subItem.LeaveCategory;
-                    employeeLeaveDetail.LeaveDate = subItem.LeaveDate;
-                    applyLeaveViewModel.EmployeeLeaveDetails.Add(employeeLeaveDetail);
-                }
+            foreach (var subItem in leaveList)
+            {
+                EmployeeLeaveDetail employeeLeaveDetail = new EmployeeLeaveDetail();
+                employeeLeaveDetail.LeaveCategory = subItem.LeaveCategory;
+                employeeLeaveDetail.LeaveDate = subItem.LeaveDate;
+                applyLeaveViewModel.EmployeeLeaveDetails.Add(employeeLeaveDetail);
+            }
 
             return applyLeaveViewModel;
         }
@@ -162,23 +162,23 @@ namespace LeaveApp.Service.Leave
             var employeeLeaves = await _db.EmployeeLeaves.Where(x => x.EmployeeLeaveId.Equals(LeaveId)).FirstOrDefaultAsync();
             var user = _db.Users.Where(x => x.Id.Equals(employeeLeaves.EmployeeId)).Select(y => y.UserName).FirstOrDefault();
 
-                leaveListViewModel.Leaves.LeaveId = employeeLeaves.EmployeeLeaveId;
-                leaveListViewModel.Leaves.Employee = user;
-                leaveListViewModel.Leaves.LeaveEndDate = employeeLeaves.LeaveEndDate;
-                leaveListViewModel.Leaves.LeaveReason = employeeLeaves.LeaveReason;
-                leaveListViewModel.Leaves.LeaveStartDate = employeeLeaves.LeaveStartDate;
-                leaveListViewModel.Leaves.LeaveStatus = employeeLeaves.LeaveStatus.ToString();
-                leaveListViewModel.Leaves.LeaveType = employeeLeaves.LeaveType.ToString();
-                leaveListViewModel.Leaves.NumberOfDaysLeave = employeeLeaves.NumberOfDaysLeave;
+            leaveListViewModel.Leaves.LeaveId = employeeLeaves.EmployeeLeaveId;
+            leaveListViewModel.Leaves.Employee = user;
+            leaveListViewModel.Leaves.LeaveEndDate = employeeLeaves.LeaveEndDate;
+            leaveListViewModel.Leaves.LeaveReason = employeeLeaves.LeaveReason;
+            leaveListViewModel.Leaves.LeaveStartDate = employeeLeaves.LeaveStartDate;
+            leaveListViewModel.Leaves.LeaveStatus = employeeLeaves.LeaveStatus.ToString();
+            leaveListViewModel.Leaves.LeaveType = employeeLeaves.LeaveType.ToString();
+            leaveListViewModel.Leaves.NumberOfDaysLeave = employeeLeaves.NumberOfDaysLeave;
 
-                foreach (var subItem in employeeLeaves.EmployeeLeaveDetails)
-                {
-                    LeaveDetail leaveDetail = new LeaveDetail();
-                    leaveDetail.LeaveCategory = subItem.LeaveCategory.ToString();
-                    leaveDetail.LeaveDate = subItem.LeaveDate;
-                    leaveListViewModel.LeaveDetails.Add(leaveDetail);
-                }
-                
+            foreach (var subItem in employeeLeaves.EmployeeLeaveDetails)
+            {
+                LeaveDetail leaveDetail = new LeaveDetail();
+                leaveDetail.LeaveCategory = subItem.LeaveCategory.ToString();
+                leaveDetail.LeaveDate = subItem.LeaveDate;
+                leaveListViewModel.LeaveDetails.Add(leaveDetail);
+            }
+
             return leaveListViewModel;
         }
 
@@ -238,7 +238,7 @@ namespace LeaveApp.Service.Leave
                 double Sick = 0;
                 double Paid = 0;
                 var data = await _db.EmployeeLeaves.Where(x => x.EmployeeId.Equals(entity.EmployeeId) && x.LeaveStatus == LeaveStatus.Approved && !x.IsDeleted).ToListAsync();
-                (Sick, Paid) = await calculateLeaves(entity.EmployeeId,LeaveStatus.Approved);
+                (Sick, Paid) = await calculateLeaves(entity.EmployeeId, LeaveStatus.Approved);
                 var empDetail = await _db.EmployeeDetails.Where(y => y.EmployeeId.Equals(entity.EmployeeId) && !y.IsDeleted).FirstOrDefaultAsync();
                 empDetail.SickApplyed = Sick;
                 empDetail.PaidApplyed = Paid;
@@ -260,7 +260,7 @@ namespace LeaveApp.Service.Leave
                 return new LeaveRulesViewModel();
             }
             (Sick, Paid) = await calculateLeaves(empDetail.EmployeeId, LeaveStatus.Submitted);
-            return new LeaveRulesViewModel(empDetail.DateOfJoining, empDetail.SickApplyed, empDetail.PaidApplyed, Sick+Paid,0);
+            return new LeaveRulesViewModel(empDetail.DateOfJoining, empDetail.SickApplyed, empDetail.PaidApplyed, Sick + Paid, 0);
         }
 
         private async Task<(double Sick, double Paid)> calculateLeaves(string EmployeeId, LeaveStatus LeaveStatus)
@@ -310,6 +310,30 @@ namespace LeaveApp.Service.Leave
             }
 
             return (Sick, Paid);
+        }
+
+        public async Task<bool> AddBonusLeavesAsync(string UserId, int EmployeeId, int Leaves)
+        {
+            try
+            {
+                Data.DataModel.EmployeeBonusLeave employeeBonusLeave = new Data.DataModel.EmployeeBonusLeave();
+                employeeBonusLeave.BonusLeave = Leaves;
+                employeeBonusLeave.CreatedBy = UserId;
+                employeeBonusLeave.CreatedDate = DateTime.Now;
+                employeeBonusLeave.DeletedBy = null;
+                employeeBonusLeave.DeletedDate = null;
+                employeeBonusLeave.IsDeleted = false;
+                employeeBonusLeave.ModifiedBy = UserId;
+                employeeBonusLeave.ModifiedDate = DateTime.Now;
+                employeeBonusLeave.EmployeeDetailId = EmployeeId;
+                _db.EmployeeBonusLeaves.Add(employeeBonusLeave);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ namespace LeaveApp.Core.ViewModel
             EmployeeEducations = new List<EmployeeEducation>();
             EmployeeExperiences = new List<EmployeeExperience>();
             EmployeeDocuments = new List<EmployeeDocument>();
+            EmployeeBonusLeaves = new List<EmployeeBonusLeave>();
         }
         public EmployeeDetail EmployeeDetail { get; set; }
         //Education
@@ -18,6 +19,7 @@ namespace LeaveApp.Core.ViewModel
         //Experience
         public IList<EmployeeExperience> EmployeeExperiences { get; set; }
         public IList<EmployeeDocument> EmployeeDocuments { get; set; }
+        public List<EmployeeBonusLeave> EmployeeBonusLeaves { get; set; }
     }
 
     public class EmployeeDetail
@@ -103,6 +105,19 @@ namespace LeaveApp.Core.ViewModel
         public int EmployeeDetailId { get; set; }
         public String FileName { get; set; }
         public byte[] FileContent { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime ModifiedDate { get; set; }
+        public string ModifiedBy { get; set; }
+        public Nullable<DateTime> DeletedDate { get; set; }
+        public string DeletedBy { get; set; }
+        public bool IsDeleted { get; set; } = false;
+    }
+    public class EmployeeBonusLeave
+    {
+        public int BonusLeaveId { get; set; }
+        public int EmployeeDetailId { get; set; }
+        public int BonusLeave { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime ModifiedDate { get; set; }

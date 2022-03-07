@@ -16,5 +16,6 @@ namespace LeaveApp.Service.Leave
         Task<bool> ResetLeaveStatus(int Id, LeaveStatus Option);
         Task<LeaveListViewModel> GetApplyedLeaveAsync(int LeaveId);
         Task<LeaveRulesViewModel> GetLeaveRulesAsync(string EmployeeId);
+        Task<bool> AddBonusLeavesAsync(string UserId, int EmployeeId, int Leaves);
     }
 }

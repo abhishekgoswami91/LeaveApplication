@@ -45,6 +45,7 @@ namespace LeaveApp.Data.Identity
         
         public DbSet<EmployeeExperience> EmployeeExperiences { get; set; }
         public DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
+        public DbSet<EmployeeBonusLeave> EmployeeBonusLeaves { get; set; }
 
     }
 }

@@ -260,7 +260,14 @@ namespace LeaveApp.API.Controllers
             var response = await _employeeService.GetProfileData(UserId);
             return Ok(response);
         }
-
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("AddBonusLeaves/{UserId}/{EmployeeId}/{Leaves}")]
+        public async Task<IHttpActionResult> AddBonusLeaves(string UserId, int EmployeeId, int Leaves)
+        {
+            var response = await _leaveService.AddBonusLeavesAsync(UserId, EmployeeId, Leaves);
+            return Ok(response);
+        }
         //[HttpGet]
         //[AllowAnonymous]
         //[Route("SendMail")]
