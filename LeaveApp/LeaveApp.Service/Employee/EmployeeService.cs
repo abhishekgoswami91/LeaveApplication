@@ -150,8 +150,33 @@ namespace LeaveApp.Service.Employee
                 //employeeData.UserLeaves = leaveRules.Sick + "/" + leaveRules.Paid; // + " Last Year: " + leaveRules.SickApplyed + "/" + leaveRules.PaidApplyed;
                 var LastYearLeaves = await _db.EmployeeLeaves.Where(x => x.EmployeeId.Equals(item.EmployeeId) && x.ModifiedDate.Year == DateTime.Now.Year - 1 && !x.IsDeleted && x.LeaveStatus == LeaveStatus.Approved).ToListAsync();
                 var ThisYearLeaves = await _db.EmployeeLeaves.Where(x => x.EmployeeId.Equals(item.EmployeeId) && x.ModifiedDate.Year == DateTime.Now.Year && !x.IsDeleted && x.LeaveStatus == LeaveStatus.Approved).ToListAsync();
-                var leaveSpan = new LeaveRulesViewModel(item.DateOfJoining, LastYearLeaves, ThisYearLeaves);
+                double bonusSL = 0;
+                double bonusPL = 0;
+                foreach (var subItem in item.EmployeeBonusLeaves)
+                {
+                    if (!subItem.IsDeleted && subItem.CreatedDate.Year == DateTime.Now.Year)
+                    {
+                        switch (subItem.LeaveType)
+                        {
+                            case LeaveType.Sick:
+                                bonusSL += subItem.BonusLeave;
+                                break;
+                            case LeaveType.Paid:
+                                bonusPL += subItem.BonusLeave;
+                                break;
+                            case LeaveType.NonPaid:
+                                break;
+                        }
+                    }
+                }
+                var leaveSpan = new LeaveRulesViewModel(item.DateOfJoining, LastYearLeaves, ThisYearLeaves, bonusSL, bonusPL);
+                //var bonusLeaves = await _db.EmployeeBonusLeaves.Where(x => x.EmployeeDetailId.Equals(item.EmployeeId) && !x.IsDeleted).ToListAsync();
                 employeeData.UserLeaves = leaveSpan.Sick + "/" + leaveSpan.Paid;
+                
+                if (bonusSL > 0 || bonusPL > 0)
+                {
+                    employeeData.UserLeaves += "  Bonus(SL/PL): " + bonusSL + "/" + bonusPL;
+                }
                 if (item.DateOfJoining.Year < DateTime.Now.Year)
                 {
                     employeeData.UserLeaves += "  Last Year(SL/PL): " + leaveSpan.LastYearSick + "/" + leaveSpan.LastYearPaid;

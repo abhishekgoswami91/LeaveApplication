@@ -19,7 +19,7 @@
                             <h6 style="color:white;">You have</h6>
                         </i>
                         <div class="media-body">
-                            <h2 class="card-title display-3" id="slValue"></h2>
+                            <h2 class="card-title display-3" id="slValue">0</h2>
                             <p class="card-subtitle">Sick Leave</p>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                             <h6 style="color:white;">You have</h6>
                         </i>
                         <div class="media-body">
-                            <h2 class="card-title display-3" id="plValue"></h2>
+                            <h2 class="card-title display-3" id="plValue">0</h2>
                             <p class="card-subtitle">Paid Leave</p>
                         </div>
                     </div>
@@ -42,11 +42,11 @@
                 <div class="card pmd-card statistic-col visits-statistic">
                     <div class="card-body media">
                         <i class="material-icons pmd-icon-circle pmd-icon-xl md-light">
-                            <h6 style="color:white;">Applyed</h6>
+                            <h6 style="color:white;">Bonus</h6>
                         </i>
                         <div class="media-body">
-                            <h2 class="card-title display-3" id="nplValue">0</h2>
-                            <p class="card-subtitle">Non Paid Leave</p>
+                            <h2 class="card-title display-3" id="bonusSlPlValue">0</h2>
+                            <p class="card-subtitle">SL/PL</p>
                         </div>
                     </div>
                 </div>
@@ -674,7 +674,9 @@
             PaidApplyed: 0,
             TotalHoliday: 0,
             Sick: 0,
-            Paid: 0
+            Paid: 0,
+            BonusSick: 0,
+            BonusPaid: 0
         };
         function getLeaveRules() {
             loader.start();
@@ -688,6 +690,7 @@
                     $("#plValue").text(leaveRules.Paid);
                     $("#slValue").text(leaveRules.Sick); 
                     $("#nplValue").text(0);
+                    $("#bonusSlPlValue").text(leaveRules.BonusSick + "/" + leaveRules.BonusPaid);
                     loader.stop();
                 },
                 error: function (ex) {

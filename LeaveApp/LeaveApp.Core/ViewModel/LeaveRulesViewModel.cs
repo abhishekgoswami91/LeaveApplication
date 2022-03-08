@@ -12,24 +12,24 @@ namespace LeaveApp.Core.ViewModel
         }
         public LeaveRulesViewModel(DateTime leaveStartDate, double sick, double paid, double pendingLeaves, double nonPaidApplyed)
         {
-            DateTime zeroTime = new DateTime(1, 1, 1);
-            DateTime joiningYear = new DateTime(leaveStartDate.Year, 1, 1);
-            DateTime currentYear = new DateTime(DateTime.Now.Year, 1, 1);
-            TimeSpan span = currentYear - joiningYear;
-            int years = (zeroTime + span).Year - 1;
-            int months = leaveStartDate.Month -1;
-            SickApplyed = sick;
-            PaidApplyed = paid;
-            TotalHolidayApplyed = sick + paid;
-            TotalHoliday = ((int)LeaveRules.TotalHoliday * years) - TotalHolidayApplyed + (12 - months) + (12 - months) * 0.5;
-            Sick = (((int)LeaveRules.Sick * years) - SickApplyed) + (12 - months) * 0.5;
-            Paid = (((int)LeaveRules.Paid * years) - PaidApplyed) + (12 - months);
-            AllowedLeaves = new AllowedLeaves(((int)LeaveRules.Sick) * years + (12 - months) * 0.5, ((int)LeaveRules.Paid) * years + (12 - months));
-            NonPaidApplyed = nonPaidApplyed;
-            PendingLeaves = pendingLeaves;
-            TotalHolidayWithNonPaidApplyed = TotalHolidayApplyed + NonPaidApplyed;
+            //DateTime zeroTime = new DateTime(1, 1, 1);
+            //DateTime joiningYear = new DateTime(leaveStartDate.Year, 1, 1);
+            //DateTime currentYear = new DateTime(DateTime.Now.Year, 1, 1);
+            //TimeSpan span = currentYear - joiningYear;
+            //int years = (zeroTime + span).Year - 1;
+            //int months = leaveStartDate.Month - 1;
+            //SickApplyed = sick;
+            //PaidApplyed = paid;
+            //TotalHolidayApplyed = sick + paid;
+            //TotalHoliday = ((int)LeaveRules.TotalHoliday * years) - TotalHolidayApplyed + (12 - months) + (12 - months) * 0.5;
+            //Sick = (((int)LeaveRules.Sick * years) - SickApplyed) + (12 - months) * 0.5;
+            //Paid = (((int)LeaveRules.Paid * years) - PaidApplyed) + (12 - months);
+            //AllowedLeaves = new AllowedLeaves(((int)LeaveRules.Sick) * years + (12 - months) * 0.5, ((int)LeaveRules.Paid) * years + (12 - months));
+            //NonPaidApplyed = nonPaidApplyed;
+            //PendingLeaves = pendingLeaves;
+            //TotalHolidayWithNonPaidApplyed = TotalHolidayApplyed + NonPaidApplyed;
         }
-        public LeaveRulesViewModel(DateTime leaveStartDate, List<Data.DataModel.EmployeeLeave> LastYearEmployeeLeave, List<Data.DataModel.EmployeeLeave> ThisYearEmployeeLeave)
+        public LeaveRulesViewModel(DateTime leaveStartDate, List<Data.DataModel.EmployeeLeave> LastYearEmployeeLeave, List<Data.DataModel.EmployeeLeave> ThisYearEmployeeLeave, double bonusSL, double bonusPL)
         {
             LastYearSick = 0;
             LastYearPaid = 0;
@@ -120,6 +120,7 @@ namespace LeaveApp.Core.ViewModel
                         break;
                 }
             }
+          
             if (LastYearSick + LastYearPaid < (int)LeaveRules.Sick + (int)LeaveRules.Paid && LastYearEmployeeLeave.Count > 0)
             {
                 if (leaveStartDate.Year == DateTime.Now.Year - 1)
@@ -166,6 +167,10 @@ namespace LeaveApp.Core.ViewModel
                 this.Sick = (int)LeaveRules.Sick - Sick;
                 this.Paid = (int)LeaveRules.Paid - Paid;
             }
+            this.Sick += bonusSL;
+            this.Paid += bonusPL;
+            this.BonusPaid = bonusPL;
+            this.BonusSick = bonusSL;
         }
         //applyed leaves.
         public double TotalHolidayApplyed { get; set; }
@@ -181,6 +186,8 @@ namespace LeaveApp.Core.ViewModel
         public double TotalHoliday { get; set; }
         public double Sick { get; set; }
         public double Paid { get; set; }
+        public double BonusSick { get; set; }
+        public double BonusPaid { get; set; }
         public double LastYearSick { get; set; }
         public double LastYearPaid { get; set; }
         public double ThisYearSick { get; set; }

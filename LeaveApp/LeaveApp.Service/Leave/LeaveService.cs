@@ -259,8 +259,30 @@ namespace LeaveApp.Service.Leave
             {
                 return new LeaveRulesViewModel();
             }
-            (Sick, Paid) = await calculateLeaves(empDetail.EmployeeId, LeaveStatus.Submitted);
-            return new LeaveRulesViewModel(empDetail.DateOfJoining, empDetail.SickApplyed, empDetail.PaidApplyed, Sick + Paid, 0);
+            //(Sick, Paid) = await calculateLeaves(empDetail.EmployeeId, LeaveStatus.Submitted);
+            //return new LeaveRulesViewModel(empDetail.DateOfJoining, empDetail.SickApplyed, empDetail.PaidApplyed, Sick + Paid, 0);
+            var LastYearLeaves = await _db.EmployeeLeaves.Where(x => x.EmployeeId.Equals(empDetail.EmployeeId) && x.ModifiedDate.Year == DateTime.Now.Year - 1 && !x.IsDeleted && x.LeaveStatus == LeaveStatus.Approved).ToListAsync();
+            var ThisYearLeaves = await _db.EmployeeLeaves.Where(x => x.EmployeeId.Equals(empDetail.EmployeeId) && x.ModifiedDate.Year == DateTime.Now.Year && !x.IsDeleted && x.LeaveStatus == LeaveStatus.Approved).ToListAsync();
+            double bonusSL = 0;
+            double bonusPL = 0;
+            foreach (var Item in empDetail.EmployeeBonusLeaves)
+            {
+                if (!Item.IsDeleted && Item.CreatedDate.Year == DateTime.Now.Year)
+                {
+                    switch (Item.LeaveType)
+                    {
+                        case LeaveType.Sick:
+                            bonusSL += Item.BonusLeave;
+                            break;
+                        case LeaveType.Paid:
+                            bonusPL += Item.BonusLeave;
+                            break;
+                        case LeaveType.NonPaid:
+                            break;
+                    }
+                }
+            }
+            return new LeaveRulesViewModel(empDetail.DateOfJoining, LastYearLeaves, ThisYearLeaves, bonusSL, bonusPL);
         }
 
         private async Task<(double Sick, double Paid)> calculateLeaves(string EmployeeId, LeaveStatus LeaveStatus)
@@ -312,12 +334,13 @@ namespace LeaveApp.Service.Leave
             return (Sick, Paid);
         }
 
-        public async Task<bool> AddBonusLeavesAsync(string UserId, int EmployeeId, int Leaves)
+        public async Task<bool> AddBonusLeavesAsync(string UserId, int EmployeeId, int Leaves, LeaveType LeaveType)
         {
             try
             {
                 Data.DataModel.EmployeeBonusLeave employeeBonusLeave = new Data.DataModel.EmployeeBonusLeave();
                 employeeBonusLeave.BonusLeave = Leaves;
+                employeeBonusLeave.LeaveType = LeaveType;
                 employeeBonusLeave.CreatedBy = UserId;
                 employeeBonusLeave.CreatedDate = DateTime.Now;
                 employeeBonusLeave.DeletedBy = null;

@@ -262,10 +262,10 @@ namespace LeaveApp.API.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        [Route("AddBonusLeaves/{UserId}/{EmployeeId}/{Leaves}")]
-        public async Task<IHttpActionResult> AddBonusLeaves(string UserId, int EmployeeId, int Leaves)
+        [Route("AddBonusLeaves/{UserId}/{EmployeeId}/{Leaves}/{LeaveType}")]
+        public async Task<IHttpActionResult> AddBonusLeaves(string UserId, int EmployeeId, int Leaves, LeaveType LeaveType)
         {
-            var response = await _leaveService.AddBonusLeavesAsync(UserId, EmployeeId, Leaves);
+            var response = await _leaveService.AddBonusLeavesAsync(UserId, EmployeeId, Leaves, LeaveType);
             return Ok(response);
         }
         //[HttpGet]

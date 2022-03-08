@@ -118,6 +118,7 @@ namespace LeaveApp.Core.ViewModel
         public int BonusLeaveId { get; set; }
         public int EmployeeDetailId { get; set; }
         public int BonusLeave { get; set; }
+        public LeaveType LeaveType { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime ModifiedDate { get; set; }

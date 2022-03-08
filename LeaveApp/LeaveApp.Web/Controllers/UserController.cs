@@ -433,9 +433,9 @@ namespace LeaveApp.Web.Controllers
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> AddBonusLeaves(int EmployeeId, int Leaves)
+        public async Task<ActionResult> AddBonusLeaves(int EmployeeId, int Leaves, LeaveType LeaveType)
         {
-            _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/User/AddBonusLeaves/" + _userId + "/" + EmployeeId + "/" + Leaves, HttpMethod.Post, _token);
+            _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/User/AddBonusLeaves/" + _userId + "/" + EmployeeId + "/" + Leaves + "/" + LeaveType, HttpMethod.Post, _token);
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeaveApp.Core.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace LeaveApp.Data.DataModel
         public int BonusLeaveId { get; set; }
         public int EmployeeDetailId { get; set; }
         public int BonusLeave { get; set; }
+        public LeaveType LeaveType { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime ModifiedDate { get; set; }

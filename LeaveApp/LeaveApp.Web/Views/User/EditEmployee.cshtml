@@ -646,11 +646,16 @@
                                 <div class="modal-body">
                                     <form>
                                         <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                                            <input type="number" id="numBonusLeaves" value="0" />
+                                            <input class="form-control" type="number" id="numBonusLeaves" value="0" />
+                                            <select class="form-control" id="ddlLeaveType">
+                                                <option value="-1">--Select--</option>
+                                                <option value="1">Sick</option>
+                                                <option value="2">Paid</option>
+                                            </select>
                                         </div>
                                         <div class="mt-4">
-                                            <button id="btnBonusLeaves" class="btn pmd-ripple-effect btn-primary pmd-btn-raised" type="button">Add</button>
-                                            <button data-dismiss="modal" class="btn pmd-ripple-effect btn-outline-secondary" type="button">Reset</button>
+                                            <button id="btnBonusLeaves" style="margin-top: 20px;" class="btn pmd-ripple-effect btn-primary pmd-btn-raised" type="button">Add</button>
+                                            <button data-dismiss="modal" style="margin-top: 20px;" class="btn pmd-ripple-effect btn-outline-secondary" type="button">Reset</button>
                                         </div>
                                     </form>
                                 </div>
@@ -1343,10 +1348,11 @@
                             $("#empDocs").append(docsHtml);
                         }
                         var empBonusLeaves = response.Data.EmployeeBonusLeaves;
+                        var enumLeaveType = ['Sick', 'Paid','NonPaid'];
                         for (var i = 0; i < empBonusLeaves.length; i++) {
                             var html = '<tr>';
                             html += '<td>' + moment(empBonusLeaves[i].CreatedDate).format('MM-DD-YYYY') + '</td>';
-                            html += '<td>' + empBonusLeaves[i].BonusLeave +  '</td></tr>';
+                            html += '<td>' + empBonusLeaves[i].BonusLeave + ' ' + enumLeaveType[empBonusLeaves[i].LeaveType-1] + '</td></tr>';
                             $("#empBonusLeaves").append(html);
                         }
 
@@ -1449,8 +1455,10 @@
 
             var model = {
                 EmployeeId: $("#employeeDetailId").val(),
-                Leaves: $('#numBonusLeaves').val()
+                Leaves: $('#numBonusLeaves').val(),
+                LeaveType: $('#ddlLeaveType').val()
             }
+            var chk = false;
             if (model.Leaves < 1) {
                 $('#numBonusLeaves').css("color", "red");
                 $('#numBonusLeaves').css("border-color", "red");
@@ -1458,8 +1466,18 @@
                     $('#numBonusLeaves').css("color", "");
                     $('#numBonusLeaves').css("border-color", "");
                 }, 2000);
-                return;
+                chk = true;
             }
+            if (model.LeaveType < 1) {
+                $('#ddlLeaveType').css("color", "red");
+                $('#ddlLeaveType').css("border-color", "red");
+                setTimeout(function () {
+                    $('#ddlLeaveType').css("color", "");
+                    $('#ddlLeaveType').css("border-color", "");
+                }, 2000);
+                chk = true;
+            }
+            if (chk) { return; }
             $.ajax({
                 url: '/User/AddBonusLeaves/',
                 type: 'POST',

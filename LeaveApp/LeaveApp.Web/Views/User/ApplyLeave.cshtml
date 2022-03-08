@@ -342,7 +342,6 @@
         }
         var validationMsgs = [];
         function isValidLeaves(formData) {
-            debugger
             validationMsgs = [];
             var sick = 0;
             var paid = 0;
@@ -379,7 +378,8 @@
                         }
                         break;
                     case "3":
-                        return true;
+                        validationMsgs.push("Not allowed!");
+                        return false;
                 }
 
                 if (leaveRulesModel.Sick < sick) {

@@ -67,3 +67,13 @@ textarea {
 .error {
     color: red !important;
 }
+
+#ddlLeaveType {
+    width: 210px;
+    float: right;
+    text-align: center;
+}
+#numBonusLeaves {
+    width: 200px;
+    float: left;
+}
