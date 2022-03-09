@@ -438,6 +438,12 @@ namespace LeaveApp.Web.Controllers
             _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/User/AddBonusLeaves/" + _userId + "/" + EmployeeId + "/" + Leaves + "/" + LeaveType, HttpMethod.Post, _token);
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<ActionResult> GetCalendarData()
+        {
+            _responseModel.Data = await _apiService.MakePrivateApiCallAsync<List<CalendarViewModel>>("api/User/GetCalendarData/" + _userId, HttpMethod.Get, _token);
+            return Json(_responseModel, JsonRequestBehavior.AllowGet);
+        }
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {
             return new JsonResult()

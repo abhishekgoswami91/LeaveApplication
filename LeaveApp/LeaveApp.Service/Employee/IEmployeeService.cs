@@ -17,5 +17,6 @@ namespace LeaveApp.Service.Employee
        Task<bool> DeleteEmployeeDocumentAsync(int DocumentId, string UserId, bool DoRemove = false);
        Task<Data.DataModel.EmployeeDocument> GetEmployeeDocumentByIdAsync(int DocumentId);
        Task<ProfileViewModel> GetProfileData(string UserId);
+        Task<List<CalendarViewModel>> GetLeavesForCalendarDataAsync(string UserId, bool IsAdmin);
     }
 }

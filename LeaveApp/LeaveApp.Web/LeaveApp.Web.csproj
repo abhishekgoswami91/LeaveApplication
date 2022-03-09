@@ -231,6 +231,7 @@
     <Content Include="Content\images\profile-cover.jpg" />
     <Content Include="Content\images\user-icon.jpg" />
     <Content Include="Content\MailTemplates\ApplyLeave.html" />
+    <Content Include="Content\mobiscroll.jquery.min.css" />
     <Content Include="Content\propeller-topbar.css" />
     <Content Include="Content\toastme.min.css" />
     <Content Include="favicon.ico" />
@@ -240,6 +241,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\icons_mobiscroll.ttf" />
+    <Content Include="fonts\icons_mobiscroll.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap4-admin-compress.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -251,6 +254,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\mobiscroll.jquery.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\toastme.min.js" />

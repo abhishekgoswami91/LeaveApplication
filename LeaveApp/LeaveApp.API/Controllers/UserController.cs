@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using LeaveApp.Data.DataModel;
+using System.Security.Claims;
+using System.Linq;
 
 namespace LeaveApp.API.Controllers
 {
@@ -266,6 +268,15 @@ namespace LeaveApp.API.Controllers
         public async Task<IHttpActionResult> AddBonusLeaves(string UserId, int EmployeeId, int Leaves, LeaveType LeaveType)
         {
             var response = await _leaveService.AddBonusLeavesAsync(UserId, EmployeeId, Leaves, LeaveType);
+            return Ok(response);
+        }
+        [Authorize(Roles = "Admin,Employee")]
+        [Route("GetCalendarData/{UserId}")]
+        public async Task<IHttpActionResult> GetCalendarData(string UserId)
+        {
+            var IsAdmin = ((ClaimsIdentity)User.Identity).Claims.Any(x => x.Value.Equals("Admin"));
+            var response = await _employeeService.GetLeavesForCalendarDataAsync(UserId, IsAdmin);
+
             return Ok(response);
         }
         //[HttpGet]

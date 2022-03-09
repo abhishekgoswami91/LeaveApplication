@@ -63,6 +63,7 @@
     <Compile Include="Methords\DataHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ApplyLeaveViewModel.cs" />
+    <Compile Include="ViewModel\CalendarViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\DocumentUploadModel.cs" />
     <Compile Include="ViewModel\EmployeeDetailsViewModel.cs" />

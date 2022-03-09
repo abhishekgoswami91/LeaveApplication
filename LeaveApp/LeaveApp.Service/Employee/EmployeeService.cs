@@ -369,5 +369,46 @@ namespace LeaveApp.Service.Employee
             }
             return profileData;
         }
+
+        public async Task<List<CalendarViewModel>> GetLeavesForCalendarDataAsync(string UserId, bool IsAdmin)
+        {
+            List<CalendarViewModel> calendarViewModels = new List<CalendarViewModel>();
+            if (IsAdmin)
+            {
+                var allEmpDetails = await _db.EmployeeDetails.Where(list => !list.IsDeleted).ToListAsync();
+                foreach (var item in allEmpDetails)
+                {
+                   
+                    var allLeaves = await _db.EmployeeLeaves.Where(list => list.EmployeeId.Equals(item.EmployeeId) && !list.IsDeleted).ToListAsync();
+                    foreach (var subItem in allLeaves)
+                    {
+                        CalendarViewModel calendarViewModel = new CalendarViewModel();
+                        calendarViewModel.start = subItem.LeaveStartDate;
+                        calendarViewModel.end = subItem.LeaveEndDate;
+                        calendarViewModel.title = item.FirstName;
+                        calendarViewModel.description = subItem.LeaveReason;
+                        calendarViewModel.color = "#ff4000";
+                        calendarViewModels.Add(calendarViewModel);
+                    }
+                }
+            }
+            else
+            {
+                var empDetails = await _db.EmployeeDetails.Where(list => list.EmployeeId.Equals(UserId) && !list.IsDeleted).FirstOrDefaultAsync();
+                var allLeaves = await _db.EmployeeLeaves.Where(list => list.EmployeeId.Equals(UserId) && !list.IsDeleted).ToListAsync();
+                foreach (var subItem in allLeaves)
+                {
+                    CalendarViewModel calendarViewModel = new CalendarViewModel();
+                    calendarViewModel.start = subItem.LeaveStartDate;
+                    calendarViewModel.end = subItem.LeaveEndDate;
+                    calendarViewModel.title = empDetails.FirstName;
+                    calendarViewModel.description = subItem.LeaveReason;
+                    calendarViewModel.color = "#ff4000";
+                    calendarViewModels.Add(calendarViewModel);
+                }
+            }
+
+            return calendarViewModels;
+        }
     }
 }
