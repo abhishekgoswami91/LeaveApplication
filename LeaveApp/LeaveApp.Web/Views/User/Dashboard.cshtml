@@ -4,6 +4,45 @@
 <!doctype html>
 <html lang="en-US">
 <head>
+    <link href="~/Content/main.min.css" rel="stylesheet" />
+    <script src="~/Scripts/main.min.js"></script>
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css" integrity="sha256-jLWPhwkAHq1rpueZOKALBno3eKP3m4IMB131kGhAlRQ=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js" integrity="sha256-3YcmbVFydbcbP+ax1x6VxV1swYap/YsD/+RFVqSGqxk=" crossorigin="anonymous"></script>*@
+    <style>
+        #leaveList table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #leaveList th, #leaveList td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #leaveList tr:nth-child(even) {
+            background-color: #D6EEEE;
+        }
+
+        #leaveList b {
+            font-size: 10px;
+        }
+
+        label.error {
+            color: #ff0000;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -80,104 +119,12 @@
                         <p class="card-subtitle"></p>
                     </div>
                     <div class="card-body">
-                        <!--chart start-->
                         <div class="chart-container">
-                            <div mbsc-page class="demo-create-read-update-delete-CRUD">
-                                <div style="height:100%">
-                                    <div id="demo-add-delete-event"></div>
-
-                                     <div id="demo-add-popup">
-                                        <div class="mbsc-form-group">
-                                            <label>
-                                                Title
-                                                <input mbsc-input id="event-title">
-                                            </label>
-                                            <label>
-                                                Description
-                                                <textarea mbsc-textarea id="event-desc"></textarea>
-                                            </label>
-                                        </div>
-                                        <div class="mbsc-form-group">
-                                            <label>
-                                                All-day
-                                                <input mbsc-switch id="event-all-day" type="checkbox" />
-                                            </label>
-                                            <label>
-                                                Starts
-                                                <input mbsc-input id="start-input" />
-                                            </label>
-                                            <label>
-                                                Ends
-                                                <input mbsc-input id="end-input" />
-                                            </label>
-                                            <div id="event-date"></div>
-                                            <div id="event-color-picker" class="event-color-c">
-                                                <div class="event-color-label">Color</div>
-                                                <div id="event-color-cont">
-                                                    <div id="event-color" class="event-color"></div>
-                                                </div>
-                                            </div>
-                                            <label>
-                                                Show as busy
-                                                <input id="event-status-busy" mbsc-segmented type="radio" name="event-status" value="busy">
-                                            </label>
-                                            <label>
-                                                Show as free
-                                                <input id="event-status-free" mbsc-segmented type="radio" name="event-status" value="free">
-                                            </label>
-                                            <div class="mbsc-button-group">
-                                                <button class="mbsc-button-block" id="event-delete" mbsc-button data-color="danger" data-variant="outline">Delete event</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    @*<div id="demo-event-color">
-                                        <div class="crud-color-row">
-                                            <div class="crud-color-c" data-value="#ffeb3c">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check" style="background:#ffeb3c"></div>
-                                            </div>
-                                            <div class="crud-color-c" data-value="#ff9900">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check" style="background:#ff9900"></div>
-                                            </div>
-                                            <div class="crud-color-c" data-value="#f44437">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check" style="background:#f44437"></div>
-                                            </div>
-                                            <div class="crud-color-c" data-value="#ea1e63">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check" style="background:#ea1e63"></div>
-                                            </div>
-                                            <div class="crud-color-c" data-value="#9c26b0">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check" style="background:#9c26b0"></div>
-                                            </div>
-                                        </div>
-                                        <div class="crud-color-row">
-                                            <div class="crud-color-c" data-value="#3f51b5">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check" style="background:#3f51b5"></div>
-                                            </div>
-                                            <div class="crud-color-c" data-value="">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check"></div>
-                                            </div>
-                                            <div class="crud-color-c" data-value="#009788">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check" style="background:#009788"></div>
-                                            </div>
-                                            <div class="crud-color-c" data-value="#4baf4f">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check" style="background:#4baf4f"></div>
-                                            </div>
-                                            <div class="crud-color-c" data-value="#7e5d4e">
-                                                <div class="crud-color mbsc-icon mbsc-font-icon mbsc-icon-material-check" style="background:#7e5d4e"></div>
-                                            </div>
-                                        </div>
-                                    </div>*@
-                                </div>
-                            </div>
+                            <div id='fullCalendar'></div>
                         </div>
-                        <!--chart end-->
                     </div>
                 </div>
             </div>
-
-
-
-
 
             <!-- Department Wise Head Count-->
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
@@ -738,6 +685,66 @@
             </div>
         </div>
     </div>
+    <!-- Edit Leave Request Modal -->
+    <div class="modal pmd-modal fade " id="addLeave-modal" tabindex="-1" role="dialog" aria-labelledby="addLeave-modal" aria-hidden="true">
+        <div style="max-width:700px !important;" class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <h2 class="modal-title">Add Leave</h2>
+                    <form name="addLeaveForm" id="addLeaveForm">
+                        <input type="hidden" id="EmployeeLeaveId" value="" />
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                        <label for="leave-type">Leave Type</label>
+                                        <select autofocus name="LeaveType" id="LeaveType" class="form-control" title="Please select a Leave Type" required>
+                                            <option value=""></option>
+                                            <option value="1">Sick Leave</option>
+                                            <option value="2">Paid Leave</option>
+                                            @*<option value="3">Non Paid Leave</option>*@
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                        <label style="margin-bottom: 25px;" class="control-label" for="datepickerstart">Start Date</label>
+                                        <input autofocus type="text" class="form-control" id="LeaveStartDate" name="LeaveStartDate">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                        <label style="margin-bottom: 25px;" class="control-label" for="datepickerend">End Date</label>
+                                        <input autofocus type="text" class="form-control" id="LeaveEndDate" name="LeaveEndDate">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div id="leaveList">
+                                    </div>
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                        <label>Reason</label>
+                                        <textarea autofocus class="form-control" id="LeaveReason" name="LeaveReason"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="custom-control">
+                                        @*<input class="custom-control-input" type="checkbox" value="" id="inverse_defaultCheck1" />*@
+                                        <label id="NumberOfDaysLeave" class="" for="NumberOfDaysLeave">
+
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:void(0);" class="btn btn-outline-dark pmd-btn-raised pmd-ripple-effect" title="Cancel" data-dismiss="modal">Cancel</a>
+                        <a href="javascript:void(0);" onclick="applyLeave()" class="btn btn-primary pmd-btn-raised pmd-ripple-effect" title="Delete">Apply</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         $(document).ready(function () {
@@ -749,6 +756,29 @@
                 $(this).find("a[href='" + sPage + "']").addClass("active");
             });
             getLeaveRules();
+        });
+        // Add Education start date date and time picker
+        $('#LeaveStartDate').datetimepicker({
+            format: 'MM-DD-YYYY'
+        });
+
+        // Add Education End date date and time picker
+        $('#LeaveEndDate').datetimepicker({
+            /*useCurrent: false,*/
+            format: 'MM-DD-YYYY'
+        });
+
+        // start date picker
+        $("#LeaveStartDate").on("dp.change", function (e) {
+            setTableData();
+            $('#LeaveEndDate').data("DateTimePicker").minDate(e.date);
+            //$('#LeaveEndDate').data("DateTimePicker").date(moment(e.date._i).format('MM-DD-YYYY'));
+        });
+        // end date picker
+        $("#LeaveEndDate").on("dp.change", function (e) {
+            setTableData();
+            $('#LeaveStartDate').data("DateTimePicker").maxDate(e.date);
+            //$('#LeaveStartDate').data("DateTimePicker").date(moment(e.date._i).format('MM-DD-YYYY'));
         });
 
     </script>
@@ -806,7 +836,7 @@
                 }
             });
         }
-        
+
     </script>
 
     <!-- Javascript for Payroll Status -->
@@ -963,16 +993,12 @@
     </script>
     <script>
         var myData = [];
+        var eventData = [];
         $(document).ready(function () {
             getCalanderData();
-            loadCanendar();
+            getLeaveRules();
         });
-        
-        mobiscroll.setOptions({
-            locale: mobiscroll.localeEn,
-            theme: 'ios',
-            themeVariant: 'light'
-        });
+
         function getCalanderData() {
             loader.start();
             $.ajax({
@@ -980,17 +1006,21 @@
                 type: "GET",
                 async: true,
                 success: function (response) {
-                    
                     myData = response.Data;
+
                     for (var i = 0; i < myData.length; i++) {
-                        myData[i].id = i+1;
-                        myData[i].start = moment(myData[i].start).format('YYYY-MM-DD');
-                        myData[i].end = moment(myData[i].end).format('YYYY-MM-DD');
+                        var temp = {};
+                        temp.title = myData[i].title;
+                        temp.start = moment(myData[i].start).format('YYYY-MM-DD');
+                        temp.end = moment(myData[i].end).format('YYYY-MM-DD');
+                        temp.start = temp.start + "T12:00:00Z";
+                        temp.end = temp.end + "T12:00:00Z";
+                        eventData.push(temp);
                     }
-                    console.log(myData);
+                    console.log(eventData);
                     loadCanendar();
                     loader.stop();
-                   
+
                 },
                 error: function (ex) {
                     // for errors - red box
@@ -999,362 +1029,264 @@
                 }
             });
         }
-        
-   function loadCanendar() {
-        var oldEvent,
-            tempEvent = {},
-            deleteEvent,
-            restoreEvent,
-            colorPicker,
-            tempColor,
-            $title = $('#event-title'),
-            $description = $('#event-desc'),
-            $allDay = $('#event-all-day'),
-            $statusFree = $('#event-status-free'),
-            $statusBusy = $('#event-status-busy'),
-            $deleteButton = $('#event-delete'),
-            $color = $('#event-color'),
-            datePickerResponsive = {
-                medium: {
-                    controls: ['calendar'],
-                    touchUi: false
-                }
-            },
-            datetimePickerResponsive = {
-                medium: {
-                    controls: ['calendar', 'time'],
-                    touchUi: false
-                }
-            },
-            now = new Date(),
-            myData1 = [{
-                id: 1,
-                start: '2022-03-08T13:00',
-                end: '2022-03-08T13:45',
-                title: 'Lunch @@ Butcher\'s',
-                description: 'prashant',
-                allDay: false,
-                free: true,
-                color: '#009788'
-            }, {
-                id: 2,
-                start: '2022-03-08T15:00',
-                end: '2022-03-08T16:00',
-                title: 'General orientation',
-                description: '',
-                allDay: false,
-                free: false,
-                color: '#ff9900'
-            }, {
-                id: 3,
-                start: '2022-03-07T18:00',
-                end: '2022-03-07T22:00',
-                title: 'Dexter BD',
-                description: '',
-                allDay: false,
-                free: true,
-                color: '#3f51b5'
-            }, {
-                id: 4,
-                start: '2022-03-09T10:30',
-                end: '2022-03-09T11:30',
-                title: 'Stakeholder mtg.',
-                description: '',
-                allDay: false,
-                free: false,
-                color: '#f44437'
-            }];
 
-        function createAddPopup(elm) {
-            // hide delete button inside add popup
-            $deleteButton.hide();
-
-            deleteEvent = true;
-            restoreEvent = false;
-
-            // set popup header text and buttons for adding
-            popup.setOptions({
-                headerText: 'New event',                // More info about headerText: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-headerText
-                buttons: ['cancel', {                   // More info about buttons: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-buttons
-                    text: 'Add',
-                    keyCode: 'enter',
-                    handler: function () {
-                        calendar.updateEvent({
-                            id: tempEvent.id,
-                            title: tempEvent.title,
-                            description: tempEvent.description,
-                            allDay: tempEvent.allDay,
-                            start: tempEvent.start,
-                            end: tempEvent.end,
-                            color: tempEvent.color,
-                        });
-
-                        // navigate the calendar to the correct view
-                        calendar.navigate(tempEvent.start);
-
-                        deleteEvent = false;
-                        popup.close();
-                    },
-                    cssClass: 'mbsc-popup-button-primary'
-                }]
-            });
-
-            // fill popup with a new event data
-            $title.mobiscroll('getInst').value = tempEvent.title;
-            $description.mobiscroll('getInst').value = '';
-            $allDay.mobiscroll('getInst').checked = true;
-            range.setVal([tempEvent.start, tempEvent.end]);
-            $statusBusy.mobiscroll('getInst').checked = true;
-            range.setOptions({ controls: ['date'], responsive: datePickerResponsive });
-            selectColor('', true);
-
-            // set anchor for the popup
-            popup.setOptions({ anchor: elm });
-
-            popup.open();
+        //apply leave form
+        //for leve table.
+        Date.prototype.addDays = function (days) {
+            var date = new Date(this.valueOf());
+            date.setDate(date.getDate() + days);
+            return date;
         }
 
-        function createEditPopup(args) {
-            var ev = args.event;
-            // show delete button inside edit popup
-            $deleteButton.show();
-
-            deleteEvent = false;
-            restoreEvent = true;
-
-            // set popup header text and buttons for editing
-            popup.setOptions({
-                headerText: 'Edit event',               // More info about headerText: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-headerText
-                buttons: ['cancel', {                   // More info about buttons: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-buttons
-                    text: 'Save',
-                    keyCode: 'enter',
-                    handler: function () {
-                        var date = range.getVal();
-
-                        // update event with the new properties on save button click
-                        calendar.updateEvent({
-                            id: ev.id,
-                            title: $title.val(),
-                            description: $description.val(),
-                            allDay: $allDay.mobiscroll('getInst').checked,
-                            start: date[0],
-                            end: date[1],
-                            free: $statusFree.mobiscroll('getInst').checked,
-                            color: ev.color,
-                        });
-
-                        // navigate the calendar to the correct view
-                        calendar.navigate(date[0]);;
-
-                        restoreEvent = false;
-                        popup.close();
-                    },
-                    cssClass: 'mbsc-popup-button-primary'
-                }]
-            });
-
-            // fill popup with the selected event data
-            $title.mobiscroll('getInst').value = ev.title || '';
-            $description.mobiscroll('getInst').value = ev.description || '';
-            $allDay.mobiscroll('getInst').checked = ev.allDay || false;
-            range.setVal([ev.start, ev.end]);
-            selectColor(ev.color, true);
-
-            if (ev.free) {
-                $statusFree.mobiscroll('getInst').checked = true;
-            } else {
-                $statusBusy.mobiscroll('getInst').checked = true;
+        function getDates(startDate, stopDate) {
+            var dateArray = new Array();
+            var currentDate = startDate;
+            while (currentDate <= stopDate) {
+                var temp = moment(currentDate).format('MM-DD-YYYY');
+                dateArray.push(temp);
+                currentDate = currentDate.addDays(1);
             }
-
-            // change range settings based on the allDay
-            range.setOptions({
-                controls: ev.allDay ? ['date'] : ['datetime'],
-                responsive: ev.allDay ? datePickerResponsive : datetimePickerResponsive
-            });
-
-            // set anchor for the popup
-            popup.setOptions({ anchor: args.domEvent.currentTarget });
-            popup.open();
+            return dateArray;
         }
 
-        var calendar = $('#demo-add-delete-event').mobiscroll().eventcalendar({
-            clickToCreate: 'double',                    // More info about clickToCreate: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-clickToCreate
-            dragToCreate: true,                         // More info about dragToCreate: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-dragToCreate
-            dragToMove: true,                           // More info about dragToMove: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-dragToMove
-            dragToResize: true,                         // More info about dragToResize: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-dragToResize
-            view: {                                     // More info about view: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-view
-                calendar: { labels: true }
-            },
-            data: myData,                               // More info about data: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-data
-            onEventClick: function (args) {             // More info about onEventClick: https://docs.mobiscroll.com/5-15-0/eventcalendar#event-onEventClick
-                oldEvent = $.extend({}, args.event);
-                tempEvent = args.event;
-
-                if (!popup.isVisible()) {
-                    createEditPopup(args);
-                }
-            },
-            onEventCreated: function (args) {           // More info about onEventCreated: https://docs.mobiscroll.com/5-15-0/eventcalendar#event-onEventCreated
-                popup.close();
-
-                // store temporary event
-                tempEvent = args.event;
-                createAddPopup(args.target);
-            },
-            onEventDeleted: function () {               // More info about onEventDeleted: https://docs.mobiscroll.com/5-15-0/eventcalendar#event-onEventDeleted
-                mobiscroll.snackbar({
-
-                    button: {
-                        action: function () {
-                            calendar.addEvent(args.event);
-                        },
-                        text: 'Undo'
-                    },
-                    message: 'Event deleted'
-                });
-            }
-        }).mobiscroll('getInst');
-
-        var popup = $('#demo-add-popup').mobiscroll().popup({
-            display: 'bottom',                          // Specify display mode like: display: 'bottom' or omit setting to use default
-            contentPadding: false,
-            fullScreen: true,
-            onClose: function () {                      // More info about onClose: https://docs.mobiscroll.com/5-15-0/eventcalendar#event-onClose
-                if (deleteEvent) {
-                    calendar.removeEvent(tempEvent);
-                } else if (restoreEvent) {
-                    calendar.updateEvent(oldEvent);
-                }
-            },
-            responsive: {                               // More info about responsive: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-responsive
-                medium: {
-                    display: 'anchored',                // Specify display mode like: display: 'bottom' or omit setting to use default
-                    width: 400,                         // More info about width: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-width
-                    fullScreen: false,
-                    touchUi: false
-                }
-            }
-        }).mobiscroll('getInst');
-
-        $title.on('input', function (ev) {
-            // update current event's title
-            tempEvent.title = ev.target.value;
-        });
-
-        $description.on('change', function (ev) {
-            // update current event's title
-            tempEvent.description = ev.target.value;
-        });
-
-        $allDay.on('change', function () {
-            var checked = this.checked
-
-            // change range settings based on the allDay
-            range.setOptions({
-                controls: checked ? ['date'] : ['datetime'],
-                responsive: checked ? datePickerResponsive : datetimePickerResponsive
+        var noOfDay = 0;
+        function setTableData() {
+            var starDate = new Date($('#LeaveStartDate').val());
+            var endDate = new Date($('#LeaveEndDate').val());
+            var range = getDates(starDate, endDate);
+            noOfDay = range.length;
+            var table = '<table><thead><tr><td>Leave Date</td> <td>Leave Category</td></tr></thead><tbody>';
+            $.each(range, function (index, value) {
+                table += '<tr style="width:100%;" id="item_' + index + '"><td class="LeaveDate">' + value + '</td> <td> <b>Full Day</b>: <input name="LeaveCategory_' + index + '" class="LeaveCategory" type="radio" onclick="setNumberOfDays()" value="1" /> | <b>First Half</b>: <input name="LeaveCategory_' + index + '" class="LeaveCategory" type="radio" onclick="setNumberOfDays()" value="2" /> | <b>Second Half</b>: <input name="LeaveCategory_' + index + '" class="LeaveCategory" type="radio" onclick="setNumberOfDays()" value="3" /></td></tr>';
             });
+            table += '</tbody></table>';
+            $("#leaveList").html("");
+            if (range.length > 0)
+                $("#leaveList").html(table);
+            $("#NumberOfDaysLeave").html("");
+            var no = "Number of days leave: " + noOfDay;
+            $("#NumberOfDaysLeave").html(no);
 
-            // update current event's allDay property
-            tempEvent.allDay = checked;
-        });
+            var tableRows = $("#leaveList tbody tr");
+            $.each(tableRows, function (index, value) {
 
-        var range = $('#event-date').mobiscroll().datepicker({
-            controls: ['date'],
-            select: 'range',
-            startInput: '#start-input',
-            endInput: '#end-input',
-            showRangeLabels: false,
-            touchUi: true,
-            responsive: datePickerResponsive,           // More info about responsive: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-responsive
-            onChange: function (args) {
-                var date = args.value;
+                $("#item_" + index + " .LeaveCategory[value='1']").prop('checked', true);
+            });
+        }
 
-                // update event's start date
-                tempEvent.start = date[0];
-                tempEvent.end = date[1];
-            }
-        }).mobiscroll('getInst');
+        function setNumberOfDays() {
+            var tableRows = $("#leaveList tbody tr");
+            noOfDay = 0;
+            $.each(tableRows, function (index, value) {
+                var leaveCategory = $("#item_" + index + " .LeaveCategory:checked").val();
+                if (leaveCategory == 1) {
+                    noOfDay += 1;
+                }
+                else {
+                    noOfDay += 0.5;
+                }
+            });
+            $("#NumberOfDaysLeave").html("Number of days leave: " + noOfDay);
+        }
 
-        $('input[name=event-status]').on('change', function () {
-            // update current event's free property
-            tempEvent.free = $statusFree.mobiscroll('getInst').checked;
-        });
-
-        $deleteButton.on('click', function () {
-            // delete current event on button click
-            calendar.removeEvent(oldEvent);
-
-            popup.close();
-
-            mobiscroll.snackbar({
-
-                button: {
-                    action: function () {
-                        calendar.addEvent(tempEvent);
-                    },
-                    text: 'Undo'
+        function applyLeave() {
+            toastr.options.preventDuplicates = true;
+            var model = {
+                "EmployeeLeave": {
+                    "LeaveType": $("#LeaveType").val(),
+                    "LeaveStatus": 1,
+                    "LeaveStartDate": $('#LeaveStartDate').val(),
+                    "LeaveEndDate": $('#LeaveEndDate').val(),
+                    "NumberOfDaysLeave": noOfDay,
+                    "LeaveReason": $("#LeaveReason").val()
                 },
-                message: 'Event deleted'
+                "EmployeeLeaveDetails": []
+            }
+
+            var tableRows = $("#leaveList tbody tr");
+            $.each(tableRows, function (index, value) {
+                var indexedValues = {};
+                indexedValues.LeaveDate = $("#item_" + index + " .LeaveDate").html();
+                indexedValues.LeaveCategory = $("#item_" + index + " .LeaveCategory:checked").val();
+                model.EmployeeLeaveDetails.push(indexedValues);
             });
-        });
 
-        colorPicker = $('#demo-event-color').mobiscroll().popup({
-            display: 'bottom',                          // Specify display mode like: display: 'bottom' or omit setting to use default
-            contentPadding: false,
-            showArrow: false,
-            showOverlay: false,
-            buttons: [                                  // More info about buttons: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-buttons
-                'cancel',
-                {
-                    text: 'Set',
-                    keyCode: 'enter',
-                    handler: function (ev) {
-                        setSelectedColor();
-                    },
-                    cssClass: 'mbsc-popup-button-primary'
-                }
-            ],
-            responsive: {                               // More info about responsive: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-responsive
-                medium: {
-                    display: 'anchored',                // Specify display mode like: display: 'bottom' or omit setting to use default
-                    anchor: $('#event-color-cont')[0],  // More info about anchor: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-anchor
-                    buttons: {},                        // More info about buttons: https://docs.mobiscroll.com/5-15-0/eventcalendar#opt-buttons
-                }
+            if (!isValidForm()) {
+                return false;
             }
-        }).mobiscroll('getInst');
-
-        function selectColor(color, setColor) {
-            $('.crud-color-c').removeClass('selected');
-            $('.crud-color-c[data-value="' + color + '"]').addClass('selected');
-            if (setColor) {
-                $color.css('background', color || '');
+            if (!isValidLeaves(model)) {
+                $.each(validationMsgs, function (index, value) {
+                    toastr.error(value);
+                });
+                return false;
             }
+            loader.start();
+            $.ajax({
+                url: "/User/ApplyLeave",
+                data: model,
+                type: "POST",
+                async: true,
+                success: function (response) {
+                    loader.stop();
+                    /*location.href = "/User/Leave";*/
+                    getCalanderData();
+                    $('#addLeave-modal').modal('hide');
+                },
+                error: function (ex) {
+                    // for errors - red box
+                    toastr.error('operation failed');
+                    loader.stop();
+                }
+            });
         }
 
-        function setSelectedColor() {
-            tempEvent.color = tempColor;
-            $color.css('background', tempColor);
-            colorPicker.close();
+        var leaveRulesModel = {
+            LeaveRules: {
+                TotalHoliday: 0,
+                Sick: 0,
+                Paid: 0
+            },
+            TotalHolidayApplyed: 0,
+            SickApplyed: 0,
+            PaidApplyed: 0,
+            TotalHoliday: 0,
+            Sick: 0,
+            Paid: 0
+        };
+        function getLeaveRules() {
+            loader.start();
+            $.ajax({
+                url: "/User/GetLeaveRules",
+                type: "GET",
+                async: true,
+                success: function (response) {
+                    leaveRulesModel = response;
+                    loader.stop();
+                },
+                error: function (ex) {
+                    // for errors - red box
+                    toastr.error('operation failed');
+                    loader.stop();
+                }
+            });
+        }
+        var validationMsgs = [];
+        function isValidLeaves(formData) {
+            validationMsgs = [];
+            var sick = 0;
+            var paid = 0;
+            try {
+                switch (formData.EmployeeLeave.LeaveType) {
+                    case "1":
+                        for (var i = 0; i < formData.EmployeeLeaveDetails.length; i++) {
+                            switch (formData.EmployeeLeaveDetails[i].LeaveCategory) {
+                                case "1":
+                                    sick += 1;
+                                    break;
+                                case "2":
+                                    sick += .5;
+                                    break;
+                                case "3":
+                                    sick += .5;
+                                    break;
+                            }
+                        }
+                        break;
+                    case "2":
+                        for (var i = 0; i < formData.EmployeeLeaveDetails.length; i++) {
+                            switch (formData.EmployeeLeaveDetails[i].LeaveCategory) {
+                                case "1":
+                                    paid += 1;
+                                    break;
+                                case "2":
+                                    paid += .5;
+                                    break;
+                                case "3":
+                                    paid += .5;
+                                    break;
+                            }
+                        }
+                        break;
+                    case "3":
+                        validationMsgs.push("Not allowed!");
+                        return false;
+                }
+
+                if (leaveRulesModel.Sick < sick) {
+                    validationMsgs.push("You have " + leaveRulesModel.Sick + " sick leave");
+                    return false;
+                }
+                if (leaveRulesModel.Paid < paid) {
+                    validationMsgs.push("You have " + leaveRulesModel.Paid + " paid leave");
+                    return false;
+                }
+            } catch (e) {
+                return false;
+            }
+            return true;
         }
 
-        $('#event-color-picker').on('click', function () {
-            selectColor(tempEvent.color || '');
-            colorPicker.open();
-        });
-
-        $('.crud-color-c').on('click', function (ev) {
-            var $elm = $(ev.currentTarget);
-
-            tempColor = $elm.data('value');
-            selectColor(tempColor);
-
-            if (!colorPicker.s.buttons.length) {
-                setSelectedColor();
+        // Wait for the DOM to be ready
+        function isValidForm() {
+            var chk = false;
+            $('span.txt-error').remove();
+            if ($("#LeaveType").val().trim() == '') {
+                $("#LeaveType").after('<span class="txt-error" style="color:red;">Leave type is required</span>');
+                chk = true;
             }
-        });
-    }
-        
+            if ($('#LeaveStartDate').val().trim() == '') {
+                $("#LeaveStartDate").after('<span class="txt-error" style="color:red;">Start date is required</span>');
+                chk = true;
+            }
+            if ($('#LeaveEndDate').val().trim() == '') {
+                $("#LeaveEndDate").after('<span class="txt-error" style="color:red;">End date is required</span>');
+                chk = true;
+            }
+            if ($("#LeaveReason").val().trim() == '') {
+                $("#LeaveReason").after('<span class="txt-error" style="color:red;">Leave reason is required</span>');
+                chk = true;
+            }
+            if (chk) {
+                return false;
+            }
+            return true;
+        }
+        document.addEventListener('DOMContentLoaded', loadCanendar());
+        function loadCanendar() {
+            var calendarEl = document.getElementById('fullCalendar');
+            var now = new Date();
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'prevYear,prev,next,nextYear today',
+                    center: 'title',
+                    right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                },
+                initialDate: moment(now).format('YYYY-MM-DD'),
+                navLinks: true, // can click day/week names to navigate views
+                editable: false,
+                dayMaxEvents: true, // allow "more" link when too many events
+                timeZone: 'UTC',
+                events: eventData,
+                dateClick: function (info) {
+                    $('#LeaveStartDate').data("DateTimePicker").date(moment(info.dateStr).format('MM-DD-YYYY'));
+                    $('#LeaveEndDate').data("DateTimePicker").date(moment(info.dateStr).format('MM-DD-YYYY'));
+                    $('#LeaveStartDate').data("DateTimePicker").date(moment(info.dateStr).format('MM-DD-YYYY'));
+                    console.log(info)
+                    $('span.txt-error').remove();
+                    $('#addLeave-modal').modal('show');
+                }
+            });
+
+            calendar.render();
+        }
+        //$('td.fc-daygrid-day').on('click', function () {
+        //    var date = $(this).data('date');
+        //    $('#LeaveStartDate').data("DateTimePicker").date(moment(date).format('MM-DD-YYYY'));
+        //    $('#LeaveEndDate').data("DateTimePicker").date(moment(date).format('MM-DD-YYYY'));
+
+        //    $('#addLeave-modal').modal('show');
+        //});
+
     </script>
 
 </body>
