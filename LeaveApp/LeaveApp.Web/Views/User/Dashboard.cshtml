@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Claims
+@{
     ViewBag.Title = "Dashboard";
 }
 <!doctype html>
@@ -7,7 +9,7 @@
     <link href="~/Content/main.min.css" rel="stylesheet" />
     <script src="~/Scripts/main.min.js"></script>
     @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css" integrity="sha256-jLWPhwkAHq1rpueZOKALBno3eKP3m4IMB131kGhAlRQ=" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js" integrity="sha256-3YcmbVFydbcbP+ax1x6VxV1swYap/YsD/+RFVqSGqxk=" crossorigin="anonymous"></script>*@
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js" integrity="sha256-3YcmbVFydbcbP+ax1x6VxV1swYap/YsD/+RFVqSGqxk=" crossorigin="anonymous"></script>*@
     <style>
         #leaveList table {
             border-collapse: collapse;
@@ -120,6 +122,12 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
+                            <div style="text-align: right; margin-top: -46px;">
+                                <span>Submitted:</span> <span style="background-color:#ffff00;height: 15px;width: 15px; border-radius: 50%; display: inline-block;"></span>
+                                <span>Approved:</span> <span style="background-color:#00ff00;height: 15px;width: 15px; border-radius: 50%; display: inline-block;"></span>
+                                <span>Rejected:</span> <span style="background-color:#ff0000;height: 15px;width: 15px; border-radius: 50%; display: inline-block;"></span>
+                                <span>Need Proper Reason:</span> <span style="background-color:#808080;height: 15px;width: 15px; border-radius: 50%; display: inline-block;"></span>
+                            </div>
                             <div id='fullCalendar'></div>
                         </div>
                     </div>
@@ -669,7 +677,7 @@
         </footer>*@
     <!-- Footer Ends -->
     <!-- Reject Leave Request Modal -->
-    <div class="modal pmd-modal fade text-center delete-modal" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="reject-modal" aria-hidden="true">
+    <div class="modal pmd-modal fade text-center delete-modal" id="reject-modal1" tabindex="-1" role="dialog" aria-labelledby="reject-modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
@@ -692,14 +700,15 @@
 
                 <!-- Modal Body -->
                 <div class="modal-body">
-                    <h2 class="modal-title">Add Leave</h2>
+                    <h2 class="modal-title txtAddLeave">Add Leave</h2>
+                    <h2 class="modal-title txtEditLeave">Edit Leave</h2>
                     <form name="addLeaveForm" id="addLeaveForm">
                         <input type="hidden" id="EmployeeLeaveId" value="" />
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group pmd-textfield pmd-textfield-floating-label ">
-                                        <label for="leave-type">Leave Type</label>
+                                        <label style="margin-bottom: 25px;" for="leave-type">Leave Type</label>
                                         <select autofocus name="LeaveType" id="LeaveType" class="form-control" title="Please select a Leave Type" required>
                                             <option value=""></option>
                                             <option value="1">Sick Leave</option>
@@ -724,7 +733,7 @@
                                     <div id="leaveList">
                                     </div>
                                     <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                                        <label>Reason</label>
+                                        <label style="margin-bottom: 25px;">Reason</label>
                                         <textarea autofocus class="form-control" id="LeaveReason" name="LeaveReason"></textarea>
                                     </div>
                                 </div>
@@ -738,9 +747,57 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0);" class="btn btn-outline-dark pmd-btn-raised pmd-ripple-effect" title="Cancel" data-dismiss="modal">Cancel</a>
-                        <a href="javascript:void(0);" onclick="applyLeave()" class="btn btn-primary pmd-btn-raised pmd-ripple-effect" title="Delete">Apply</a>
+                        @if (Request.IsAuthenticated)
+                        {
+                            var IsAdmin = ((ClaimsIdentity)User.Identity).Claims
+                            .Any(x => x.Value.Equals("Admin"));
+                            <input type="hidden" id="hdnIsAdminUser" value="@IsAdmin.ToString()" />
+                            if (IsAdmin)
+                            {
+                                <a href="javascript:void(0);" class="btn btn-outline-dark pmd-btn-raised pmd-ripple-effect" title="Cancel" data-dismiss="modal">Cancel</a>
+
+                                <a href="javascript:void(0);" onclick="setLeaveStatus(0)" title="Reject" class="btn btn-primary pmd-btn-raised pmd-ripple-effect" data-toggle="modal" data-target="#reject-modal">
+                                    Reject
+                                </a>
+                                <a href="javascript:void(0);" onclick="setLeaveStatus(2)" title="Accept" class="btn btn-primary pmd-btn-raised pmd-ripple-effect">
+                                    Accept
+                                </a>
+                                <a href="javascript:void(0);" id="btnDeleteLeave" onclick="deleteLeave()" class="btn btn-primary pmd-btn-raised pmd-ripple-effect" title="Delete">Cancel Leave</a>
+                            }
+                            else
+                            {
+                                <a href="javascript:void(0);" class="btn btn-outline-dark pmd-btn-raised pmd-ripple-effect" title="Cancel" data-dismiss="modal">Cancel</a>
+                                <a href="javascript:void(0);" id="btnApplyLeave" onclick="applyLeave(1)" class="btn btn-primary pmd-btn-raised pmd-ripple-effect" title="Apply">Apply</a>
+                                <a href="javascript:void(0);" id="btnEditLeave" onclick="applyLeave(2)" class="btn btn-primary pmd-btn-raised pmd-ripple-effect" title="Update">Update</a>
+                            }
+                        }
+
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reject Leave Request Modal -->
+    <div class="modal pmd-modal fade text-center delete-modal" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="reject-modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <i class="material-icons md-danger pmd-icon-circle bg-danger pmd-icon-md"><strong>error_outline</strong></i>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <h2 class="modal-title">Are you sure?</h2>
+                    <p>Do you really want to reject the employee's leave? <br /> This process cannot be undone.</p>
+                    <select id="rejectOption" class="form-control">
+                        <option selected value="3">Rejected</option>
+                        <option value="4">Need Proper Reason</option>
+                    </select>
+
+                    <div class="form-control center">
+                        <a href="javascript:void(0);" class="btn btn-outline-dark pmd-btn-raised pmd-ripple-effect" title="Cancel" data-dismiss="modal">Cancel</a>
+                        <a href="javascript:void(0);" onclick="setLeaveStatus(1)" class="btn btn-primary pmd-btn-raised pmd-ripple-effect" title="Delete">Submit</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -823,6 +880,7 @@
                 success: function (response) {
 
                     leaveRules = response;
+                    console.log(leaveRules)
                     $("#plValue").text(leaveRules.Paid);
                     $("#slValue").text(leaveRules.Sick);
                     $("#nplValue").text(0);
@@ -994,12 +1052,16 @@
     <script>
         var myData = [];
         var eventData = [];
+        var eventLeaveCategorys = [];
         $(document).ready(function () {
             getCalanderData();
             getLeaveRules();
         });
 
         function getCalanderData() {
+            myData = [];
+            eventData = [];
+            eventLeaveCategorys = [];
             loader.start();
             $.ajax({
                 url: "/User/GetCalendarData",
@@ -1007,17 +1069,32 @@
                 async: true,
                 success: function (response) {
                     myData = response.Data;
-
                     for (var i = 0; i < myData.length; i++) {
                         var temp = {};
                         temp.title = myData[i].title;
                         temp.start = moment(myData[i].start).format('YYYY-MM-DD');
                         temp.end = moment(myData[i].end).format('YYYY-MM-DD');
+                        temp.startDate = moment(myData[i].start).format('YYYY-MM-DD');
+                        temp.endDate = moment(myData[i].end).format('YYYY-MM-DD');
                         temp.start = temp.start + "T12:00:00Z";
                         temp.end = temp.end + "T12:00:00Z";
+                        temp.id = myData[i].id;
+                        temp.leaveType = myData[i].leaveType;
+                        temp.description = myData[i].description;
+                        temp.LeaveCategory = myData[i].LeaveCategorys;
+                        temp.color = myData[i].color;
+                        temp.disable = false;
+                        var now = new Date();
+                        var leaveDate = new Date(temp.start);
+                        if (temp.color == "#00ff00" || temp.color == "#ff0000" && now > leaveDate) {
+                            temp.disable = true;
+                        }
+                        if ($('#hdnIsAdminUser').val().toLowerCase() == "true") {
+                            temp.disable = false;
+                        }
+                        temp.textColor = "black";//myData[i].textColor;
                         eventData.push(temp);
                     }
-                    console.log(eventData);
                     loadCanendar();
                     loader.stop();
 
@@ -1089,10 +1166,11 @@
             $("#NumberOfDaysLeave").html("Number of days leave: " + noOfDay);
         }
 
-        function applyLeave() {
+        function applyLeave(option) {
             toastr.options.preventDuplicates = true;
             var model = {
                 "EmployeeLeave": {
+                    "EmployeeLeaveId": $('#EmployeeLeaveId').val(),
                     "LeaveType": $("#LeaveType").val(),
                     "LeaveStatus": 1,
                     "LeaveStartDate": $('#LeaveStartDate').val(),
@@ -1120,9 +1198,16 @@
                 });
                 return false;
             }
+            var _url = "/User/ApplyLeave";
+            if (option == 1) {
+                _url = "/User/ApplyLeave";
+            }
+            if (option == 2) {
+                _url = "/User/EditLeave";
+            }
             loader.start();
             $.ajax({
-                url: "/User/ApplyLeave",
+                url: _url,
                 data: model,
                 type: "POST",
                 async: true,
@@ -1140,36 +1225,36 @@
             });
         }
 
-        var leaveRulesModel = {
-            LeaveRules: {
-                TotalHoliday: 0,
-                Sick: 0,
-                Paid: 0
-            },
-            TotalHolidayApplyed: 0,
-            SickApplyed: 0,
-            PaidApplyed: 0,
-            TotalHoliday: 0,
-            Sick: 0,
-            Paid: 0
-        };
-        function getLeaveRules() {
-            loader.start();
-            $.ajax({
-                url: "/User/GetLeaveRules",
-                type: "GET",
-                async: true,
-                success: function (response) {
-                    leaveRulesModel = response;
-                    loader.stop();
-                },
-                error: function (ex) {
-                    // for errors - red box
-                    toastr.error('operation failed');
-                    loader.stop();
-                }
-            });
-        }
+        //var leaveRulesModel = {
+        //    LeaveRules: {
+        //        TotalHoliday: 0,
+        //        Sick: 0,
+        //        Paid: 0
+        //    },
+        //    TotalHolidayApplyed: 0,
+        //    SickApplyed: 0,
+        //    PaidApplyed: 0,
+        //    TotalHoliday: 0,
+        //    Sick: 0,
+        //    Paid: 0
+        //};
+        //function getLeaveRules() {
+        //    loader.start();
+        //    $.ajax({
+        //        url: "/User/GetLeaveRules",
+        //        type: "GET",
+        //        async: true,
+        //        success: function (response) {
+        //            leaveRulesModel = response;
+        //            loader.stop();
+        //        },
+        //        error: function (ex) {
+        //            // for errors - red box
+        //            toastr.error('operation failed');
+        //            loader.stop();
+        //        }
+        //    });
+        //}
         var validationMsgs = [];
         function isValidLeaves(formData) {
             validationMsgs = [];
@@ -1212,12 +1297,12 @@
                         return false;
                 }
 
-                if (leaveRulesModel.Sick < sick) {
-                    validationMsgs.push("You have " + leaveRulesModel.Sick + " sick leave");
+                if (leaveRules.Sick < sick) {
+                    validationMsgs.push("You have " + leaveRules.Sick + " sick leave");
                     return false;
                 }
-                if (leaveRulesModel.Paid < paid) {
-                    validationMsgs.push("You have " + leaveRulesModel.Paid + " paid leave");
+                if (leaveRules.Paid < paid) {
+                    validationMsgs.push("You have " + leaveRules.Paid + " paid leave");
                     return false;
                 }
             } catch (e) {
@@ -1268,11 +1353,56 @@
                 timeZone: 'UTC',
                 events: eventData,
                 dateClick: function (info) {
+                    debugger
+                    eventLeaveCategorys = [];
                     $('#LeaveStartDate').data("DateTimePicker").date(moment(info.dateStr).format('MM-DD-YYYY'));
                     $('#LeaveEndDate').data("DateTimePicker").date(moment(info.dateStr).format('MM-DD-YYYY'));
                     $('#LeaveStartDate').data("DateTimePicker").date(moment(info.dateStr).format('MM-DD-YYYY'));
-                    console.log(info)
                     $('span.txt-error').remove();
+                    $('#EmployeeLeaveId').val('');
+                    $('#LeaveType').val('');
+                    $('#LeaveReason').val('');
+                    $('#btnApplyLeave').show();
+                    $('#btnEditLeave').hide();
+                    $('#btnDeleteLeave').hide();
+                    $('.txtAddLeave').show();
+                    $('.txtEditLeave').hide();
+                    $('#addLeave-modal').modal('show');
+                },
+                eventClick: function (info) {
+                    debugger
+                    if (info.event._def.extendedProps.disable) {
+                        return;
+                    }
+                    $('#LeaveStartDate').data("DateTimePicker").date(moment(info.event._def.extendedProps.startDate).format('MM-DD-YYYY'));
+                    $('#LeaveEndDate').data("DateTimePicker").date(moment(info.event._def.extendedProps.endDate).format('MM-DD-YYYY'));
+                    $('#LeaveStartDate').data("DateTimePicker").date(moment(info.event._def.extendedProps.startDate).format('MM-DD-YYYY'));
+                    $('#EmployeeLeaveId').val(info.event._def.publicId);
+                    $('#LeaveType').val(info.event._def.extendedProps.leaveType);
+                    $('#LeaveReason').val(info.event._def.extendedProps.description);
+                    eventLeaveCategorys = info.event._def.extendedProps.LeaveCategory;
+                    $.each(eventLeaveCategorys, function (index, value) {
+
+                        $("#item_" + index + " .LeaveCategory[value=" + value + "]").prop('checked', true);
+                    });
+                    var tableRows = $("#leaveList tbody tr");
+                    noOfDay = 0;
+                    $.each(tableRows, function (index, value) {
+                        var leaveCategory = $("#item_" + index + " .LeaveCategory:checked").val();
+                        if (leaveCategory == 1) {
+                            noOfDay += 1;
+                        }
+                        else {
+                            noOfDay += 0.5;
+                        }
+                    });
+                    $("#NumberOfDaysLeave").html("Number of days leave: " + noOfDay);
+                    $('span.txt-error').remove();
+                    $('#btnApplyLeave').hide();
+                    $('#btnEditLeave').show();
+                    $('#btnDeleteLeave').show();
+                    $('.txtAddLeave').hide();
+                    $('.txtEditLeave').show();
                     $('#addLeave-modal').modal('show');
                 }
             });
@@ -1287,6 +1417,62 @@
         //    $('#addLeave-modal').modal('show');
         //});
 
+        function deleteLeave() {
+            var chk = confirm('Are you want to delete?');
+            if (!chk) {
+                return;
+            }
+            loader.start();
+            $.ajax({
+                url: '/User/DeleteLeave?id=' + $('#EmployeeLeaveId').val(),
+                type: "POST",
+                async: true,
+                success: function (response) {
+                    loader.stop();
+                    /*location.href = "/User/Leave";*/
+                    getCalanderData();
+                    $('#addLeave-modal').modal('hide');
+                },
+                error: function (ex) {
+                    // for errors - red box
+                    toastr.error('operation failed');
+                    loader.stop();
+                }
+            });
+        }
+
+        function setLeaveStatus(op) {
+            if (op == 0) {
+                return;
+            }
+            var id = $('#EmployeeLeaveId').val();
+            var option = $('#rejectOption').val(); 
+            if (op == 2) {
+                option = 2;
+            }
+            loader.start();
+            $.ajax({
+                url: '/User/ResetLeaveStatus/' + id + '/' + option,
+                async: true,
+                success: function (response) {
+                    if (response.Data) {
+                        getCalanderData();
+                        //location.reload();
+                    }
+                    else {
+                        toastr.error('operation failed');
+                    }
+                    $('#reject-modal').modal('hide');
+                    $('#addLeave-modal').modal('hide');
+                    loader.stop();
+                },
+                error: function (ex) {
+                    // for errors - red box
+                    toastr.error('operation failed');
+                    loader.stop();
+                }
+            });
+        }
     </script>
 
 </body>

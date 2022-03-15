@@ -102,7 +102,7 @@ namespace LeaveApp.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> ApplyLeave(ApplyLeaveViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && model.EmployeeLeave.EmployeeLeaveId != 0)
             {
                 _responseModel.Error = ResponseMessages.FormDataNotValid.ToString();
                 return Json(_responseModel);

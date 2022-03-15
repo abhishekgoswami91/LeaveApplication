@@ -383,11 +383,18 @@ namespace LeaveApp.Service.Employee
                     foreach (var subItem in allLeaves)
                     {
                         CalendarViewModel calendarViewModel = new CalendarViewModel();
+                        calendarViewModel.id = subItem.EmployeeLeaveId;
+                        calendarViewModel.leaveType = subItem.LeaveType;
                         calendarViewModel.start = subItem.LeaveStartDate;
                         calendarViewModel.end = subItem.LeaveEndDate;
                         calendarViewModel.title = item.FirstName;
                         calendarViewModel.description = subItem.LeaveReason;
-                        calendarViewModel.color = "#ff4000";
+                        //calendarViewModel.color = "#ff4000";
+                        calendarViewModel.LeaveStatus = subItem.LeaveStatus;
+                        foreach (var obj in subItem.EmployeeLeaveDetails)
+                        {
+                            calendarViewModel.LeaveCategorys.Add(obj.LeaveCategory);
+                        }
                         calendarViewModels.Add(calendarViewModel);
                     }
                 }
@@ -399,11 +406,18 @@ namespace LeaveApp.Service.Employee
                 foreach (var subItem in allLeaves)
                 {
                     CalendarViewModel calendarViewModel = new CalendarViewModel();
+                    calendarViewModel.id = subItem.EmployeeLeaveId;
+                    calendarViewModel.leaveType = subItem.LeaveType;
                     calendarViewModel.start = subItem.LeaveStartDate;
                     calendarViewModel.end = subItem.LeaveEndDate;
                     calendarViewModel.title = empDetails.FirstName;
                     calendarViewModel.description = subItem.LeaveReason;
-                    calendarViewModel.color = "#ff4000";
+                    //calendarViewModel.color = "#ff4000";
+                    calendarViewModel.LeaveStatus = subItem.LeaveStatus;
+                    foreach (var obj in subItem.EmployeeLeaveDetails)
+                    {
+                        calendarViewModel.LeaveCategorys.Add(obj.LeaveCategory);
+                    }
                     calendarViewModels.Add(calendarViewModel);
                 }
             }

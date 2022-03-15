@@ -261,8 +261,8 @@ namespace LeaveApp.Service.Leave
             }
             //(Sick, Paid) = await calculateLeaves(empDetail.EmployeeId, LeaveStatus.Submitted);
             //return new LeaveRulesViewModel(empDetail.DateOfJoining, empDetail.SickApplyed, empDetail.PaidApplyed, Sick + Paid, 0);
-            var LastYearLeaves = await _db.EmployeeLeaves.Where(x => x.EmployeeId.Equals(empDetail.EmployeeId) && x.ModifiedDate.Year == DateTime.Now.Year - 1 && !x.IsDeleted && x.LeaveStatus == LeaveStatus.Approved).ToListAsync();
-            var ThisYearLeaves = await _db.EmployeeLeaves.Where(x => x.EmployeeId.Equals(empDetail.EmployeeId) && x.ModifiedDate.Year == DateTime.Now.Year && !x.IsDeleted && x.LeaveStatus == LeaveStatus.Approved).ToListAsync();
+            var LastYearLeaves = await _db.EmployeeLeaves.Where(x => x.EmployeeId.Equals(empDetail.EmployeeId) && x.LeaveStartDate.Year == DateTime.Now.Year - 1 && !x.IsDeleted && x.LeaveStatus == LeaveStatus.Approved).ToListAsync();
+            var ThisYearLeaves = await _db.EmployeeLeaves.Where(x => x.EmployeeId.Equals(empDetail.EmployeeId) && x.LeaveStartDate.Year == DateTime.Now.Year && !x.IsDeleted && x.LeaveStatus == LeaveStatus.Approved).ToListAsync();
             double bonusSL = 0;
             double bonusPL = 0;
             foreach (var Item in empDetail.EmployeeBonusLeaves)

@@ -169,6 +169,8 @@ namespace LeaveApp.Core.ViewModel
             }
             this.Sick += bonusSL;
             this.Paid += bonusPL;
+            this.Sick -= Sick;
+            this.Paid -= Paid;
             this.BonusPaid = bonusPL;
             this.BonusSick = bonusSL;
         }
