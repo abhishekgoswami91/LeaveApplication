@@ -1,1 +1,1 @@
-The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Must issue a STARTTLS command first. 21-20020a630115000000b00382a0895661sm3299901pgb.11 - gsmtplog time: 3/22/2022 12:25:53 PM
+The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Must issue a STARTTLS command first. lj7-20020a17090b344700b001c7032eba5fsm2031812pjb.4 - gsmtplog time: 3/22/2022 3:12:42 PM

@@ -152,7 +152,7 @@ namespace LeaveApp.Service.Mail
             str.Close();
             var User = _db.Users.Where(x => x.Id.Equals(issueMailModel.IssueData.CreatedBy)).FirstOrDefault();
             MailText = MailText.Replace("[[CreatedBy]]", User.UserName);
-            MailText = MailText.Replace("[[Logo]]", "manage.avidclan.com/Content/images/icons8-system-report-48.png");
+           // MailText = MailText.Replace("[[Logo]]", "manage.avidclan.com/Content/images/icons8-system-report-48.png");
             //MailText = MailText.Replace("[[IssueImage]]", issueMailModel.IssueData.IssueImage);
             MailText = MailText.Replace("[[Discription]]", issueMailModel.IssueData.Description);
             MailText = MailText.Replace("[[CreatedDate]]", issueMailModel.IssueData.CreatedDate.ToString("MM/dd/yyyy"));
