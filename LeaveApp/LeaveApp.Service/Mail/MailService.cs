@@ -1,6 +1,8 @@
-﻿using LeaveApp.Core.ViewModel;
+﻿using LeaveApp.Core.Enums;
+using LeaveApp.Core.ViewModel;
 using LeaveApp.Data.Identity;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -16,6 +18,8 @@ namespace LeaveApp.Service.Mail
         //Fetching Settings from APP.CONFIG file.  
         private string emailSender = WebConfigurationManager.AppSettings["emailsender"].ToString();
         private string toEmail = WebConfigurationManager.AppSettings["toemail"].ToString();
+        private string toEmailForIssue = WebConfigurationManager.AppSettings["toemailforissue"].ToString();
+        private string mailTemplatePath = WebConfigurationManager.AppSettings["mailtemplatepath"].ToString();
         private string emailSenderPassword = WebConfigurationManager.AppSettings["password"].ToString();
         private string emailSenderHost = WebConfigurationManager.AppSettings["smtp"].ToString();
         private int emailSenderPort = Convert.ToInt16(WebConfigurationManager.AppSettings["portnumber"]); //// Gmail can use ports 25, 465 & 587; but must be 25 for medium trust environment.  ;
@@ -140,35 +144,107 @@ namespace LeaveApp.Service.Mail
 
             return true;
         }
-        //public bool SendEmail(string bodyString, string userMail, string subject)
-        //{
-        //    bool result = false;
-        //    try
-        //    {
-        //        string UserName = "Prashant.Avidclan@gmail.com";
-        //        string Password = "Test@123";
-        //        MailMessage message = new MailMessage();
-        //        SmtpClient smtp = new SmtpClient();
-        //        message.From = new MailAddress(UserName);
-        //        message.To.Add(new MailAddress("abhi.avidclan@gmail.com"));
-        //        message.Subject = "test";
-        //        message.IsBodyHtml = true; //to make message body as html
-        //        message.Body = "Test";
-        //        smtp.Port = 587;
-        //        smtp.Host = "smtp.gmail.com"; //for gmail host
-        //        smtp.EnableSsl = true;
-        //        smtp.UseDefaultCredentials = false;
-        //        smtp.Credentials = new NetworkCredential(UserName, Password);
-        //        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-        //        smtp.Send(message);
-        //        result = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //    return result;
-        //}
-       
+
+        public bool SendIssueMail(IssueMailModel issueMailModel)
+        {
+            StreamReader str = new StreamReader(mailTemplatePath + "IssueTemplate.html");
+            string MailText = str.ReadToEnd();
+            str.Close();
+            var User = _db.Users.Where(x => x.Id.Equals(issueMailModel.IssueData.CreatedBy)).FirstOrDefault();
+            MailText = MailText.Replace("[[CreatedBy]]", User.UserName);
+            MailText = MailText.Replace("[[Logo]]", "manage.avidclan.com/Content/images/icons8-system-report-48.png");
+            //MailText = MailText.Replace("[[IssueImage]]", issueMailModel.IssueData.IssueImage);
+            MailText = MailText.Replace("[[Discription]]", issueMailModel.IssueData.Description);
+            MailText = MailText.Replace("[[CreatedDate]]", issueMailModel.IssueData.CreatedDate.ToString("MM/dd/yyyy"));
+            MailText = MailText.Replace("[[IssueStatus]]", IssueStatus.Created.ToString());
+            var temp = issueMailModel.IssueData.IssueImage.Split(',')[1];
+            byte[] bytes = Convert.FromBase64String(temp);
+            MemoryStream ms = new MemoryStream(bytes);
+            LinkedResource resource = new LinkedResource(ms);
+            resource.ContentId = "IssueImage";
+            AlternateView view = AlternateView.CreateAlternateViewFromString(MailText, null, System.Net.Mime.MediaTypeNames.Text.Html);
+            view.LinkedResources.Add(resource);
+            //Base class for sending email  
+            MailMessage _mailmsg = new MailMessage();
+            _mailmsg.IsBodyHtml = true;
+            //_mailmsg.Body = MailText;
+            _mailmsg.AlternateViews.Add(view);
+            _mailmsg.From = new MailAddress(emailSender);
+            _mailmsg.To.Add(toEmailForIssue);
+            _mailmsg.Subject = "Issue created by: " + User.UserName;
+            _mailmsg.BodyEncoding = Encoding.Default;
+            _mailmsg.Priority = MailPriority.High;
+            SmtpClient _smtp = new SmtpClient();
+            _smtp.Host = emailSenderHost;
+            _smtp.Port = emailSenderPort;
+            _smtp.EnableSsl = false;
+            _smtp.ServicePoint.MaxIdleTime = 0;
+            _smtp.ServicePoint.SetTcpKeepAlive(true, 2000, 2000);
+            NetworkCredential _network = new NetworkCredential(emailSender, emailSenderPassword);
+            _smtp.Credentials = _network;
+            _smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            _smtp.UseDefaultCredentials = false;
+            _smtp.Send(_mailmsg);
+            return true;
+        }
+        private bool SendEmail(string To, string userMail, string subject, AlternateView alternateView = null)
+        {
+            //Base class for sending email  
+            MailMessage _mailmsg = new MailMessage();
+
+            //Make TRUE because our body text is html  
+            _mailmsg.IsBodyHtml = true;
+            //_mailmsg.BodyEncoding = 
+
+            if (alternateView != null)
+            _mailmsg.AlternateViews.Add(alternateView);
+            else
+            _mailmsg.Body = userMail;
+
+            //Set From Email ID  
+            _mailmsg.From = new MailAddress(emailSender);
+
+            //Set To Email ID  
+            //foreach (var emailId in To)
+            //{
+            //    _mailmsg.To.Add(emailId);
+            //}
+            _mailmsg.To.Add(To);
+            //Set Subject  
+            _mailmsg.Subject = subject;
+
+            //Now set your SMTP   
+            SmtpClient _smtp = new SmtpClient();
+
+            //Set HOST server SMTP detail  
+            _smtp.Host = emailSenderHost;
+
+            //Set PORT number of SMTP  
+            _smtp.Port = emailSenderPort;
+
+            //Set SSL --> True / False  
+            _smtp.EnableSsl = emailIsSSL;
+
+            //Set Sender UserEmailID, Password  
+            NetworkCredential _network = new NetworkCredential(emailSender, emailSenderPassword);
+            _smtp.Credentials = _network;
+            _smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            _smtp.UseDefaultCredentials = false;
+
+            //Send Method will send your MailMessage create above.  
+            _smtp.Send(_mailmsg);
+            //try
+            //{
+            //    _smtp.Send(_mailmsg);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex);
+            //    return false;
+            //}
+
+            return true;
+        }
+
     }
 }

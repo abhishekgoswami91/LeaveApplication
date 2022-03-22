@@ -85,6 +85,8 @@
         <!-- Right Menu -->
         <div class="pmd-navbar-right-icon ml-auto">
             <div class="nav-item d-inline-block dropdown pmd-dropdown">
+                <img src="~/Content/images/icons8-system-report-48.png" onclick="addIssue(0)" />
+
                 @*<a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat" id="emailDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i data-badge="50" class="material-icons pmd-badge pmd-badge-overlap pmd-badge-success md-dark pmd-sm">
                             mail_outline
@@ -258,8 +260,8 @@
                                 <a class="nav-link" href="/Account/AddEmployee">Add Employee</a>
                             </li>
                             @*<li class="nav-item">
-                                <a class="nav-link pmd-ripple-effect" href="/User/EmployeeDetail">Employee Detail</a>
-                            </li>*@
+                                    <a class="nav-link pmd-ripple-effect" href="/User/EmployeeDetail">Employee Detail</a>
+                                </li>*@
                         </ul>
                     </li>
                 }
@@ -295,13 +297,21 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link pmd-ripple-effect" href="/Account/ChangePassword">
+                    <i class="material-icons pmd-list-icon pmd-sm md-light">
+                        settings
+                    </i>
+                    <span class="media-body">Change Password</span>
+                </a>
+            </li>
+            @*<li class="nav-item">
                     <a class="nav-link pmd-ripple-effect" href="/Account/ChangePassword">
                         <i class="material-icons pmd-list-icon pmd-sm md-light">
-                            settings
+                            issue
                         </i>
-                        <span class="media-body">Change Password</span>
+                        <span class="media-body">Issue</span>
                     </a>
-                </li>
+                </li>*@
 
             @*<li class="nav-item">
                     <a class="nav-link pmd-ripple-effect" href="calendar.html">
@@ -395,6 +405,56 @@
     </aside>
     <!-- End Left sidebar -->
     @RenderBody()
+
+    <!-- Edit Leave Request Modal -->
+    <div class="modal pmd-modal fade " id="addIssue-modal" tabindex="-1" role="dialog" aria-labelledby="addIssue-modal" aria-hidden="true">
+        <div style="max-width:700px !important;" class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <h2 class="modal-title">Add Issue</h2>
+                    <form name="addLeaveForm" id="addIssueForm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label ">
+                                        <center class="details-tab">
+                                            <h3 class="card-title mb-3">Issue Picture</h3>
+                                            <div data-provides="fileinput" class="fileinput fileinput-new" style="border-radius:0%; width: 100%;">
+                                                <div id="issueImage" data-trigger="fileinput" class="fileinput-preview thumbnail img-fluid mb-0" style="width: 100%;">
+                                                    <img src="~/Content/images/icons8-system-report-48.png" width="200" alt="profile avatar">
+                                                </div>
+                                                <div class="action-button">
+                                                    <span class="btn btn-secondary pmd-btn-fab btn-sm pmd-btn-raised btn-file pmd-ripple-effect">
+                                                        <span class="fileinput-new"><i class="material-icons pmd-xs">add</i></span>
+                                                        <span class="fileinput-exists"><i class="material-icons pmd-xs">mode_edit</i></span>
+                                                        <input type="file" name="...">
+                                                    </span>
+                                                    <a data-dismiss="fileinput" class="btn btn-danger btn-sm pmd-btn-fab pmd-ripple-effect pmd-btn-raised btn-file fileinput-exists" href="javascript:void(0);"><i class="material-icons pmd-sm">close</i></a>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="employeeDetailId" />
+                                        </center>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                        <label style="margin-bottom: 25px;" class="control-label" for="">Issue Description:</label>
+                                        <textarea style="max-width: 100%;" autofocus class="form-control" id="IssueDesc" name="IssueDesc"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <a href="javascript:void(0);" class="btn btn-outline-dark pmd-btn-raised pmd-ripple-effect" title="Cancel" data-dismiss="modal">Cancel</a>
+                            <a href="javascript:void(0);" id="btnApplyLeave" onclick="addIssue()" class="btn btn-primary pmd-btn-raised pmd-ripple-effect" title="Apply">Add</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function () {
             var winWidth = $("body").width();
@@ -418,7 +478,48 @@
             $("#basicSidebar").removeClass("pmd-sidebar-open");
         });
 
-       
+        function addIssue(op) {
+            if (op == 0) {
+                $('#addIssue-modal').modal('show');
+                return false;
+            }
+            var model = {
+                IssueImage: $("#issueImage").find("img").attr("src"),
+                Description: $('#IssueDesc').val()
+            }
+            debugger
+            var chk = modelState.isValid(
+                [{
+                    id: '#IssueDesc', msg: 'Issue description is required!', type: validationTypes.required
+                }], '#addIssue-modal');
+            if (!chk)
+                return;
+
+            $.ajax({
+                url: '/Utility/AddIssue',
+                data: model,
+                type: 'POST',
+                dataType: 'Json',
+                success: function (response) {
+                    console.log(response);
+                    $('#addIssue-modal').modal('hide');
+                    $("#issueImage").find("img").attr("src","/Content/images/icons8-system-report-48.png");
+                    $('#IssueDesc').val('');
+                    if (response.Data) {
+                        toastr.success('Issue added!');
+                    }
+                    else {
+                        toastr.error('Something went wrong!');
+                    }
+                },
+                error: function (ex) {
+                    console.error(ex);
+                    toastr.error('Something went wrong!');
+                }
+            });
+
+        }
+
     </script>
 </body>
 </html>

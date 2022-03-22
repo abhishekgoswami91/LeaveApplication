@@ -255,6 +255,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="CustomJwtFormat.cs" />
     <Compile Include="CustomOAuthProvider.cs" />
     <Compile Include="Global.asax.cs">
@@ -268,6 +269,7 @@
     <Content Include="Global.asax" />
     <Content Include="MailTemplates\ApplyLeave.html" />
     <Content Include="MailTemplates\error.txt" />
+    <Content Include="MailTemplates\IssueTemplate.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

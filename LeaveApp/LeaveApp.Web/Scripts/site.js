@@ -85,3 +85,33 @@ var fileService = {
         return sizeInKb;
     }
 }
+
+var validationTypes = {
+    required: 1,
+    email: 2,
+    number: 3,
+    string: 4
+}
+var modelState = {
+    isValid: function (arrObj, formId) {
+        var chk = true;
+        $(formId).find('.avid-error').remove();
+                for (var i = 0; i < arrObj.length; i++) {
+                    switch (arrObj[i].type) {
+                        case validationTypes.required:
+                            if (arrObj[i].value == undefined && $(formId).find(arrObj[i].id).val().trim() == '') {
+                                $(formId).find(arrObj[i].id).after('<span class="avid-error" style="color: red;">' + arrObj[i].msg + '</span>');
+                                chk = false;
+                            }
+                            else if (arrObj[i].value != undefined && arrObj[i].value.trim() == '') {
+                                $(formId).find(arrObj[i].id).after('<span class="avid-error" style="color: red;">' + arrObj[i].msg + '</span>');
+                                chk = false;
+                            }
+                            break;
+                    }
+
+                    
+                }
+        return chk;
+    }
+}

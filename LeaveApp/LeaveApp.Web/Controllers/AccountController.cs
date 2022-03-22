@@ -114,7 +114,8 @@ namespace LeaveApp.Web.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
+        //[OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)

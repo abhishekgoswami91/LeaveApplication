@@ -29,6 +29,11 @@ namespace LeaveApp.Web
                 typeof(IApiService),
                 typeof(ResponseModel)
                 ));
+            container.RegisterType<UtilityController>
+               (new InjectionConstructor(
+               typeof(IApiService),
+               typeof(ResponseModel)
+               ));
 
             // e.g. container.RegisterType<ITestService, TestService>();
 

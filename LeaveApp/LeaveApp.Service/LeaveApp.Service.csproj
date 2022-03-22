@@ -106,6 +106,8 @@
     <Compile Include="API\IApiService.cs" />
     <Compile Include="Employee\EmployeeService.cs" />
     <Compile Include="Employee\IEmployeeService.cs" />
+    <Compile Include="Issue\IIssueService.cs" />
+    <Compile Include="Issue\IssueService.cs" />
     <Compile Include="Leave\ILeaveService.cs" />
     <Compile Include="Leave\LeaveService.cs" />
     <Compile Include="Mail\IMailService.cs" />

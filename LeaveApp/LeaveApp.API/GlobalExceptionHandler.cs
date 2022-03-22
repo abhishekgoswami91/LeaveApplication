@@ -12,7 +12,7 @@ namespace LeaveApp.API
         public override void Handle(ExceptionHandlerContext context)
         {
             Exception e = context.Exception;
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "MailTemplates/error.txt", e.Message);
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "MailTemplates/error.txt", e.Message + "log time: "+ DateTime.Now);
             var response = new HttpResponseMessage(HttpStatusCode.BadRequest)
             {
                 Content = new StringContent("-1"),

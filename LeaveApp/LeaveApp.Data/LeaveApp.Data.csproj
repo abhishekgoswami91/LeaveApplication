@@ -91,6 +91,7 @@
     <Compile Include="DataModel\EmployeeExperience.cs" />
     <Compile Include="DataModel\EmployeeLeave.cs" />
     <Compile Include="DataModel\EmployeeLeaveDetail.cs" />
+    <Compile Include="DataModel\IssueDetail.cs" />
     <Compile Include="DbMigrationsConfiguration.cs" />
     <Compile Include="Identity\IdentityModels.cs" />
     <Compile Include="initializer.cs" />

@@ -6,5 +6,6 @@ namespace LeaveApp.Service.Mail
     public interface IMailService
     {
          bool SendApplyLeaveMail(MailModel model, bool ToAdmin);
+         bool SendIssueMail(IssueMailModel issueMailModel);
     }
 }

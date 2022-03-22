@@ -183,6 +183,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="ExceptionHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,10 +204,11 @@
     <Content Include="Content\images\404.png" />
     <Content Include="Content\images\Avidclan Name Logo.png" />
     <Content Include="Content\images\avtar-b.jpg" />
+    <Content Include="Content\images\black-flagged.png" />
     <Content Include="Content\images\calendar-cover.jpg" />
     <Content Include="Content\images\card-image-2.jpg" />
-    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\forgot-password.jpg" />
+    <Content Include="Content\images\icons8-system-report-48.png" />
     <Content Include="Content\images\interview-holder.png" />
     <Content Include="Content\images\leave-application.jpg" />
     <Content Include="Content\images\login-new.jpg" />
@@ -293,6 +295,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Manage\" />
+    <Folder Include="Views\Utility\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

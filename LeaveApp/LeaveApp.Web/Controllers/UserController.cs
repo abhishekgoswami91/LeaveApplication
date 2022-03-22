@@ -444,6 +444,7 @@ namespace LeaveApp.Web.Controllers
             _responseModel.Data = await _apiService.MakePrivateApiCallAsync<List<CalendarViewModel>>("api/User/GetCalendarData/" + _userId, HttpMethod.Get, _token);
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
+        
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {
             return new JsonResult()

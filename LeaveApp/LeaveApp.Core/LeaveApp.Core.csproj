@@ -35,7 +35,7 @@
       <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="LeaveApp.Data">
-      <HintPath>..\LeaveApp.Data\bin\Debug\LeaveApp.Data.dll</HintPath>
+      <HintPath>..\..\..\LeaveApp\LeaveApp\LeaveApp.Data\bin\Debug\LeaveApp.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -53,6 +53,7 @@
     <Compile Include="Enums\Departments.cs" />
     <Compile Include="Enums\Designations.cs" />
     <Compile Include="Enums\EmployeeTypes.cs" />
+    <Compile Include="Enums\IssueStatus.cs" />
     <Compile Include="Enums\ResponseMessages.cs" />
     <Compile Include="Enums\LeaveStatus.cs" />
     <Compile Include="Enums\LeaveCategorys.cs" />
@@ -68,6 +69,8 @@
     <Compile Include="ViewModel\DocumentUploadModel.cs" />
     <Compile Include="ViewModel\EmployeeDetailsViewModel.cs" />
     <Compile Include="ViewModel\EmployeeListModal.cs" />
+    <Compile Include="ViewModel\IssueMailModel.cs" />
+    <Compile Include="ViewModel\IssueViewModel.cs" />
     <Compile Include="ViewModel\LeaveListViewModel.cs" />
     <Compile Include="ViewModel\LeaveRulesViewModel.cs" />
     <Compile Include="ViewModel\MailModel.cs" />
