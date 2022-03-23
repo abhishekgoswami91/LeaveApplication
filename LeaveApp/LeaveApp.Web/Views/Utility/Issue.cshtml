@@ -1,0 +1,130 @@
+﻿@model IEnumerable<LeaveApp.Core.ViewModel.IssueViewModel>
+@{
+    ViewBag.Title = "Issues";
+}
+<!doctype html>
+<html lang="en-US">
+<head>
+    <style>
+        #leaveList table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #leaveList th, #leaveList td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        #leaveList tr:nth-child(even) {
+            background-color: #D6EEEE;
+        }
+
+        tr[class^="subValues"] {
+            background-color: #D6EEEE;
+        }
+
+        label.error {
+            color: #ff0000 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content" class="pmd-content inner-page admin">
+        <!-- Title -->
+        <h1 id="leave">Issue list</h1>
+        <!-- End Title -->
+        <!--breadcrum start-->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb pmd-breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="/User/Dashboard">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Issue</li>
+            </ol>
+        </nav>
+        <!--breadcrum end-->
+        <section class="component-section" id="employee">
+            <table class="table pmd-table table-hover pmd-table-card">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Issue image</th>
+                        <th>Issue</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td style="text-align:center;" colspan="8">
+                                No data
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td data-title="Image"><img onclick="openIssueImage(this.src)" src="@item.IssueImage" style="width: 60px;" /></td>
+                            <td data-title="Issue">@item.Description </td>
+                            <td data-title="Date">@item.CreatedDate.ToString("MM/dd/yyyy")</td>
+                            <td data-title="Actions">
+                                <a href="javascript:void(0);" onclick="setIssueStatus(@item.IssueId, 2)" class="btn btn-info" style="color: white; background-color:#3075ba; font-size: 10px;"><b>Marked as resolved</b></a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div id="IssueImageModal" class="modal fade" tabindex="-1" role="dialog" style="margin-top: 100px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true" style="position: absolute; margin-top: -17px;">&times;</span>
+                    </button>
+                    <img id="IssueImage" src="" class="img-responsive" style="width: 100%; height: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function setIssueStatus(id, status) {
+            var model = {
+                IssueId: id,
+                IssueStatus: status
+            }
+            $.ajax({
+                url: '/Utility/ChangeIssueStatus',
+                data: model,
+                type: 'POST',
+                dataType: 'Json',
+                success: function (response) {
+                    console.log(response);
+                    if (response.Data) {
+                        toastr.success('Issue resolved!');
+                        setTimeout(function () { location.reload(); }, 2000);
+                    }
+                    else {
+                        toastr.error('Something went wrong!');
+                    }
+                },
+                error: function (ex) {
+                    console.log(ex);
+                    toastr.error('Something went wrong!');
+                }
+            });
+        }
+        function openIssueImage(src) {
+            //window.open("/Utility/DisplayMedia?image=" + src, "", "width=200,height=100");
+            $('#IssueImage').attr('src',src);
+            $('#IssueImageModal').modal('show');
+        }
+    </script>
+</body>
+</html>

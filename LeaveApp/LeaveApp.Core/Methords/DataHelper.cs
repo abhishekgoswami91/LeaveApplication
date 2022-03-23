@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
 
 namespace LeaveApp.Core.Methords
 {
@@ -18,7 +20,18 @@ namespace LeaveApp.Core.Methords
             _mapper = _config.CreateMapper();
             return _mapper.Map<ST, DT>(data);
         }
-        
+        public List<DT> AutoMap<ST, DT>(List<ST> data)
+        {
+            _config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<List<ST>, List<DT>>();
+            });
+            _mapper = _config.CreateMapper();
+            return _mapper.Map<List<ST>, List<DT>>(data);
+        }
 
+        //public object AutoMap<T1, T2>(T2 issueDetail)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

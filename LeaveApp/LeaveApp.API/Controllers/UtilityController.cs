@@ -1,7 +1,9 @@
-﻿using LeaveApp.Core.ViewModel;
+﻿using LeaveApp.Core.Enums;
+using LeaveApp.Core.ViewModel;
 using LeaveApp.Data.DataModel;
 using LeaveApp.Service.Issue;
 using LeaveApp.Service.Mail;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -36,6 +38,29 @@ namespace LeaveApp.API.Controllers
                 return Ok(true);
             else
                 return Ok(false);
-        } 
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        [Route("GetIssueList/{Id}")]
+        public async Task<IHttpActionResult> GetIssueList(int Id = 0)
+        {
+            List<IssueViewModel> issueList = new List<IssueViewModel>();
+            if (Id > 0)
+            {
+                IssueViewModel issue = await _issueService.GetIssueByIdAsync(Id);
+                issueList.Add(issue);
+                return Ok(issueList);
+            }
+            issueList = await _issueService.GetIssueListAsync();
+            return Ok(issueList);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("ChangeIssueStatus/{IssueId}/{IssueStatus}")]
+        public async Task<IHttpActionResult> ChangeIssueStatus(int IssueId, IssueStatus IssueStatus)
+        {
+            await _issueService.SetIssueStatusAsync(IssueId, IssueStatus);
+            return Ok(true);
+        }
     }
 }

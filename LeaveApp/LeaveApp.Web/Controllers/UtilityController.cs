@@ -1,4 +1,5 @@
-﻿using LeaveApp.Core.ViewModel;
+﻿using LeaveApp.Core.Enums;
+using LeaveApp.Core.ViewModel;
 using LeaveApp.Service.API;
 using Microsoft.AspNet.Identity;
 using System;
@@ -63,22 +64,28 @@ namespace LeaveApp.Web.Controllers
             _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/Utility/AddIssue", HttpMethod.Post, _token, model);
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
-        [Authorize(Roles = "Admin,Employee")]
-        public async Task<ActionResult> Issue(int Id)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Issue(int Id = 0)
         {
-            _responseModel.Data = await _apiService.MakePrivateApiCallAsync<List<CalendarViewModel>>("api/Utility/GetCalendarData/" + _userId, HttpMethod.Get, _token);
-            return Json(_responseModel, JsonRequestBehavior.AllowGet);
+            List<IssueViewModel> response = await _apiService.MakePrivateApiCallAsync<List<IssueViewModel>>("api/Utility/GetIssueList/" + Id, HttpMethod.Get, _token);
+            return View(response);
         }
-        [Authorize(Roles = "Admin,Employee")]
-        public async Task<ActionResult> ChangeIssueStatus()
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> ChangeIssueStatus(int IssueId, IssueStatus IssueStatus)
         {
-            _responseModel.Data = await _apiService.MakePrivateApiCallAsync<List<CalendarViewModel>>("api/Utility/GetCalendarData/" + _userId, HttpMethod.Get, _token);
+            _responseModel.Data = await _apiService.MakePrivateApiCallAsync<bool>("api/Utility/ChangeIssueStatus/" + IssueId + "/" + IssueStatus, HttpMethod.Post, _token);
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
         }
         public async Task<ActionResult> DeleteIssue(int Id)
         {
             _responseModel.Data = await _apiService.MakePrivateApiCallAsync<List<CalendarViewModel>>("api/Utility/GetCalendarData/" + _userId, HttpMethod.Get, _token);
             return Json(_responseModel, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult DisplayMedia(string image)
+        {
+            ViewBag.WordHtml = image;
+            return View("_media");
         }
     }
 }
